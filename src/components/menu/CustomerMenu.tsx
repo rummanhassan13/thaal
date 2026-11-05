@@ -315,7 +315,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
           {canOrder && count > 0 && (
             <motion.div key="cart" initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} transition={{ type: "spring", stiffness: 400, damping: 32 }} className="pointer-events-auto">
               <motion.button animate={bounce} onClick={() => setCartOpen(true)} className="flex w-full items-center justify-between rounded-lg bg-ink px-4 py-3.5 text-sm text-paper">
-                <span>{count} item{count > 1 ? "s" : ""} · <span className="tabular-nums">{formatPrice(cartTotal(lines), cur)}</span></span>
+                <span className="flex items-center gap-2.5"><span className="grid h-6 min-w-6 place-items-center rounded-full bg-marigold px-1.5 text-xs font-semibold text-accent-foreground tabular-nums">{count}</span>item{count > 1 ? "s" : ""} · <span className="tabular-nums">{formatPrice(cartTotal(lines), cur)}</span></span>
                 <span className="underline underline-offset-4">View order</span>
               </motion.button>
             </motion.div>

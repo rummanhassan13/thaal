@@ -142,7 +142,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
       {cart > 0 && (
         <motion.div initial={{ y: 60 }} animate={{ y: 0 }} transition={{ type: "spring", stiffness: 400, damping: 30 }} className="absolute inset-x-3 bottom-3 z-20">
           <motion.div animate={cartCtl} className="flex items-center justify-between rounded-lg bg-ink px-4 py-3 text-sm text-paper">
-            <span>{cart} in your order</span><span className="underline underline-offset-4">View</span>
+            <span className="flex items-center gap-2"><span className="grid h-5 min-w-5 place-items-center rounded-full bg-marigold px-1 text-[11px] font-semibold text-ink tabular-nums">{cart}</span>in your order</span><span className="underline underline-offset-4">View</span>
           </motion.div>
         </motion.div>
       )}
