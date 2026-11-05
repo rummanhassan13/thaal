@@ -25,23 +25,23 @@ function Profile() {
 
   useEffect(() => {
     setAvailable(null);
-    if (form.slug === r.slug || form.slug.length < 2) return;
+    if (form.slug === r.slug || form.slug.length < 2) return undefined;
     const t = setTimeout(async () => setAvailable(!!(await supabase.rpc("slug_available", { _slug: form.slug })).data), 300);
     return () => clearTimeout(t);
   }, [form.slug, r.slug]);
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim()) return toast.error("Your restaurant needs a name.");
-    if (form.slug.length < 2) return toast.error("Your menu link is too short.");
-    if (available === false) return toast.error("That link is taken. Try another.");
+    if (!form.name.trim()) { toast.error("Your restaurant needs a name."); return; }
+    if (form.slug.length < 2) { toast.error("Your menu link is too short."); return; }
+    if (available === false) { toast.error("That link is taken. Try another."); return; }
     setBusy(true);
     const { error } = await supabase.from("restaurants").update({
       name: form.name.trim(), slug: form.slug, description: form.description.trim() || null,
       currency: form.currency, logo_url: form.logo_url, cover_url: form.cover_url,
     }).eq("id", r.id);
     setBusy(false);
-    if (error) return toast.error(error.message.includes("duplicate") ? "That link is taken. Try another." : errMsg(error));
+    if (error) { toast.error(error.message.includes("duplicate") ? "That link is taken. Try another." : errMsg(error)); return; }
     toast.success("Saved.");
     router.invalidate();
   };
@@ -49,7 +49,7 @@ function Profile() {
   const togglePublish = async (v: boolean) => {
     setPublished(v);
     const { error } = await supabase.from("restaurants").update({ published: v }).eq("id", r.id);
-    if (error) { setPublished(!v); return toast.error(errMsg(error)); }
+    if (error) { setPublished(!v); { toast.error(errMsg(error)); return; } }
     toast.success(v ? "You're live. Diners can see your menu." : "Unpublished. Only you can see it now.");
     router.invalidate();
   };

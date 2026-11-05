@@ -62,7 +62,7 @@ function MenuEditor() {
   const mapDish = (id: string, p: Partial<Dish>) => mapCats((c) => ({ ...c, dishes: c.dishes.map((d) => (d.id === id ? { ...d, ...p } : d)) }));
 
   // dishes
-  const setDish = (d: Dish, p: Partial<Dish>, ok?: string) => run(patch(mapDish(d.id, p)), supabase.from("dishes").update(p).eq("id", d.id), ok);
+  const setDish = (d: Dish, p: Partial<Pick<Dish, "price" | "is_sold_out" | "is_special">>, ok?: string) => run(patch(mapDish(d.id, p)), supabase.from("dishes").update(p).eq("id", d.id), ok);
   const deleteDish = async (d: Dish) => {
     if (!confirm(`Remove ${d.name} from the menu?`)) return;
     const undo = patch(mapCats((c) => ({ ...c, dishes: c.dishes.filter((x) => x.id !== d.id) })));
@@ -84,7 +84,7 @@ function MenuEditor() {
     e.preventDefault();
     if (!menu || !newCat.trim()) return;
     const { error } = await supabase.from("categories").insert({ menu_id: menu.id, name: newCat.trim(), sort: menu.categories.length });
-    if (error) return toast.error(errMsg(error));
+    if (error) { toast.error(errMsg(error)); return; }
     setNewCat(""); refresh();
   };
   const deleteCat = async (c: Category) => {
@@ -95,15 +95,15 @@ function MenuEditor() {
 
   // menus
   const addMenu = async () => {
-    if (!canAddMenu(restaurant.plan, menus.length)) return setUpsell(true);
+    if (!canAddMenu(restaurant.plan, menus.length)) { setUpsell(true); return; }
     const { data, error } = await supabase.from("menus").insert({ branch_id: branchId, name: "New menu", sort: menus.length }).select("id").single();
-    if (error) return toast.error(errMsg(error));
+    if (error) { toast.error(errMsg(error)); return; }
     await refresh(); setMenuId(data.id); setShowSchedule(true);
   };
   const setMenu = (m: Menu, p: Partial<Pick<Menu, "name" | "active">>, ok?: string) =>
     run(patch((ms) => ms.map((x) => (x.id === m.id ? { ...x, ...p } : x))), supabase.from("menus").update(p).eq("id", m.id), ok);
   const deleteMenu = async (m: Menu) => {
-    if (menus.length <= 1) return toast.error("Keep at least one menu. Rename this one instead?");
+    if (menus.length <= 1) { toast.error("Keep at least one menu. Rename this one instead?"); return; }
     if (!confirm(`Delete the ${m.name} menu and everything in it?`)) return;
     const undo = patch((ms) => ms.filter((x) => x.id !== m.id));
     if (await run(undo, supabase.from("menus").delete().eq("id", m.id), `${m.name} deleted.`)) setMenuId(null);

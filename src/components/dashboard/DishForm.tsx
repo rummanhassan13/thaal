@@ -31,7 +31,7 @@ export function DishForm({ open, dish, categoryId, nextSort, restaurantId, curre
   const [busy, setBusy] = useState(false);
   useEffect(() => { if (open) setD(dish ? fromDish(dish) : blank(categoryId)); }, [open, dish, categoryId]);
   useEffect(() => {
-    if (!open) return;
+    if (!open) return undefined;
     const prev = document.body.style.overflow; document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = prev; };
   }, [open]);
@@ -41,10 +41,10 @@ export function DishForm({ open, dish, categoryId, nextSort, restaurantId, curre
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
     const price = Number(d.price);
-    if (!d.name.trim()) return toast.error("Every dish needs a name.");
-    if (!Number.isFinite(price) || price < 0 || d.price.trim() === "") return toast.error("Add a price (0 is fine for free things).");
+    if (!d.name.trim()) { toast.error("Every dish needs a name."); return; }
+    if (!Number.isFinite(price) || price < 0 || d.price.trim() === "") { toast.error("Add a price (0 is fine for free things)."); return; }
     const addons = d.addons.filter((a) => a.name.trim());
-    if (addons.some((a) => !Number.isFinite(Number(a.price || 0)) || Number(a.price || 0) < 0)) return toast.error("Check the add-on prices.");
+    if (addons.some((a) => !Number.isFinite(Number(a.price || 0)) || Number(a.price || 0) < 0)) { toast.error("Check the add-on prices."); return; }
     setBusy(true);
     const row = {
       category_id: d.category_id, name: d.name.trim(), short_description: d.short_description?.trim() || null, description: d.description?.trim() || null,

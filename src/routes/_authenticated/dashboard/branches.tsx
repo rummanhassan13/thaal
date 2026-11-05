@@ -28,15 +28,15 @@ function Branches() {
   const refresh = () => qc.invalidateQueries({ queryKey: branchesKey(restaurant.id) });
 
   const startNew = () => {
-    if (!canAddBranch(restaurant.plan, branches.length)) return setUpsell(true);
+    if (!canAddBranch(restaurant.plan, branches.length)) { setUpsell(true); return; }
     setEditing({ name: "", address: "", phone: "", timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, opening_hours: {} });
   };
 
   const remove = async (b: Branch) => {
-    if (branches.length <= 1) return toast.error("You need at least one branch.");
+    if (branches.length <= 1) { toast.error("You need at least one branch."); return; }
     if (!confirm(`Delete ${b.name}? Its menus, dishes, tables and order history go with it.`)) return;
     const { error } = await supabase.from("branches").delete().eq("id", b.id);
-    if (error) return toast.error(errMsg(error));
+    if (error) { toast.error(errMsg(error)); return; }
     toast.success(`${b.name} deleted.`);
     setEditing(null); refresh();
   };
@@ -101,9 +101,9 @@ function BranchForm({ draft, restaurantId, onCancel, onSaved, onDelete }: {
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!d.name.trim()) return toast.error("Give the branch a name.");
+    if (!d.name.trim()) { toast.error("Give the branch a name."); return; }
     const bad = Object.entries(d.opening_hours).find(([, h]) => h && h.open === h.close);
-    if (bad) return toast.error("Opening and closing times can't be the same.");
+    if (bad) { toast.error("Opening and closing times can't be the same."); return; }
     setBusy(true);
     const row = { name: d.name.trim(), address: d.address.trim() || null, phone: d.phone.trim() || null, timezone: d.timezone, opening_hours: d.opening_hours };
     try {

@@ -16,7 +16,7 @@ export function ScheduleEditor({ menus, menu, onSaved }: { menus: Menu[]; menu: 
   const [slots, setSlots] = useState<DraftSlot[]>(toDraft);
   const [busy, setBusy] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setSlots(toDraft()), [menu.id, menu.menu_schedules]);
+  useEffect(() => { setSlots(toDraft()); }, [menu.id, menu.menu_schedules]);
 
   const all = useMemo(() => menus.map((m) => ({
     id: m.id, name: m.name,
@@ -29,7 +29,7 @@ export function ScheduleEditor({ menus, menu, onSaved }: { menus: Menu[]; menu: 
 
   const patch = (key: string, p: Partial<Slot>) => setSlots((xs) => xs.map((s) => (s.key === key ? { ...s, ...p } : s)));
   const save = async () => {
-    if (slots.some((s) => !s.weekdays.length)) return toast.error("Pick at least one day for each time slot.");
+    if (slots.some((s) => !s.weekdays.length)) { toast.error("Pick at least one day for each time slot."); return; }
     setBusy(true);
     try {
       const { error } = await supabase.from("menu_schedules").delete().eq("menu_id", menu.id);
