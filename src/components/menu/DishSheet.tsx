@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BottomSheet, Button, Divider, Tag } from "@/components/plated/primitives";
+import { BottomSheet, Button, Divider, Tag } from "@/components/thaal/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { formatPrice, type PublicDish } from "@/lib/menu/types";
 import { cn } from "@/lib/utils";

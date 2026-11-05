@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { buttonVariants } from "@/components/plated/primitives";
+import { buttonVariants } from "@/components/thaal/primitives";
 import { SiteFooter, SiteNav } from "@/components/landing/SiteNav";
 import { MenuView, Phone } from "@/components/landing/DemoMenu";
 import { getPublicMenu } from "@/lib/menu/menu.functions";
@@ -8,7 +8,7 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { OwnerSide } from "@/components/landing/OwnerSide";
 import { Pricing } from "@/components/landing/Pricing";
 import { img } from "@/lib/unsplash";
-import { InstallBanner } from "@/components/plated/InstallBanner";
+import { InstallBanner } from "@/components/thaal/InstallBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({

@@ -10,7 +10,7 @@ export function logEvent(branchId: string, type: EventType, dishId?: string) {
 
 export function logScanOnce(branchId: string) {
   try {
-    const key = `plated:scan:${branchId}`;
+    const key = `thaal:scan:${branchId}`;
     if (sessionStorage.getItem(key)) return;
     sessionStorage.setItem(key, "1");
   } catch { /* storage blocked: still log */ }

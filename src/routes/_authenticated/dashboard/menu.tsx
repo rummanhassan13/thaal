@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Button, PillGroup, Toggle, buttonVariants } from "@/components/plated/primitives";
+import { Button, PillGroup, Toggle, buttonVariants } from "@/components/thaal/primitives";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { DishForm } from "@/components/dashboard/DishForm";
 import { ScheduleEditor } from "@/components/dashboard/ScheduleEditor";

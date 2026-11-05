@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Button, Divider, buttonVariants } from "@/components/plated/primitives";
+import { Button, Divider, buttonVariants } from "@/components/thaal/primitives";
 import { QrPreview } from "@/components/dashboard/QrPreview";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";

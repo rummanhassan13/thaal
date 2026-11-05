@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import Cropper, { type Area } from "react-easy-crop";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@/components/plated/primitives";
+import { Button } from "@/components/thaal/primitives";
 import { uploadMenuImage, type UploadKind } from "@/lib/image-upload";
 import { cn } from "@/lib/utils";
 

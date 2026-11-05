@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, useAnimationControls, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { PillGroup, Tag } from "@/components/plated/primitives";
+import { PillGroup, Tag } from "@/components/thaal/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { addLine, cartCount, cartTotal, setQty, toOrderItems, type CartLine } from "@/lib/menu/cart";
 import { openState } from "@/lib/menu/hours";
@@ -88,7 +88,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
 
   // --- cart ---
   const [lines, setLines] = useState<CartLine[]>([]);
-  const cartKey = `plated:cart:${r.slug}`;
+  const cartKey = `thaal:cart:${r.slug}`;
   useEffect(() => { try { const s = sessionStorage.getItem(cartKey); if (s) setLines(JSON.parse(s)); } catch { /* ignore */ } }, [cartKey]);
   useEffect(() => { try { sessionStorage.setItem(cartKey, JSON.stringify(lines)); } catch { /* ignore */ } }, [lines, cartKey]);
   const bounce = useAnimationControls();
@@ -106,7 +106,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
   };
 
   // --- placed order ---
-  const orderKey = `plated:order:${r.slug}`;
+  const orderKey = `thaal:order:${r.slug}`;
   const [order, setOrder] = useState<StoredOrder | null>(null);
   const [statusOpen, setStatusOpen] = useState(false);
   useEffect(() => { try { const s = localStorage.getItem(orderKey); if (s) setOrder(JSON.parse(s)); } catch { /* ignore */ } }, [orderKey]);
@@ -132,14 +132,14 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
   // --- service requests ---
   const [cooldown, setCooldown] = useState<Record<string, number>>({});
   const [, tick] = useState(0);
-  useEffect(() => { try { setCooldown(JSON.parse(localStorage.getItem(`plated:svc:${r.slug}`) ?? "{}")); } catch { /* ignore */ } }, [r.slug]);
+  useEffect(() => { try { setCooldown(JSON.parse(localStorage.getItem(`thaal:svc:${r.slug}`) ?? "{}")); } catch { /* ignore */ } }, [r.slug]);
   useEffect(() => { const t = setInterval(() => tick((n) => n + 1), 5000); return () => clearInterval(t); }, []);
   const callService = async (type: "waiter" | "bill") => {
     if (!table) return;
     const until = Date.now() + COOLDOWN_MS;
     const next = { ...cooldown, [type]: until };
     setCooldown(next);
-    try { localStorage.setItem(`plated:svc:${r.slug}`, JSON.stringify(next)); } catch { /* ignore */ }
+    try { localStorage.setItem(`thaal:svc:${r.slug}`, JSON.stringify(next)); } catch { /* ignore */ }
     const { error } = await supabase.rpc("request_service", { p_branch_id: branchId, p_table: table, p_type: type });
     if (error && !error.message.includes("on its way")) { toast("Couldn't reach the staff. Give them a wave?"); setCooldown((c) => ({ ...c, [type]: 0 })); return; }
     toast(type === "waiter" ? "Someone's on their way." : "The bill's coming over.");

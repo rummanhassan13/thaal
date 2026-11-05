@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { buttonVariants, Divider } from "@/components/plated/primitives";
+import { buttonVariants, Divider } from "@/components/thaal/primitives";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
 import { menuTreeQuery } from "@/lib/dashboard/menu-data";

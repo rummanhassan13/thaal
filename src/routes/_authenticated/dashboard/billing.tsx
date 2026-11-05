@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 import { toast } from "sonner";
-import { BottomSheet, Button, Input } from "@/components/plated/primitives";
+import { BottomSheet, Button, Input } from "@/components/thaal/primitives";
 import { PlanColumns } from "@/components/landing/Pricing";
 import { supabase } from "@/integrations/supabase/client";
 import { COMPARISON, formatPlanPrice, PLANS, planFeatures, planInfo, type Plan } from "@/lib/plan";

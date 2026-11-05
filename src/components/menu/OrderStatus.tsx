@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { BottomSheet, Button, Divider } from "@/components/plated/primitives";
+import { BottomSheet, Button, Divider } from "@/components/thaal/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { formatPrice } from "@/lib/menu/types";
 import { cn } from "@/lib/utils";
@@ -100,7 +100,7 @@ function dedupe(items: OrderInfo["items"]) {
 }
 
 function ReviewRow({ order, dishId, name }: { order: StoredOrder; dishId: string; name: string }) {
-  const key = `plated:review:${order.id}:${dishId}`;
+  const key = `thaal:review:${order.id}:${dishId}`;
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [done, setDone] = useState(false);

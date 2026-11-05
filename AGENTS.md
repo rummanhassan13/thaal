@@ -30,7 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Plated UI primitives live in `src/components/plated/`; marketing sections in `src/components/landing/`. Why: keeps brand primitives separate from stock shadcn.
+- Brand UI primitives (logo, buttons, pills) live in `src/components/thaal/`; marketing sections in `src/components/landing/`. Why: keeps brand primitives separate from stock shadcn.
 - All colours come from tokens in `src/styles.css` (paper/ink/marigold/highlight/pink/alert/teal/teal-ink/mist + shadcn aliases; `-ink`/`highlight`/`alert` are the text-safe variants of fill colours). Why: dark mode and theming.
 - Diner/public menu reads go through `getPublicMenu` (server fn, publishable key, anon RLS); diners never read orders directly — they use RPCs `place_order` / `get_order_status` / `submit_review`. Why: server-side prices and per-order tracking tokens.
 - Owner app lives under `src/routes/_authenticated/`; the dashboard layout's `beforeLoad` loads the user's restaurant and redirects to `/onboarding` if none. Why: one gate, client-side session.

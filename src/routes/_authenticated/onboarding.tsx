@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Wordmark } from "@/components/plated/Wordmark";
-import { Button, Divider, Input } from "@/components/plated/primitives";
+import { Wordmark } from "@/components/thaal/Wordmark";
+import { Button, Divider, Input } from "@/components/thaal/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchMyRestaurant, slugify } from "@/lib/restaurant";
 
@@ -79,7 +79,7 @@ function Onboarding() {
           <div>
             <Input label="Menu link" value={slug} onChange={(e) => { setSlugTouched(true); setSlug(slugify(e.target.value)); }} />
             <p className="mt-1.5 text-xs text-muted-foreground">
-              plated.app/m/<span className="text-foreground">{slug || "your-place"}</span>
+              thaal.app/m/<span className="text-foreground">{slug || "your-place"}</span>
               {available === true && <span className="ml-2 text-teal-ink">available</span>}
               {available === false && <span className="ml-2 text-alert">taken</span>}
             </p>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Divider, PillGroup, SectionHeading, Tag, Toggle } from "@/components/plated/primitives";
+import { Divider, PillGroup, SectionHeading, Tag, Toggle } from "@/components/thaal/primitives";
 import { cn } from "@/lib/utils";
 
 type Status = "new" | "cooking" | "ready";

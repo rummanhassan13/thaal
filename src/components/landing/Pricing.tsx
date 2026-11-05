@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { buttonVariants, SectionHeading } from "@/components/plated/primitives";
+import { buttonVariants, SectionHeading } from "@/components/thaal/primitives";
 import { formatPlanPrice, PLANS } from "@/lib/plan";
 import { cn } from "@/lib/utils";
 

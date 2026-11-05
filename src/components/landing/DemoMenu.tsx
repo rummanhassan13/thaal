@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-import { BottomSheet, Button, PillGroup, Tag } from "@/components/plated/primitives";
+import { BottomSheet, Button, PillGroup, Tag } from "@/components/thaal/primitives";
 import { sized, srcSet } from "@/lib/unsplash";
 import { formatPrice, todaysHours, type PublicDish, type PublicMenuData } from "@/lib/menu/types";
 import { supabase } from "@/integrations/supabase/client";

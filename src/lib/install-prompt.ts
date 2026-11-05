@@ -1,4 +1,4 @@
-export const DISMISS_KEY = "plated.install.dismissedAt";
+export const DISMISS_KEY = "thaal.install.dismissedAt";
 export const DISMISS_DAYS = 14;
 
 /** Banner stays hidden for 14 days after the owner dismisses it. */

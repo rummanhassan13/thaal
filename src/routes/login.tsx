@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { AuthCard } from "@/components/plated/AuthCard";
+import { AuthCard } from "@/components/thaal/AuthCard";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [

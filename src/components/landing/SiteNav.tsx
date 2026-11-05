@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Wordmark } from "@/components/plated/Wordmark";
-import { buttonVariants } from "@/components/plated/primitives";
+import { Wordmark } from "@/components/thaal/Wordmark";
+import { buttonVariants } from "@/components/thaal/primitives";
 
 export function SiteNav() {
   return (

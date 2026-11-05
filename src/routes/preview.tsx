@@ -20,11 +20,11 @@ function Preview() {
   useEffect(() => {
     disableEvents();
     const onMsg = (e: MessageEvent) => {
-      if (e.origin !== window.location.origin || e.data?.type !== "plated-preview") return;
+      if (e.origin !== window.location.origin || e.data?.type !== "thaal-preview") return;
       setData(e.data.payload as PublicMenuData);
     };
     window.addEventListener("message", onMsg);
-    window.parent?.postMessage({ type: "plated-preview-ready" }, window.location.origin);
+    window.parent?.postMessage({ type: "thaal-preview-ready" }, window.location.origin);
     return () => window.removeEventListener("message", onMsg);
   }, []);
   if (!data) return <div className="grid min-h-dvh place-items-center text-sm text-muted-foreground">Warming up the preview…</div>;

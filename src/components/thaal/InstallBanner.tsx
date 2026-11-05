@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { BottomSheet, Button } from "@/components/plated/primitives";
+import { BottomSheet, Button } from "@/components/thaal/primitives";
 import { DISMISS_KEY, dismissedRecently, isIosSafari } from "@/lib/install-prompt";
 import { cn } from "@/lib/utils";
 
