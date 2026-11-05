@@ -54,13 +54,13 @@ export function PillGroup<T extends string>({
             className={cn(
               "relative shrink-0 rounded-full transition-colors",
               size === "sm" ? "px-3 py-1 text-[11px]" : "px-4 py-1.5 text-sm",
-              active ? "text-paper" : "text-muted-foreground hover:text-foreground",
+              active ? "font-medium text-accent-foreground" : "text-muted-foreground hover:text-foreground",
             )}
           >
             {active && (
               <motion.span
                 layoutId={id}
-                className="absolute inset-0 rounded-full bg-ink"
+                className="absolute inset-0 rounded-full bg-marigold"
                 transition={{ type: "spring", stiffness: 500, damping: 38 }}
               />
             )}
