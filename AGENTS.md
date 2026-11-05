@@ -32,3 +32,7 @@ use the editor.
 ## Project rules
 - Plated UI primitives live in `src/components/plated/`; marketing sections in `src/components/landing/`. Why: keeps brand primitives separate from stock shadcn.
 - All colours come from tokens in `src/styles.css` (paper/ink/terracotta/sand/olive + shadcn aliases). Why: dark mode and theming.
+- Diner/public menu reads go through `getPublicMenu` (server fn, publishable key, anon RLS); diners never read orders directly — they use RPCs `place_order` / `get_order_status` / `submit_review`. Why: server-side prices and per-order tracking tokens.
+- Owner app lives under `src/routes/_authenticated/`; the dashboard layout's `beforeLoad` loads the user's restaurant and redirects to `/onboarding` if none. Why: one gate, client-side session.
+- Media uploads use `uploadMenuImage` (`src/lib/image-upload.ts`) with paths `<restaurant_id>/<kind>/…` in bucket `menu-media`. Why: storage policies key off the first folder.
+- Plan/Stripe fields on restaurants are only writable by service role (trigger guard). Why: users can't self-upgrade.

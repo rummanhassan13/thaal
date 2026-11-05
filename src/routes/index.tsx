@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/plated/primitives";
 import { SiteFooter, SiteNav } from "@/components/landing/SiteNav";
-import { DemoMenu, Phone } from "@/components/landing/DemoMenu";
+import { MenuView, Phone } from "@/components/landing/DemoMenu";
+import { getPublicMenu } from "@/lib/menu/menu.functions";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { OwnerSide } from "@/components/landing/OwnerSide";
 import { Pricing } from "@/components/landing/Pricing";
@@ -19,10 +20,12 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  loader: () => getPublicMenu({ data: { slug: "lemon-and-rye" } }),
   component: Landing,
 });
 
 function Landing() {
+  const demo = Route.useLoaderData();
   return (
     <div className="overflow-x-clip">
       <SiteNav />
@@ -45,7 +48,7 @@ function Landing() {
         </motion.div>
         <motion.div className="relative md:col-span-5" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 90, damping: 18, delay: 0.1 }}>
           <img src={img("1504674900247-0877df9cc836", 700, 900)} alt="" aria-hidden loading="eager" className="absolute -top-8 -right-24 hidden h-[560px] w-[380px] rounded-xl object-cover opacity-90 lg:block" />
-          <div className="relative"><Phone><DemoMenu /></Phone></div>
+          <div className="relative"><Phone>{demo ? <MenuView data={demo} inPhone /> : <div className="h-full bg-secondary" />}</Phone></div>
         </motion.div>
       </section>
 

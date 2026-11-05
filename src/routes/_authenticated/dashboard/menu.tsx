@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/dashboard/menu")({
+export const Route = createFileRoute("/_authenticated/dashboard/menu")({
   component: () => (
     <div>
       <p className="eyebrow">Menu</p>
