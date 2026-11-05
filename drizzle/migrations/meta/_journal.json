@@ -15,6 +15,13 @@
       "when": 1793902734036,
       "tag": "0001_seed_lemon_and_rye",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793902969157,
+      "tag": "0002_tighten_anon_grants",
+      "breakpoints": true
     }
   ]
 }
