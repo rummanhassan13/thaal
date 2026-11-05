@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { Wordmark } from "./Wordmark";
 import { Button, Input } from "./primitives";
 import { img } from "@/lib/unsplash";
@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export function AuthCard({ mode, redirectTo }: { mode: "login" | "signup"; redirectTo?: string }) {
   const signup = mode === "signup";
-  const navigate = useNavigate();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -18,7 +18,7 @@ export function AuthCard({ mode, redirectTo }: { mode: "login" | "signup"; redir
 
   const goOn = () => {
     const safe = redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//") ? redirectTo : "/dashboard";
-    navigate({ to: safe });
+    router.history.push(safe);
   };
 
   useEffect(() => {
