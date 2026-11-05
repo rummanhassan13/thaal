@@ -534,6 +534,7 @@ export type Database = {
           id: string
           order_id: string
           rating: number
+          read_at: string | null
         }
         Insert: {
           comment?: string | null
@@ -542,6 +543,7 @@ export type Database = {
           id?: string
           order_id: string
           rating: number
+          read_at?: string | null
         }
         Update: {
           comment?: string | null
@@ -550,6 +552,7 @@ export type Database = {
           id?: string
           order_id?: string
           rating?: number
+          read_at?: string | null
         }
         Relationships: [
           {
@@ -699,6 +702,10 @@ export type Database = {
     }
     Functions: {
       can_write_media: { Args: { _path: string }; Returns: boolean }
+      get_branch_analytics: {
+        Args: { p_branch_id: string; p_from: string; p_to: string }
+        Returns: Json
+      }
       get_dish_reviews: {
         Args: { p_dish_id: string }
         Returns: {
