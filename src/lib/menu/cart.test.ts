@@ -19,8 +19,8 @@ describe("cart", () => {
   });
   it("caps quantity at 20 and removes at 0", () => {
     let c = addLine([], { ...flat, qty: 25 });
-    expect(c[0].qty).toBe(20);
-    c = setQty(c, c[0].key, 0);
+    expect(c[0]!.qty).toBe(20);
+    c = setQty(c, c[0]!.key, 0);
     expect(c).toHaveLength(0);
   });
   it("never sends prices to the server", () => {

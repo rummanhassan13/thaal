@@ -23,7 +23,7 @@ export function onAccent(hex: string) {
 
 export function themeStyle(theme: { accent: string; font_pairing: string } | null): CSSProperties {
   if (!theme) return {};
-  const f = FONT_PAIRINGS[theme.font_pairing] ?? FONT_PAIRINGS.fraunces_inter_tight!;
+  const f = FONT_PAIRINGS[theme.font_pairing] ?? FONT_PAIRINGS["fraunces_inter_tight"]!;
   const accent = /^#[0-9a-f]{6}$/i.test(theme.accent) ? theme.accent : "#C8553D";
   return {
     "--terracotta": accent, "--accent": accent, "--ring": accent, "--accent-foreground": onAccent(accent),

@@ -146,7 +146,7 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
 
 /** Spring bottom sheet; drag the handle down to dismiss. `contained` positions it inside a relative parent (e.g. phone mockup). */
 export function BottomSheet({ open, onClose, children, contained, label, className }: {
-  open: boolean; onClose: () => void; children: React.ReactNode; contained?: boolean; label?: string; className?: string;
+  open: boolean; onClose: () => void; children: React.ReactNode; contained?: boolean; label?: string | undefined; className?: string;
 }) {
   const pos = contained ? "absolute" : "fixed";
   const controls = useDragControls();

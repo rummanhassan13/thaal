@@ -57,7 +57,7 @@ export function OrderStatusSheet({ open, onClose, order, info, currency, onNewOr
           {STEPS.map((s, i) => (
             <li key={s.key}>
               <div className="relative h-1 overflow-hidden rounded-full bg-sand">
-                {i <= idx && <motion.div layoutId={i === idx ? "status-bar" : undefined} className="absolute inset-0 bg-terracotta"
+                {i <= idx && <motion.div className="absolute inset-0 bg-terracotta"
                   initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} style={{ originX: 0 }} transition={{ type: "spring", stiffness: 160, damping: 24 }} />}
               </div>
               <p className={cn("mt-2 text-xs", i <= idx ? "text-foreground" : "text-muted-foreground")}>{s.label}</p>
