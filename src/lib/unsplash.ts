@@ -8,6 +8,8 @@ export function sized(url: string | null | undefined, w: number, h?: number) {
     const base = url.split("?")[0];
     return `${base}?w=${w}${h ? `&h=${h}&fit=crop` : ""}&q=75&auto=format`;
   }
+  // Our uploads ship with a 400px thumbnail next to the full image.
+  if (w <= 400 && url.includes("/menu-media/") && url.endsWith(".webp") && !url.endsWith("_thumb.webp")) return url.replace(/\.webp$/, "_thumb.webp");
   return url;
 }
 export function srcSet(url: string | null | undefined, widths: number[], ratio?: number) {

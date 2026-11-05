@@ -12,7 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { errMsg, menuTreeKey, menuTreeQuery, saveOrder, type Category, type Dish, type Menu } from "@/lib/dashboard/menu-data";
 import { canAddMenu } from "@/lib/plan";
 import { formatPrice } from "@/lib/menu/types";
-import { thumb } from "@/lib/unsplash";
+import { sized } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/menu")({
@@ -209,7 +209,7 @@ function DishRow({ dish: d, handle, currency, onOpen, onPrice, onSoldOut, onSpec
     <div className="grid grid-cols-[auto_auto_1fr_auto] items-center gap-x-3 gap-y-2 border-b border-hairline py-3 md:grid-cols-[auto_auto_1fr_auto_auto_auto_auto]">
       {handle}
       <button onClick={onOpen} className="h-12 w-16 shrink-0 overflow-hidden rounded-md bg-sand" aria-label={`Edit ${d.name}`}>
-        {d.photo_url && <img src={thumb(d.photo_url, 160)} alt="" loading="lazy" className={cn("h-full w-full object-cover", d.is_sold_out && "grayscale")} />}
+        {d.photo_url && <img src={sized(d.photo_url, 160, 120)} alt="" loading="lazy" className={cn("h-full w-full object-cover", d.is_sold_out && "grayscale")} />}
       </button>
       <button onClick={onOpen} className="min-w-0 text-left">
         <p className={cn("truncate font-display text-lg leading-tight", d.is_sold_out && "text-muted-foreground")}>{d.name}</p>
