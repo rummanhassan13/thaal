@@ -1,5 +1,7 @@
 import { createFileRoute, Link, Outlet, redirect, useLocation, useNavigate, useRouter } from "@tanstack/react-router";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { BottomSheet } from "@/components/plated/primitives";
 import { Wordmark } from "@/components/plated/Wordmark";
 import { BranchProvider, useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -10,9 +12,10 @@ const NAV = [
   { to: "/dashboard", label: "Overview", mobile: true },
   { to: "/dashboard/menu", label: "Menu", mobile: true },
   { to: "/dashboard/orders", label: "Orders", mobile: true },
-  { to: "/dashboard/branches", label: "Branches", mobile: true },
-  { to: "/dashboard/profile", label: "Profile", mobile: true },
+  { to: "/dashboard/qr", label: "QR codes", mobile: true },
   { to: "/dashboard/design", label: "Design", mobile: false },
+  { to: "/dashboard/branches", label: "Branches", mobile: false },
+  { to: "/dashboard/profile", label: "Profile", mobile: false },
 ] as const;
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -51,6 +54,7 @@ function DashboardLayout() {
   const navigate = useNavigate();
   const router = useRouter();
   const { pathname } = useLocation();
+  const [more, setMore] = useState(false);
   const isActive = (to: string) => (to === "/dashboard" ? pathname === "/dashboard" || pathname === "/dashboard/" : pathname.startsWith(to));
   const signOut = async () => {
     await queryClient.cancelQueries();
@@ -100,7 +104,20 @@ function DashboardLayout() {
               {n.label}
             </Link>
           ))}
+          <button onClick={() => setMore(true)} className={cn("relative py-3.5 text-center text-[12px]", NAV.some((n) => !n.mobile && isActive(n.to)) ? "text-foreground" : "text-muted-foreground")}>
+            {NAV.some((n) => !n.mobile && isActive(n.to)) && <motion.span layoutId="tab-nav" className="absolute inset-x-4 top-0 h-0.5 rounded-full bg-terracotta" />}
+            More
+          </button>
         </nav>
+        <BottomSheet open={more} onClose={() => setMore(false)} label="More">
+          <nav className="flex flex-col">
+            {NAV.filter((n) => !n.mobile).map((n) => (
+              <Link key={n.to} to={n.to} onClick={() => setMore(false)} className="border-b border-hairline py-4 font-display text-2xl">{n.label}</Link>
+            ))}
+            <Link to="/m/$slug" params={{ slug: restaurant.slug }} target="_blank" className="border-b border-hairline py-4 text-sm text-muted-foreground">View your menu ↗</Link>
+            <button onClick={signOut} className="py-4 text-left text-sm text-muted-foreground">Sign out</button>
+          </nav>
+        </BottomSheet>
       </div>
     </BranchProvider>
   );
