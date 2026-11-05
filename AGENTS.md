@@ -40,3 +40,6 @@ use the editor.
 - Customer menu UI lives in `src/components/menu/`; the landing-page phone keeps its own lightweight `MenuView`. Why: the real menu uses window scroll and ordering, the demo scrolls inside a frame.
 - Plan gating reads only `planFeatures()` / `canAddBranch` / `canAddMenu` in `src/lib/plan.ts`. Why: Stripe flips `restaurants.plan` and every gate follows.
 - Dashboard UI lives in `src/components/dashboard/`; the selected branch comes from `BranchProvider` (localStorage per restaurant) and owner data is read with the browser client + react-query under RLS (`menuTreeQuery`). Why: one branch context for every dashboard page, no server fns needed for member-scoped CRUD.
+- QR/zip/PDF helpers live in `src/lib/qr/` and dynamically import `qr-code-styling`, `jszip`, `jspdf` inside browser-only functions. Why: keep heavy libs out of SSR and the diner bundle.
+- Dashboard design preview renders the real `CustomerMenu` in an iframe at `/preview`, fed by same-origin `postMessage` with data built by `buildPublicMenu` (shared with `getPublicMenu`); events are disabled there. Why: unsaved themes and unpublished menus preview exactly as diners see them.
+- Themes resolve branch row first, then restaurant default (`pickTheme`); table QR links carry the table token and `getPublicMenu` loads that table's branch. Why: per-branch looks and multi-branch ordering.
