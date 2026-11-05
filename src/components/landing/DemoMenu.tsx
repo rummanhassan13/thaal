@@ -68,18 +68,18 @@ export function DemoMenu() {
   return (
     <div className="relative h-full overflow-hidden bg-background text-foreground">
       <div ref={scroller} className="no-scrollbar h-full overflow-y-auto overscroll-contain pb-24">
-        <div className="relative h-36">
+        <div className="relative mt-8 h-32">
           <img src={img("1555396273-367ea4eb4db5", 600, 300)} alt="Inside Lemon & Rye" loading="lazy" className="h-full w-full object-cover" />
         </div>
         <div className="px-4">
-          <div className="-mt-7 flex items-end gap-3">
+          <div className="relative -mt-7 flex items-end gap-3">
             <div className="grid h-14 w-14 place-items-center rounded-full border-4 border-background bg-terracotta font-display text-lg text-accent-foreground">L&R</div>
           </div>
           <h3 className="mt-2 text-2xl">Lemon &amp; Rye</h3>
           <p className="mt-0.5 text-[11px] text-muted-foreground">Bakery &amp; kitchen · Open today 8:00–16:00</p>
         </div>
 
-        <div className="sticky top-0 z-10 mt-4 border-b border-hairline bg-background/95 px-3 py-2.5 backdrop-blur-sm">
+        <div className="sticky top-8 z-10 mt-4 border-b border-hairline bg-background/95 px-3 py-2.5 backdrop-blur-sm">
           <PillGroup id="demo-pill" size="sm" className="no-scrollbar overflow-x-auto" items={MENU.map((c) => ({ value: c.id, label: c.label }))} value={active} onChange={jump} />
         </div>
 
@@ -136,7 +136,7 @@ export function Phone({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative mx-auto w-[300px] rounded-[44px] bg-ink p-[10px] sm:w-[320px]">
       <div className="relative h-[620px] overflow-hidden rounded-[34px] sm:h-[660px]">
-        <div className="absolute top-2 left-1/2 z-30 h-6 w-24 -translate-x-1/2 rounded-full bg-ink" />
+        <div className="absolute inset-x-0 top-0 z-30 h-8 bg-background" /><div className="absolute top-2 left-1/2 z-30 h-6 w-24 -translate-x-1/2 rounded-full bg-ink" />
         {children}
       </div>
     </div>
