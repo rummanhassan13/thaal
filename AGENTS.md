@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Plated UI primitives live in `src/components/plated/`; marketing sections in `src/components/landing/`. Why: keeps brand primitives separate from stock shadcn.
+- All colours come from tokens in `src/styles.css` (paper/ink/terracotta/sand/olive + shadcn aliases). Why: dark mode and theming.
