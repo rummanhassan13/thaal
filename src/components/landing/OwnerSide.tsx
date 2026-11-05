@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Divider, PillGroup, SectionHeading, Tag, Toggle } from "@/components/thaal/primitives";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/landing/TruckArt";
 
 type Status = "new" | "cooking" | "ready";
 const ORDERS: { id: number; table: number; items: string; mins: number; status: Status }[] = [
@@ -27,14 +28,14 @@ export function OwnerSide() {
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
       <div className="grid gap-10 md:grid-cols-12">
-        <SectionHeading className="md:col-span-5" eyebrow="For owners and kitchen staff" title={<>See every order as it <em>happens.</em></>}>
+        <Reveal className="md:col-span-5"><SectionHeading eyebrow="For owners and kitchen staff" title={<>See every order as it <em>happens.</em></>}>
           New orders pop up on any phone, tablet or laptop in your kitchen. Waiter calls and bill requests show up too, so no table gets forgotten.
-        </SectionHeading>
+        </SectionHeading></Reveal>
       </div>
 
       <div className="mt-16 grid gap-6 md:grid-cols-12">
         {/* Kitchen view */}
-        <div className="rounded-xl border border-hairline bg-card p-5 md:col-span-7 md:p-7">
+        <Reveal className="rounded-xl border border-hairline bg-card p-5 md:col-span-7 md:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-sm">
               <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-marigold opacity-60" /><span className="relative h-2 w-2 rounded-full bg-marigold" /></span>
@@ -60,7 +61,7 @@ export function OwnerSide() {
         </div>
 
         {/* Theme customiser */}
-        <div className="grid gap-5 rounded-xl border border-hairline bg-secondary/60 p-5 md:col-span-5 md:p-7">
+        <Reveal delay={0.1} className="grid gap-5 rounded-xl border border-hairline bg-secondary/60 p-5 md:col-span-5 md:p-7">
           <p className="text-sm">Make it yours</p>
           <div className="space-y-4 text-sm">
             <div className="flex items-center justify-between"><span className="text-muted-foreground">Accent</span>

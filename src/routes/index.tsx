@@ -10,6 +10,7 @@ import { Pricing } from "@/components/landing/Pricing";
 import { img } from "@/lib/unsplash";
 import { InstallBanner } from "@/components/thaal/InstallBanner";
 import { getRequestOrigin } from "@/lib/origin.functions";
+import { Bird, ChamakPatti, Drift, Paisley, Reveal, Rosette, TilePattern } from "@/components/landing/TruckArt";
 
 export const Route = createFileRoute("/")({
   head: ({ loaderData }) => {
@@ -41,7 +42,7 @@ function Landing() {
     <div className="overflow-x-clip">
       <InstallBanner />
       <SiteNav />
-      <section className="mx-auto grid max-w-7xl items-center gap-14 px-5 pt-10 pb-20 md:grid-cols-12 md:px-10 md:pt-16 md:pb-32">
+      <section className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 pt-10 pb-20 md:grid-cols-12 md:px-10 md:pt-16 md:pb-32">
         <motion.div className="md:col-span-7" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 120, damping: 20 }}>
           <p className="eyebrow mb-8">For restaurants, cafés and dhabas</p>
           <h1 className="text-[2.9rem] leading-[0.98] sm:text-6xl lg:text-[5.6rem]">
@@ -56,25 +57,36 @@ function Landing() {
           </div>
           <p className="mt-5 text-sm text-muted-foreground">Set up in 10 minutes. Free plan, no card needed.</p>
         </motion.div>
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 md:block [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]">
+          <TilePattern className="h-full w-full opacity-[0.07]" />
+        </div>
         <motion.div className="relative md:col-span-5" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 90, damping: 18, delay: 0.1 }}>
           <img src={img("1504674900247-0877df9cc836", 700, 900)} alt="" aria-hidden loading="eager" className="absolute -top-8 -right-24 hidden h-[560px] w-[380px] rounded-xl object-cover opacity-90 lg:block" />
           <div className="relative"><Phone>{demo ? <MenuView data={demo} inPhone /> : <div className="h-full bg-secondary" />}</Phone></div>
         </motion.div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-5 md:px-10"><div className="h-px bg-hairline" /></div>
+      <div className="mx-auto max-w-7xl px-5 opacity-80 md:px-10"><ChamakPatti /></div>
       <HowItWorks />
-      <div className="bg-secondary/50"><OwnerSide /></div>
+      <div className="relative overflow-hidden bg-secondary/50">
+        <Drift className="absolute -right-6 top-16 hidden w-24 opacity-20 lg:block" range={30} rotate={4}><Bird className="w-full" /></Drift>
+        <OwnerSide />
+      </div>
+      <div className="mx-auto max-w-7xl px-5 opacity-80 md:px-10"><ChamakPatti /></div>
       <Pricing />
 
       <section className="mx-auto max-w-7xl px-5 pb-24 md:px-10 md:pb-32">
-        <div className="grid items-end gap-10 rounded-xl bg-ink p-8 text-paper md:grid-cols-12 md:p-16">
+        <Reveal className="relative isolate grid items-end gap-10 overflow-hidden rounded-xl bg-ink p-8 text-paper md:grid-cols-12 md:p-16">
+          <ChamakPatti onDark className="absolute inset-x-0 top-0" />
+          <ChamakPatti onDark className="absolute inset-x-0 bottom-0 rotate-180" />
+          <Drift className="absolute -right-16 -top-16 -z-10 w-56 opacity-30 md:-right-10 md:w-80 md:opacity-40" range={20} rotate={10}><Rosette className="w-full" /></Drift>
+          <Drift className="absolute bottom-8 right-1/3 -z-10 hidden w-20 opacity-30 md:block" range={16} rotate={6}><Paisley className="w-full" /></Drift>
           <h2 className="text-5xl leading-[0.98] md:col-span-8 md:text-7xl">Your menu online <br />by tonight.</h2>
           <div className="md:col-span-4">
             <p className="mb-6 text-sm text-paper/70">Add your dishes, print your QR codes and start taking orders. The Free plan costs nothing, forever.</p>
             <Link to="/signup" className={buttonVariants({ variant: "accent", size: "lg" })}>Create your menu free</Link>
           </div>
-        </div>
+        </Reveal>
       </section>
       <SiteFooter />
     </div>
