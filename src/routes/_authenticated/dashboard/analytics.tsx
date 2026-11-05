@@ -82,7 +82,7 @@ function AnalyticsPage() {
         <p className="eyebrow">Analytics</p>
         <h1 className="mt-3 text-5xl md:text-6xl">Know your rush hour.</h1>
         <p className="mt-5 text-lg text-muted-foreground">See scans, orders, revenue, busiest hours and which dishes people look at but don't order. Analytics comes with Pro.</p>
-        <Link to="/" hash="pricing" className={cn(buttonVariants({ variant: "accent" }), "mt-8")}>See Pro</Link>
+        <Link to="/dashboard/billing" className={cn(buttonVariants({ variant: "accent" }), "mt-8")}>See Pro</Link>
       </div>
     );
   }

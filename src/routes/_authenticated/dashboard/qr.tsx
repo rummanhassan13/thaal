@@ -128,7 +128,7 @@ function QrPage() {
             <p className="font-display text-2xl">Orders from the table.</p>
             <p className="mt-1 max-w-lg text-sm text-muted-foreground">Pro gives every table its own branded QR code in your colours with your logo in the middle, plus printable table tents, so diners can order and call a waiter without waving.</p>
           </div>
-          <Link to="/" hash="pricing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link>
+          <Link to="/dashboard/billing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link>
         </div>
       ) : (
         <section className="mt-12">

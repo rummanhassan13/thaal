@@ -56,7 +56,7 @@ function Branches() {
             <p className="mt-1 text-sm text-muted-foreground">More than one branch comes with the Business plan, each with its own menus, hours and tables.</p>
           </div>
           <div className="flex items-center gap-4">
-            <Link to="/" hash="pricing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Business</Link>
+            <Link to="/dashboard/billing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Business</Link>
             <button onClick={() => setUpsell(false)} className="text-sm text-muted-foreground">Not now</button>
           </div>
         </div>

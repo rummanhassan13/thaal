@@ -18,6 +18,7 @@ const NAV = [
   { to: "/dashboard/design", label: "Design", mobile: false },
   { to: "/dashboard/branches", label: "Branches", mobile: false },
   { to: "/dashboard/profile", label: "Profile", mobile: false },
+  { to: "/dashboard/billing", label: "Plan & billing", mobile: false },
 ] as const;
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
