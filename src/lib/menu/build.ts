@@ -32,7 +32,7 @@ export function buildPublicMenu(
   // Downgrades pause extras without deleting them: only the first N menus show, custom looks fall back to the default.
   const features = planFeatures(r.plan);
   const list = bySort(menus.filter((m) => m.active)).slice(0, features.maxMenusPerBranch);
-  if (theme && !features.themes) theme = { ...theme, accent: "#C8553D", font_pairing: "bricolage_figtree", mode: "light" };
+  if (theme && !features.themes) theme = { ...theme, accent: "#1E2A5A", font_pairing: "bricolage_figtree", mode: "light" };
   const schedules = list.flatMap((m) => (m.menu_schedules ?? []).map((s) => ({ ...s, menu_id: m.id })));
   return {
     restaurant: r,

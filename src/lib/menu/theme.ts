@@ -1,13 +1,13 @@
 import type { CSSProperties } from "react";
 
 export const FONT_PAIRINGS: Record<string, { label: string; display: string; sans: string; href: string | null }> = {
-  bricolage_figtree: { label: "Fraunces + Inter Tight", display: "Fraunces", sans: "Inter Tight", href: null },
-  young_serif_onest: { label: "Instrument Serif + Inter", display: "Instrument Serif", sans: "Inter",
-    href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" },
-  gloock_manrope: { label: "DM Serif Display + DM Sans", display: "DM Serif Display", sans: "DM Sans",
-    href: "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" },
-  gabarito_instrument_sans: { label: "Playfair Display + Work Sans", display: "Playfair Display", sans: "Work Sans",
-    href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Work+Sans:wght@400;500;600&display=swap" },
+  bricolage_figtree: { label: "Bricolage Grotesque + Figtree", display: "Bricolage Grotesque", sans: "Figtree", href: null },
+  young_serif_onest: { label: "Young Serif + Onest", display: "Young Serif", sans: "Onest",
+    href: "https://fonts.googleapis.com/css2?family=Young+Serif&family=Onest:wght@400;500;600&display=swap" },
+  gloock_manrope: { label: "Gloock + Manrope", display: "Gloock", sans: "Manrope",
+    href: "https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;600&display=swap" },
+  gabarito_instrument_sans: { label: "Gabarito + Instrument Sans", display: "Gabarito", sans: "Instrument Sans",
+    href: "https://fonts.googleapis.com/css2?family=Gabarito:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" },
 };
 
 /** Readable text colour on top of a hex accent. */
@@ -18,13 +18,13 @@ export function onAccent(hex: string) {
     return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
   });
   const lum = 0.2126 * r! + 0.7152 * g! + 0.0722 * b!;
-  return lum > 0.45 ? "oklch(0.215 0.006 70)" : "oklch(0.985 0.006 80)";
+  return lum > 0.45 ? "#1E2A5A" : "#F6F5F1";
 }
 
 export function themeStyle(theme: { accent: string; font_pairing: string } | null): CSSProperties {
   if (!theme) return {};
   const f = FONT_PAIRINGS[theme.font_pairing] ?? FONT_PAIRINGS["bricolage_figtree"]!;
-  const accent = /^#[0-9a-f]{6}$/i.test(theme.accent) ? theme.accent : "#C8553D";
+  const accent = /^#[0-9a-f]{6}$/i.test(theme.accent) ? theme.accent : "#1E2A5A";
   return {
     "--marigold": accent, "--accent": accent, "--ring": accent, "--accent-foreground": onAccent(accent),
     "--theme-font-display": `"${f.display}"`, "--theme-font-sans": `"${f.sans}"`,
