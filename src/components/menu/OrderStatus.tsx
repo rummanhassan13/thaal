@@ -56,8 +56,8 @@ export function OrderStatusSheet({ open, onClose, order, info, currency, onNewOr
         <ol className="mt-6 grid grid-cols-3 gap-2">
           {STEPS.map((s, i) => (
             <li key={s.key}>
-              <div className="relative h-1 overflow-hidden rounded-full bg-sand">
-                {i <= idx && <motion.div className="absolute inset-0 bg-terracotta"
+              <div className="relative h-1 overflow-hidden rounded-full bg-mist">
+                {i <= idx && <motion.div className="absolute inset-0 bg-marigold"
                   initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} style={{ originX: 0 }} transition={{ type: "spring", stiffness: 160, damping: 24 }} />}
               </div>
               <p className={cn("mt-2 text-xs", i <= idx ? "text-foreground" : "text-muted-foreground")}>{s.label}</p>
@@ -122,11 +122,11 @@ function ReviewRow({ order, dishId, name }: { order: StoredOrder; dishId: string
     <div className="py-3">
       <div className="flex items-center justify-between gap-3">
         <span className="font-display text-base">{name}</span>
-        {done ? <span className="text-xs text-olive">Thanks!</span> : (
+        {done ? <span className="text-xs text-teal">Thanks!</span> : (
           <div className="flex" role="radiogroup" aria-label={`Rate ${name}`}>
             {[1, 2, 3, 4, 5].map((i) => (
               <button key={i} role="radio" aria-checked={rating === i} aria-label={`${i} star${i > 1 ? "s" : ""}`} onClick={() => setRating(i)}
-                className={cn("px-0.5 text-xl transition-transform active:scale-90", i <= rating ? "text-terracotta" : "text-sand-deep")}>★</button>
+                className={cn("px-0.5 text-xl transition-transform active:scale-90", i <= rating ? "text-highlight" : "text-mist-deep")}>★</button>
             ))}
           </div>
         )}
@@ -138,7 +138,7 @@ function ReviewRow({ order, dishId, name }: { order: StoredOrder; dishId: string
           <Button size="sm" variant="ink" disabled={busy} onClick={send}>Send</Button>
         </div>
       )}
-      {err && <p className="mt-1 text-xs text-terracotta">{err}</p>}
+      {err && <p className="mt-1 text-xs text-alert">{err}</p>}
     </div>
   );
 }

@@ -115,7 +115,7 @@ export function DishForm({ open, dish, categoryId, nextSort, restaurantId, curre
                   <span className="text-xs text-muted-foreground">Heat</span>
                   {[1, 2, 3].map((n) => (
                     <button key={n} type="button" onClick={() => set("spice_level", n)} aria-pressed={d.spice_level === n}
-                      className={cn("rounded-full border px-3 py-1 text-xs", d.spice_level === n ? "border-terracotta bg-terracotta text-accent-foreground" : "border-hairline text-muted-foreground")}>
+                      className={cn("rounded-full border px-3 py-1 text-xs", d.spice_level === n ? "border-marigold bg-marigold text-accent-foreground" : "border-hairline text-muted-foreground")}>
                       {["Mild", "Medium", "Hot"][n - 1]}
                     </button>
                   ))}
@@ -149,7 +149,7 @@ export function DishForm({ open, dish, categoryId, nextSort, restaurantId, curre
                                 onChange={(e) => set("addons", d.addons.map((x) => (x.id === a.id ? { ...x, price: e.target.value.replace(/[^0-9.]/g, "") } : x)))}
                                 className="ml-1 w-full bg-transparent text-sm tabular-nums focus:outline-none" />
                             </div>
-                            <button type="button" aria-label="Remove add-on" onClick={() => set("addons", d.addons.filter((x) => x.id !== a.id))} className="px-1 text-muted-foreground hover:text-terracotta">×</button>
+                            <button type="button" aria-label="Remove add-on" onClick={() => set("addons", d.addons.filter((x) => x.id !== a.id))} className="px-1 text-muted-foreground hover:text-alert">×</button>
                           </div>
                         )}
                       </SortableItem>

@@ -21,7 +21,7 @@ describe("QR links", () => {
 });
 
 describe("colours", () => {
-  it("keeps terracotta for QR modules but swaps a pale accent for ink", () => {
+  it("keeps marigold for QR modules but swaps a pale accent for ink", () => {
     expect(qrModuleColour("#C8553D")).toBe("#C8553D");
     expect(qrModuleColour("#F3E9C6")).toBe("#1C1A17");
   });

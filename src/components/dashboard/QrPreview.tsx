@@ -12,7 +12,7 @@ export function QrPreview({ url, style, className }: { url: string; style: QrSty
   }, [url, style.branded, style.accent, style.logo]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className={cn("aspect-square overflow-hidden rounded-md bg-white", className)}>
-      {src ? <img src={src} alt="QR code" className="h-full w-full" /> : <div className="h-full w-full animate-pulse bg-sand/60" />}
+      {src ? <img src={src} alt="QR code" className="h-full w-full" /> : <div className="h-full w-full animate-pulse bg-mist/60" />}
     </div>
   );
 }

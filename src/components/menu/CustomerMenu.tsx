@@ -192,19 +192,19 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
       <div className="relative mx-auto min-h-dvh max-w-md pb-40 sm:border-x sm:border-hairline">
         {/* Cover */}
         <header>
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-sand">
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
             {cover && <img src={sized(cover, 900, 675)} srcSet={cover.includes("unsplash") ? `${sized(cover, 600, 450)} 600w, ${sized(cover, 900, 675)} 900w` : undefined} sizes="(max-width: 448px) 100vw, 448px"
               alt={`Inside ${r.name}`} fetchPriority="high" className="h-full w-full object-cover" />}
           </div>
           <div className="px-5">
             <div className="relative -mt-9">
               {logo ? <img src={sized(logo, 144, 144)} alt={`${r.name} logo`} className="h-[72px] w-[72px] rounded-full border-4 border-background object-cover" />
-                : <div className="grid h-[72px] w-[72px] place-items-center rounded-full border-4 border-background bg-terracotta font-display text-xl text-accent-foreground">{initials}</div>}
+                : <div className="grid h-[72px] w-[72px] place-items-center rounded-full border-4 border-background bg-marigold font-display text-xl text-accent-foreground">{initials}</div>}
             </div>
             <h1 className="mt-3 text-[2.6rem] leading-[0.95]">{r.name}</h1>
             {r.description && <p className="mt-3 max-w-[34ch] text-sm leading-relaxed text-muted-foreground">{r.description}</p>}
             <p className="mt-4 flex items-center gap-2 text-sm">
-              <span className={cn("h-1.5 w-1.5 rounded-full", hours.open ? "bg-olive" : "bg-terracotta")} />
+              <span className={cn("h-1.5 w-1.5 rounded-full", hours.open ? "bg-teal" : "bg-marigold")} />
               {hours.label}
               <span className="text-muted-foreground">· {data.branch.name}</span>
             </p>
@@ -221,7 +221,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
               <div className="flex gap-3">
                 {data.menus.map((m) => (
                   <button key={m.id} onClick={() => { setViewMenuId(m.id === activeMenuId ? null : m.id); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                    className={cn("underline-offset-4", m.id === shownMenuId ? "text-foreground underline decoration-terracotta" : "text-muted-foreground hover:text-foreground")}>
+                    className={cn("underline-offset-4", m.id === shownMenuId ? "text-foreground underline decoration-marigold" : "text-muted-foreground hover:text-foreground")}>
                     {m.id === activeMenuId ? "Now" : `Peek: ${m.name}`}
                   </button>
                 ))}
@@ -231,7 +231,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
           {peeking && <p className="mt-3 rounded-lg bg-secondary px-3 py-2 text-muted-foreground">You're peeking at {shownMenu?.name}{shownMenu?.schedules[0] ? ` (${shownMenu.schedules[0].start_time}–${shownMenu.schedules[0].end_time})` : ""}. Look, don't order.</p>}
           {!table && <p className="mt-3 text-muted-foreground">Just browsing? Scan the code on your table to order.</p>}
           {table && tableChecked && tableLabel && ordersOn && !peeking && <p className="mt-3 text-muted-foreground">Table {tableLabel}. Hungry? Start here.</p>}
-          {table && tableChecked && !tableLabel && <p className="mt-3 text-terracotta">We couldn't find that table. Ask the staff?</p>}
+          {table && tableChecked && !tableLabel && <p className="mt-3 text-alert">We couldn't find that table. Ask the staff?</p>}
         </div>
 
         {/* Filters */}
@@ -239,7 +239,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
           {([["Veg", veg, setVeg], ["Spicy", spicy, setSpicy]] as const).map(([label, on, set]) => (
             <button key={label} aria-pressed={on} onClick={() => set(!on)}
               className={cn("rounded-full border px-3.5 py-1 text-xs transition-colors",
-                on ? (label === "Veg" ? "border-olive bg-olive text-paper" : "border-terracotta bg-terracotta text-accent-foreground") : "border-hairline text-muted-foreground hover:text-foreground")}>
+                on ? (label === "Veg" ? "border-teal bg-teal text-paper" : "border-marigold bg-marigold text-accent-foreground") : "border-hairline text-muted-foreground hover:text-foreground")}>
               {label}
             </button>
           ))}
@@ -274,7 +274,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
                       <DishImage url={d.photo_url} alt="" w={540} ratio={0.66} sizes="(max-width: 448px) 90vw, 408px" eager={d.id === firstDishId} dim={out} className="rounded-lg" />
                       <div className="absolute top-3 left-3 flex gap-1.5">
                         {out && <Tag kind="soldout">Sold out</Tag>}
-                        {isSpecial(d) && !out && <Tag kind="soldout" className="border-terracotta bg-terracotta text-accent-foreground">Today's special</Tag>}
+                        {isSpecial(d) && !out && <Tag kind="soldout" className="border-marigold bg-marigold text-accent-foreground">Today's special</Tag>}
                       </div>
                     </div>
                     <div className="mt-3 flex items-baseline justify-between gap-4">

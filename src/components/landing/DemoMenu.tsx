@@ -81,7 +81,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
             {r.logo_url ? (
               <img src={sized(r.logo_url, 120, 120)} alt="" className="h-14 w-14 rounded-full border-4 border-background object-cover" />
             ) : (
-              <div className="grid h-14 w-14 place-items-center rounded-full border-4 border-background bg-terracotta font-display text-lg text-accent-foreground">{initials}</div>
+              <div className="grid h-14 w-14 place-items-center rounded-full border-4 border-background bg-marigold font-display text-lg text-accent-foreground">{initials}</div>
             )}
           </div>
           <h3 className="mt-2 text-2xl">{r.name}</h3>
@@ -89,7 +89,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
           {data.menus.length > 1 && (
             <div className="mt-3 flex gap-3 text-xs">
               {data.menus.map((m) => (
-                <button key={m.id} onClick={() => setMenuId(m.id)} className={m.id === menuId ? "text-foreground underline decoration-terracotta underline-offset-4" : "text-muted-foreground"}>
+                <button key={m.id} onClick={() => setMenuId(m.id)} className={m.id === menuId ? "text-foreground underline decoration-marigold underline-offset-4" : "text-muted-foreground"}>
                   {m.name}{m.id === data.activeMenuId ? " · now" : ""}
                 </button>
               ))}
@@ -116,7 +116,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
                       )}
                       <div className="absolute top-2 left-2 flex gap-1">
                         {out && <Tag kind="soldout">Sold out</Tag>}
-                        {d.is_special && !out && <Tag kind="soldout" className="border-terracotta bg-terracotta">Today's special</Tag>}
+                        {d.is_special && !out && <Tag kind="soldout" className="border-marigold bg-marigold">Today's special</Tag>}
                       </div>
                     </div>
                     <div className="mt-2 flex items-baseline justify-between gap-3">

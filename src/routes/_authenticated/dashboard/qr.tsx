@@ -38,7 +38,7 @@ function QrPage() {
   const theme = (themes && pickTheme(themes, branchId)) ?? DEFAULT_THEME;
   const logo = theme.logo_url ?? restaurant.logo_url;
   const style: QrStyle = useMemo(() => ({ branded: pro, accent: theme.accent, logo }), [pro, theme.accent, logo]);
-  const fonts = FONT_PAIRINGS[theme.font_pairing] ?? FONT_PAIRINGS["fraunces_inter_tight"]!;
+  const fonts = FONT_PAIRINGS[theme.font_pairing] ?? FONT_PAIRINGS["bricolage_figtree"]!;
 
   const tablesKey = ["tables", branchId];
   const { data: tables = [], isLoading } = useQuery({
@@ -123,7 +123,7 @@ function QrPage() {
       </section>
 
       {!pro ? (
-        <div className="mt-10 grid gap-4 rounded-lg border border-terracotta/40 p-6 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div className="mt-10 grid gap-4 rounded-lg border border-marigold/40 p-6 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
             <p className="font-display text-2xl">Orders from the table.</p>
             <p className="mt-1 max-w-lg text-sm text-muted-foreground">Pro gives every table its own branded QR code in your colours with your logo in the middle, plus printable table tents, so diners can order and call a waiter without waving.</p>
@@ -175,7 +175,7 @@ function QrPage() {
                       <button onClick={() => download(url, `table-${t.label}`, "png")} className="hover:text-foreground">PNG</button>
                       <button onClick={() => download(url, `table-${t.label}`, "svg")} className="hover:text-foreground">SVG</button>
                       <button onClick={() => regenerate(t)} className="hover:text-foreground">New code</button>
-                      <button onClick={() => remove(t)} aria-label={`Delete table ${t.label}`} className="hover:text-terracotta">Delete</button>
+                      <button onClick={() => remove(t)} aria-label={`Delete table ${t.label}`} className="hover:text-alert">Delete</button>
                     </div>
                   </li>
                 );

@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { RawTheme } from "@/lib/menu/build";
 
 export type ThemeRow = RawTheme & { id: string };
-export const DEFAULT_THEME = { accent: "#C8553D", font_pairing: "fraunces_inter_tight", mode: "light", logo_url: null, cover_url: null } as const;
+export const DEFAULT_THEME = { accent: "#C8553D", font_pairing: "bricolage_figtree", mode: "light", logo_url: null, cover_url: null } as const;
 
 export const themesKey = (restaurantId: string) => ["themes", restaurantId] as const;
 export const themesQuery = (restaurantId: string) => queryOptions({

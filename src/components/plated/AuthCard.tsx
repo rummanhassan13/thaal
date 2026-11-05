@@ -77,7 +77,7 @@ export function AuthCard({ mode, redirectTo }: { mode: "login" | "signup"; redir
                   <Input label="Password" type="password" placeholder={signup ? "At least 8 characters" : "••••••••"} minLength={signup ? 8 : undefined}
                     value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete={signup ? "new-password" : "current-password"} />
                 )}
-                {error && <p className="text-sm text-terracotta">{error}</p>}
+                {error && <p className="text-sm text-alert">{error}</p>}
                 <Button variant="ink" className="w-full" type="submit" disabled={busy}>
                   {busy ? "One moment…" : signup ? "Create account" : magic ? "Email me a link" : "Log in"}
                 </Button>

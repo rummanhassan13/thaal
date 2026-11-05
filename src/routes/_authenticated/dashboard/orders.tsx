@@ -79,7 +79,7 @@ function OrdersPage() {
         <Toggle checked={chime} onChange={toggleChime} label="Soft chime for new orders" />
         <span>Chime</span>
       </label>
-      {!kitchen && <button type="button" onClick={openKitchen} className="underline underline-offset-4 hover:text-terracotta">Kitchen mode</button>}
+      {!kitchen && <button type="button" onClick={openKitchen} className="underline underline-offset-4 hover:text-highlight">Kitchen mode</button>}
     </div>
   );
 
@@ -100,7 +100,7 @@ function OrdersPage() {
             </section>
           ))}
           <section className="min-h-0 overflow-y-auto p-5 max-lg:col-span-2 max-lg:border-t max-lg:border-hairline">
-            <h2 className="mb-4 font-display text-2xl">Tables <span className={cn(openReq ? "text-terracotta" : "text-muted-foreground")}>{openReq}</span></h2>
+            <h2 className="mb-4 font-display text-2xl">Tables <span className={cn(openReq ? "text-highlight" : "text-muted-foreground")}>{openReq}</span></h2>
             <ServiceFeed requests={requests} now={now} fresh={fresh} onDone={(id) => resolveRequest.mutate(id)} big />
           </section>
         </div>
@@ -145,7 +145,7 @@ function OrdersPage() {
         ))}
         <section className="border-l border-hairline pl-6">
           <h2 className="mb-4 flex items-baseline gap-2 border-b border-hairline pb-3 text-2xl">
-            Tables <span className={cn("font-sans text-sm", openReq ? "text-terracotta" : "text-muted-foreground")}>{openReq} waiting</span>
+            Tables <span className={cn("font-sans text-sm", openReq ? "text-highlight" : "text-muted-foreground")}>{openReq} waiting</span>
           </h2>
           <ServiceFeed requests={requests} now={now} fresh={fresh} onDone={(id) => resolveRequest.mutate(id)} />
         </section>

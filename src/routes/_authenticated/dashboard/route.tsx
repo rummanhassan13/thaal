@@ -104,12 +104,12 @@ function DashboardLayout() {
         <nav aria-label="Dashboard" className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-hairline bg-background pb-[env(safe-area-inset-bottom)] md:hidden">
           {NAV.filter((n) => n.mobile).map((n) => (
             <Link key={n.to} to={n.to} className={cn("relative py-3.5 text-center text-[12px]", isActive(n.to) ? "text-foreground" : "text-muted-foreground")}>
-              {isActive(n.to) && <motion.span layoutId="tab-nav" className="absolute inset-x-4 top-0 h-0.5 rounded-full bg-terracotta" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
+              {isActive(n.to) && <motion.span layoutId="tab-nav" className="absolute inset-x-4 top-0 h-0.5 rounded-full bg-marigold" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
               {n.label}
             </Link>
           ))}
           <button onClick={() => setMore(true)} className={cn("relative py-3.5 text-center text-[12px]", NAV.some((n) => !n.mobile && isActive(n.to)) ? "text-foreground" : "text-muted-foreground")}>
-            {NAV.some((n) => !n.mobile && isActive(n.to)) && <motion.span layoutId="tab-nav" className="absolute inset-x-4 top-0 h-0.5 rounded-full bg-terracotta" />}
+            {NAV.some((n) => !n.mobile && isActive(n.to)) && <motion.span layoutId="tab-nav" className="absolute inset-x-4 top-0 h-0.5 rounded-full bg-marigold" />}
             More
           </button>
         </nav>

@@ -12,8 +12,8 @@ const ORDERS: { id: number; table: number; items: string; mins: number; status: 
 ];
 
 const ACCENTS = [
-  { k: "terracotta", cls: "bg-terracotta", text: "text-terracotta" },
-  { k: "olive", cls: "bg-olive", text: "text-olive" },
+  { k: "marigold", cls: "bg-marigold", text: "text-highlight" },
+  { k: "teal", cls: "bg-teal", text: "text-teal" },
   { k: "ink", cls: "bg-ink", text: "text-foreground" },
 ] as const;
 
@@ -27,7 +27,7 @@ export function OwnerSide() {
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
       <div className="grid gap-10 md:grid-cols-12">
-        <SectionHeading className="md:col-span-5" eyebrow="For the people behind the pass" title={<>The back of house, <em className="text-terracotta">sorted.</em></>}>
+        <SectionHeading className="md:col-span-5" eyebrow="For the people behind the pass" title={<>The back of house, <em className="text-highlight">sorted.</em></>}>
           Orders land on a calm kitchen screen. Change your menu's look in a minute, not a reprint.
         </SectionHeading>
       </div>
@@ -37,7 +37,7 @@ export function OwnerSide() {
         <div className="rounded-xl border border-hairline bg-card p-5 md:col-span-7 md:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-sm">
-              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracotta opacity-60" /><span className="relative h-2 w-2 rounded-full bg-terracotta" /></span>
+              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-marigold opacity-60" /><span className="relative h-2 w-2 rounded-full bg-marigold" /></span>
               Live orders
             </div>
             <PillGroup id="orders-pill" size="sm" value={filter} onChange={setFilter}

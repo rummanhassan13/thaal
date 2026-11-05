@@ -37,11 +37,11 @@ function rangeBounds(r: Range) {
 }
 
 function useTokens() {
-  const [t, setT] = useState({ accent: "#C8553D", olive: "#6B6B47", sand: "#E8DFD0", muted: "#8a8478", line: "rgba(28,26,23,.08)" });
+  const [t, setT] = useState({ accent: "#C8553D", teal: "#6B6B47", mist: "#E8DFD0", muted: "#8a8478", line: "rgba(28,26,23,.08)" });
   useEffect(() => {
     const s = getComputedStyle(document.documentElement);
     const v = (n: string, f: string) => s.getPropertyValue(n).trim() || f;
-    setT({ accent: v("--terracotta", t.accent), olive: v("--olive", t.olive), sand: v("--sand-deep", t.sand), muted: v("--muted-foreground", t.muted), line: v("--hairline", t.line) });
+    setT({ accent: v("--marigold", t.accent), teal: v("--teal", t.teal), mist: v("--mist-deep", t.mist), muted: v("--muted-foreground", t.muted), line: v("--hairline", t.line) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return t;
@@ -102,7 +102,7 @@ function AnalyticsPage() {
         <PillGroup<Range> id="an-range" value={range} onChange={setRange}
           items={[{ value: "today", label: "Today" }, { value: "7d", label: "7 days" }, { value: "30d", label: "30 days" }]} />
       </div>
-      {error && <p className="mt-6 text-sm text-terracotta">Couldn't load analytics. Refresh to try again.</p>}
+      {error && <p className="mt-6 text-sm text-alert">Couldn't load analytics. Refresh to try again.</p>}
 
       <div className={cn("mt-10 grid grid-cols-2 border-y border-hairline md:grid-cols-4", isLoading && "opacity-50")}>
         {[
@@ -122,8 +122,8 @@ function AnalyticsPage() {
         <div className="flex items-baseline justify-between">
           <h2 className="text-3xl">Scans & orders</h2>
           <p className="flex gap-4 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-sand-deep" />Scans</span>
-            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-terracotta" />Orders</span>
+            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-mist-deep" />Scans</span>
+            <span className="flex items-center gap-1.5"><span className="h-0.5 w-4 bg-marigold" />Orders</span>
           </p>
         </div>
         <div className="mt-6 h-64">
@@ -133,7 +133,7 @@ function AnalyticsPage() {
               <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: tk.muted }} interval="preserveStartEnd" minTickGap={24} />
               <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: tk.muted }} allowDecimals={false} />
               <Tooltip cursor={{ stroke: tk.line }} contentStyle={{ borderRadius: 8, border: `1px solid ${tk.line}`, fontSize: 12, boxShadow: "none" }} />
-              <Line type="monotone" dataKey="scans" name="Scans" stroke={tk.sand} strokeWidth={1.5} dot={false} />
+              <Line type="monotone" dataKey="scans" name="Scans" stroke={tk.mist} strokeWidth={1.5} dot={false} />
               <Line type="monotone" dataKey="orders" name="Orders" stroke={tk.accent} strokeWidth={1.5} dot={false} />
             </LineChart>
           </ResponsiveContainer>
@@ -154,7 +154,7 @@ function AnalyticsPage() {
                 <span className="self-center">{d}</span>
                 {Array.from({ length: 24 }, (_, h) => {
                   const v = heat(i + 1, h);
-                  return <span key={h} title={`${d} ${h}:00 · ${v} ${heatBy}`} className="aspect-square rounded-[3px] bg-sand"
+                  return <span key={h} title={`${d} ${h}:00 · ${v} ${heatBy}`} className="aspect-square rounded-[3px] bg-mist"
                     style={v ? { backgroundColor: tk.accent, opacity: 0.15 + 0.85 * (v / heatMax) } : undefined} />;
                 })}
               </div>
@@ -179,8 +179,8 @@ function AnalyticsPage() {
           {[5, 4, 3, 2, 1].map((s) => (
             <li key={s} className="flex items-center gap-3 text-sm">
               <span className="w-6 text-muted-foreground">{s}★</span>
-              <span className="h-2 flex-1 overflow-hidden rounded-full bg-sand">
-                <span className="block h-full rounded-full bg-olive" style={{ width: `${((dist[s] ?? 0) / distMax) * 100}%` }} />
+              <span className="h-2 flex-1 overflow-hidden rounded-full bg-mist">
+                <span className="block h-full rounded-full bg-teal" style={{ width: `${((dist[s] ?? 0) / distMax) * 100}%` }} />
               </span>
               <span className="w-8 text-right tabular-nums text-muted-foreground">{dist[s] ?? 0}</span>
             </li>
@@ -206,12 +206,12 @@ function DishTable({ title, rows, metric }: { title: string; rows: DishStat[]; m
           return (
             <li key={r.id} className="grid grid-cols-[1fr_auto_auto] items-center gap-x-4 border-b border-hairline py-2.5">
               <div className="flex min-w-0 items-center gap-3">
-                <span className="h-9 w-9 shrink-0 overflow-hidden rounded bg-sand">
+                <span className="h-9 w-9 shrink-0 overflow-hidden rounded bg-mist">
                   {r.photo_url && <img src={sized(r.photo_url, 96, 96)} alt="" loading="lazy" className="h-full w-full object-cover" />}
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm">{r.name}</p>
-                  <span className="mt-1 block h-[3px] rounded-full bg-terracotta" style={{ width: `${(r[metric] / max) * 100}%` }} />
+                  <span className="mt-1 block h-[3px] rounded-full bg-marigold" style={{ width: `${(r[metric] / max) * 100}%` }} />
                 </div>
               </div>
               <span className="w-12 text-right text-sm tabular-nums">{r[metric]}</span>

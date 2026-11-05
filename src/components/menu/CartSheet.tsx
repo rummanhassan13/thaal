@@ -66,14 +66,14 @@ export function CartSheet({ open, onClose, lines, currency, tableLabel, onQty, o
           <p className="eyebrow mt-6 mb-2">How to pay</p>
           <div className="grid gap-2">
             <div className="flex items-center justify-between rounded-lg border border-ink px-4 py-3 text-sm">
-              <span>Pay at the counter</span><span className="h-3 w-3 rounded-full border-4 border-terracotta" />
+              <span>Pay at the counter</span><span className="h-3 w-3 rounded-full border-4 border-marigold" />
             </div>
             <div aria-disabled className="flex items-center justify-between rounded-lg border border-hairline px-4 py-3 text-sm text-muted-foreground">
               <span>Pay online</span><span className="text-[11px] uppercase tracking-wider">Coming soon</span>
             </div>
           </div>
 
-          {error && <p className="mt-4 text-sm text-terracotta">{error}</p>}
+          {error && <p className="mt-4 text-sm text-alert">{error}</p>}
           <div className="sticky bottom-0 -mx-5 mt-6 border-t border-hairline bg-background px-5 pt-4">
             <div className="mb-3 flex justify-between text-sm"><span className="text-muted-foreground">Total</span><span className="tabular-nums">{formatPrice(total, currency)}</span></div>
             <Button variant="accent" size="lg" className={cn("w-full")} disabled={placing} onClick={() => onPlace(note.trim(), "counter")}>
