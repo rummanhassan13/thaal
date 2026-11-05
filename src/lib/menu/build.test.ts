@@ -10,7 +10,7 @@ describe("downgraded restaurants", () => {
   it("free shows only the first menu and the default look, keeping the logo", () => {
     const m = buildPublicMenu(r("free"), branch, theme, menus);
     expect(m.menus.map((x) => x.id)).toEqual(["m0"]);
-    expect(m.theme).toMatchObject({ accent: "#C8553D", mode: "light", logo_url: "logo" });
+    expect(m.theme).toMatchObject({ accent: "#1E2A5A", mode: "light", logo_url: "logo" });
   });
   it("pro keeps every menu and its custom theme", () => {
     const m = buildPublicMenu(r("pro"), branch, theme, menus);

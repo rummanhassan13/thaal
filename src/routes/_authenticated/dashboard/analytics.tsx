@@ -37,7 +37,7 @@ function rangeBounds(r: Range) {
 }
 
 function useTokens() {
-  const [t, setT] = useState({ accent: "#C8553D", teal: "#6B6B47", mist: "#E8DFD0", muted: "#8a8478", line: "rgba(28,26,23,.08)" });
+  const [t, setT] = useState({ accent: "#F2A900", teal: "#1C8C8C", mist: "#D8D5CA", muted: "#5E6585", line: "rgba(30,42,90,.12)" });
   useEffect(() => {
     const s = getComputedStyle(document.documentElement);
     const v = (n: string, f: string) => s.getPropertyValue(n).trim() || f;

@@ -62,7 +62,7 @@ function Design() {
 
   const save = async () => {
     if (!effective || !themes) return;
-    if (!isHex(effective.accent)) { toast.error("Pick a full hex colour, like #C8553D."); return; }
+    if (!isHex(effective.accent)) { toast.error("Pick a full hex colour, like #1E2A5A."); return; }
     setBusy(true);
     const row = { ...effective, font_pairing: effective.font_pairing as Database["public"]["Enums"]["font_pairing"], mode: effective.mode as Database["public"]["Enums"]["theme_mode"] };
     const target = branches.length > 1 && scope === "branch" ? branchId : null;
