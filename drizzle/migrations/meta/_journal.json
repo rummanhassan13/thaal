@@ -29,6 +29,13 @@
       "when": 1793903389808,
       "tag": "0003_diner_rpcs_and_order_doorbell",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793905542570,
+      "tag": "0004_reviews_read_and_analytics",
+      "breakpoints": true
     }
   ]
 }

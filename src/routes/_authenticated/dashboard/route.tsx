@@ -13,6 +13,8 @@ const NAV = [
   { to: "/dashboard/menu", label: "Menu", mobile: true },
   { to: "/dashboard/orders", label: "Orders", mobile: true },
   { to: "/dashboard/qr", label: "QR codes", mobile: true },
+  { to: "/dashboard/reviews", label: "Reviews", mobile: false },
+  { to: "/dashboard/analytics", label: "Analytics", mobile: false },
   { to: "/dashboard/design", label: "Design", mobile: false },
   { to: "/dashboard/branches", label: "Branches", mobile: false },
   { to: "/dashboard/profile", label: "Profile", mobile: false },
