@@ -42,7 +42,7 @@ export function DemoMenu() {
     if (!el) return;
     const onScroll = () => {
       if (lock.current) return;
-      const top = el.scrollTop + 90;
+      const top = el.scrollTop + 120;
       let cur: Cat = "breakfast";
       for (const c of MENU) { const s = sections.current[c.id]; if (s && s.offsetTop <= top) cur = c.id; }
       setActive(cur);
@@ -56,7 +56,7 @@ export function DemoMenu() {
     const s = sections.current[c];
     if (!s || !scroller.current) return;
     lock.current = true;
-    scroller.current.scrollTo({ top: s.offsetTop - 52, behavior: "smooth" });
+    scroller.current.scrollTo({ top: s.offsetTop - 84, behavior: "smooth" });
     setTimeout(() => (lock.current = false), 600);
   };
 
