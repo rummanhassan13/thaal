@@ -5,11 +5,12 @@ export type PublicDish = {
   addons: { id: string; name: string; price: number }[];
 };
 export type PublicCategory = { id: string; name: string; dishes: PublicDish[] };
-export type PublicMenu = { id: string; name: string; categories: PublicCategory[] };
+export type PublicMenu = { id: string; name: string; categories: PublicCategory[]; schedules: { weekdays: number[]; start_time: string; end_time: string }[] };
 export type PublicMenuData = {
   restaurant: { id: string; name: string; slug: string; description: string | null; logo_url: string | null; cover_url: string | null; currency: string; plan: string };
   branch: { id: string; name: string; address: string | null; timezone: string; opening_hours: Record<string, { open: string; close: string } | null> };
-  theme: { accent: string; font_pairing: string; mode: string } | null;
+  theme: { accent: string; font_pairing: string; mode: string; logo_url: string | null; cover_url: string | null } | null;
+  generatedAt: string;
   menus: PublicMenu[];
   activeMenuId: string | null;
 };
