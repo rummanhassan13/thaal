@@ -7,12 +7,14 @@ export type PlanFeatures = {
   ordering: boolean;
   themes: boolean;
   analytics: boolean;
+  /** Accent-coloured, logo-centred QR codes for each table. Free gets one plain QR for the menu. */
+  tableQr: boolean;
 };
 
 const FEATURES: Record<Plan, PlanFeatures> = {
-  free: { maxBranches: 1, maxMenusPerBranch: 1, ordering: false, themes: false, analytics: false },
-  pro: { maxBranches: 1, maxMenusPerBranch: Infinity, ordering: true, themes: true, analytics: true },
-  business: { maxBranches: Infinity, maxMenusPerBranch: Infinity, ordering: true, themes: true, analytics: true },
+  free: { maxBranches: 1, maxMenusPerBranch: 1, ordering: false, themes: false, analytics: false, tableQr: false },
+  pro: { maxBranches: 1, maxMenusPerBranch: Infinity, ordering: true, themes: true, analytics: true, tableQr: true },
+  business: { maxBranches: Infinity, maxMenusPerBranch: Infinity, ordering: true, themes: true, analytics: true, tableQr: true },
 };
 
 export function planFeatures(plan: string | null | undefined): PlanFeatures {
