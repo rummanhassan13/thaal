@@ -183,7 +183,7 @@ export function ServiceFeed({ requests, now, fresh, onDone, big }: {
             {done.map((r) => (
               <li key={r.id} className="flex justify-between border-t border-hairline py-2 text-xs text-muted-foreground">
                 <span>{r.tables?.label ? `Table ${r.tables.label}` : "A table"} · {r.type === "bill" ? "Bill" : "Waiter"}</span>
-                <span>{timeAgo(r.created_at, now)} ago</span>
+                <span>{timeAgo(r.created_at, now)}</span>
               </li>
             ))}
           </ul>
