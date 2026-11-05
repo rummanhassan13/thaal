@@ -35,6 +35,12 @@ function Overview() {
         orders: live.length,
         revenue: live.reduce((s, o) => s + Number(o.total), 0),
         waiter: (requests.data ?? []).filter((r) => r.type === "waiter").length,
+        byStatus: {
+          new: live.filter((o) => o.status === "new").length,
+          preparing: live.filter((o) => o.status === "preparing").length,
+          served: live.filter((o) => o.status === "served").length,
+          cancelled: (orders.data ?? []).length - live.length,
+        },
         bill: (requests.data ?? []).filter((r) => r.type === "bill").length,
         tables: tables.count ?? 0,
       };
@@ -74,6 +80,22 @@ function Overview() {
           className="col-span-2 border-t border-hairline md:col-span-1 md:border-t-0 md:border-l md:pl-6"
         />
       </div>
+
+      {s && (
+        <Link to="/dashboard/orders" aria-label="Today's orders by status" className="group mt-5 flex flex-wrap items-center gap-2 text-xs">
+          {([
+            ["new", "New", "bg-terracotta text-paper"],
+            ["preparing", "Preparing", "bg-ink text-paper"],
+            ["served", "Served", "bg-olive text-paper"],
+            ["cancelled", "Cancelled", "border border-hairline text-muted-foreground"],
+          ] as const).map(([k, label, cls]) => (
+            <span key={k} className={cn("rounded-full px-3 py-1", s.byStatus[k] === 0 && k !== "served" ? "border border-hairline bg-transparent text-muted-foreground" : cls)}>
+              {s.byStatus[k]} {label.toLowerCase()}
+            </span>
+          ))}
+          <span className="ml-1 text-muted-foreground transition-transform group-hover:translate-x-0.5">Open the board →</span>
+        </Link>
+      )}
 
       <div className="mt-14 grid gap-14 md:grid-cols-[1.3fr_1fr]">
         <section>
