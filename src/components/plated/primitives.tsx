@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
@@ -144,27 +144,42 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
   );
 }
 
-/** Spring bottom sheet; `contained` positions it inside a relative parent (e.g. phone mockup). */
-export function BottomSheet({ open, onClose, children, contained }: { open: boolean; onClose: () => void; children: React.ReactNode; contained?: boolean }) {
+/** Spring bottom sheet; drag the handle down to dismiss. `contained` positions it inside a relative parent (e.g. phone mockup). */
+export function BottomSheet({ open, onClose, children, contained, label, className }: {
+  open: boolean; onClose: () => void; children: React.ReactNode; contained?: boolean; label?: string | undefined; className?: string;
+}) {
   const pos = contained ? "absolute" : "fixed";
+  const controls = useDragControls();
+  React.useEffect(() => {
+    if (!open || contained) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+  }, [open, contained, onClose]);
   return (
     <AnimatePresence>
       {open && (
         <>
           <motion.div
-            className={cn(pos, "inset-0 z-40 bg-ink/30")}
+            className={cn(pos, "inset-0 z-40 bg-ink/40")}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={onClose}
           />
           <motion.div
-            className={cn(pos, "inset-x-0 bottom-0 z-50 rounded-t-xl bg-background p-5 pb-7")}
+            role="dialog" aria-modal="true" aria-label={label}
+            className={cn(pos, "inset-x-0 bottom-0 z-50 mx-auto flex max-h-[92dvh] max-w-md flex-col rounded-t-xl bg-background text-foreground", className)}
             initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
             transition={{ type: "spring", stiffness: 380, damping: 36 }}
-            drag="y" dragConstraints={{ top: 0, bottom: 0 }} dragElastic={{ top: 0, bottom: 0.6 }}
-            onDragEnd={(_, i) => i.offset.y > 80 && onClose()}
+            drag="y" dragListener={false} dragControls={controls}
+            dragConstraints={{ top: 0, bottom: 0 }} dragElastic={{ top: 0, bottom: 0.6 }}
+            onDragEnd={(_, i) => (i.offset.y > 80 || i.velocity.y > 500) && onClose()}
           >
-            <div className="mx-auto mb-4 h-1 w-9 rounded-full bg-sand-deep" />
-            {children}
+            <div onPointerDown={(e) => controls.start(e)} className="flex shrink-0 cursor-grab touch-none justify-center pt-3 pb-3">
+              <div className="h-1 w-9 rounded-full bg-sand-deep" />
+            </div>
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-7">{children}</div>
           </motion.div>
         </>
       )}

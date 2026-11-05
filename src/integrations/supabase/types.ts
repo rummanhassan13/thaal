@@ -699,6 +699,14 @@ export type Database = {
     }
     Functions: {
       can_write_media: { Args: { _path: string }; Returns: boolean }
+      get_dish_reviews: {
+        Args: { p_dish_id: string }
+        Returns: {
+          avg_rating: number
+          recent: Json
+          review_count: number
+        }[]
+      }
       get_order_status: {
         Args: { p_order_id: string; p_token: string }
         Returns: {
@@ -710,6 +718,10 @@ export type Database = {
           table_label: string
           total: number
         }[]
+      }
+      get_table_label: {
+        Args: { p_branch_id: string; p_table: string }
+        Returns: string
       }
       is_restaurant_member: {
         Args: { _restaurant_id: string }
@@ -736,6 +748,14 @@ export type Database = {
           total: number
           tracking_token: string
         }[]
+      }
+      request_service: {
+        Args: {
+          p_branch_id: string
+          p_table: string
+          p_type: Database["public"]["Enums"]["service_type"]
+        }
+        Returns: string
       }
       resolve_table: {
         Args: { _token: string }

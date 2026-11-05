@@ -35,7 +35,7 @@ export const getPublicMenu = createServerFn({ method: "GET" })
     if (!branch) return null;
 
     const [{ data: themes }, { data: menus }] = await Promise.all([
-      sb.from("themes").select("accent, font_pairing, mode, branch_id").eq("restaurant_id", r.id),
+      sb.from("themes").select("accent, font_pairing, mode, logo_url, cover_url, branch_id").eq("restaurant_id", r.id),
       sb.from("menus").select("id, name, sort, active, menu_schedules(menu_id, weekdays, start_time, end_time), categories(id, name, sort, dishes(id, name, short_description, description, price, photo_url, is_veg, is_spicy, spice_level, ingredients, allergens, is_sold_out, is_special, sort, dish_addons(id, name, price, sort)))")
         .eq("branch_id", branch.id).eq("active", true).order("sort"),
     ]);
@@ -48,10 +48,12 @@ export const getPublicMenu = createServerFn({ method: "GET" })
     return {
       restaurant: r,
       branch: { ...branch, opening_hours: (branch.opening_hours ?? {}) as PublicMenuData["branch"]["opening_hours"] },
-      theme: theme ? { accent: theme.accent, font_pairing: theme.font_pairing, mode: theme.mode } : null,
+      theme: theme ? { accent: theme.accent, font_pairing: theme.font_pairing, mode: theme.mode, logo_url: theme.logo_url, cover_url: theme.cover_url } : null,
+      generatedAt: new Date().toISOString(),
       activeMenuId,
       menus: list.map((m) => ({
         id: m.id, name: m.name,
+        schedules: (m.menu_schedules ?? []).map((x) => ({ weekdays: x.weekdays, start_time: x.start_time.slice(0, 5), end_time: x.end_time.slice(0, 5) })),
         categories: [...(m.categories ?? [])].sort((a, b) => a.sort - b.sort).map((c) => ({
           id: c.id, name: c.name,
           dishes: [...(c.dishes ?? [])].sort((a, b) => a.sort - b.sort).map((d) => ({

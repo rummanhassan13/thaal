@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Inter Tight", system-ui, sans-serif;
+  --font-display: var(--theme-font-display, "Fraunces"), Georgia, serif;
+  --font-sans: var(--theme-font-sans, "Inter Tight"), system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -84,6 +84,21 @@
   --card: oklch(0.23 0.009 65);
   --muted-foreground: oklch(0.7 0.015 75);
   --accent-foreground: oklch(0.18 0.008 65);
+  /* re-resolve aliases so .dark works on any subtree, not just :root */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card-foreground: var(--ink);
+  --popover: var(--card);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --accent: var(--terracotta);
+  --border: var(--hairline);
+  --input: var(--sand-deep);
+  --ring: var(--terracotta);
 }
 
 @layer base {
@@ -92,11 +107,11 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: var(--theme-font-sans, "Inter Tight"), system-ui, sans-serif;
     font-size: 15px;
   }
   h1, h2, h3, .font-display {
-    font-family: var(--font-display);
+    font-family: var(--theme-font-display, "Fraunces"), Georgia, serif;
     font-optical-sizing: auto;
     letter-spacing: -0.02em;
     font-weight: 400;
