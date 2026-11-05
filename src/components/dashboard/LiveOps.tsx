@@ -121,14 +121,14 @@ export function Ticket({ order, currency, now, fresh, big, onAdvance, onCancel, 
       )}
       <div className={cn("mt-4 flex items-center justify-between border-t border-hairline pt-3", big ? "text-base" : "text-xs")}>
         <span className="font-medium tabular-nums">{formatPrice(Number(order.total), currency)}</span>
-        <span className={cn(order.payment_status === "paid" ? "text-teal" : "text-muted-foreground")}>
+        <span className={cn(order.payment_status === "paid" ? "text-teal-ink" : "text-muted-foreground")}>
           {order.payment_method === "counter" ? "Counter" : "Online"} · {order.payment_status === "paid" ? "Paid" : "Unpaid"}
         </span>
       </div>
       {next && (
         <button type="button" onClick={onAdvance}
           className={cn("mt-4 w-full rounded-md font-medium transition-transform active:scale-[0.98]",
-            order.status === "new" ? "bg-marigold text-paper" : "bg-ink text-paper", big ? "h-16 text-xl" : "h-12 text-sm")}>
+            order.status === "new" ? "bg-marigold text-ink" : "bg-ink text-paper", big ? "h-16 text-xl" : "h-12 text-sm")}>
           {advanceLabel(order.status)}
         </button>
       )}

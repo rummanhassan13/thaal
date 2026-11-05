@@ -239,7 +239,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
           {([["Veg", veg, setVeg], ["Spicy", spicy, setSpicy]] as const).map(([label, on, set]) => (
             <button key={label} aria-pressed={on} onClick={() => set(!on)}
               className={cn("rounded-full border px-3.5 py-1 text-xs transition-colors",
-                on ? (label === "Veg" ? "border-teal bg-teal text-paper" : "border-marigold bg-marigold text-accent-foreground") : "border-hairline text-muted-foreground hover:text-foreground")}>
+                on ? (label === "Veg" ? "border-teal bg-teal-ink text-paper" : "border-marigold bg-marigold text-accent-foreground") : "border-hairline text-muted-foreground hover:text-foreground")}>
               {label}
             </button>
           ))}

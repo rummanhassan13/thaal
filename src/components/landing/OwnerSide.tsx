@@ -13,7 +13,7 @@ const ORDERS: { id: number; table: number; items: string; mins: number; status: 
 
 const ACCENTS = [
   { k: "marigold", cls: "bg-marigold", text: "text-highlight" },
-  { k: "teal", cls: "bg-teal", text: "text-teal" },
+  { k: "teal", cls: "bg-teal", text: "text-teal-ink" },
   { k: "ink", cls: "bg-ink", text: "text-foreground" },
 ] as const;
 

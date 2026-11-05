@@ -122,7 +122,7 @@ function ReviewRow({ order, dishId, name }: { order: StoredOrder; dishId: string
     <div className="py-3">
       <div className="flex items-center justify-between gap-3">
         <span className="font-display text-base">{name}</span>
-        {done ? <span className="text-xs text-teal">Thanks!</span> : (
+        {done ? <span className="text-xs text-teal-ink">Thanks!</span> : (
           <div className="flex" role="radiogroup" aria-label={`Rate ${name}`}>
             {[1, 2, 3, 4, 5].map((i) => (
               <button key={i} role="radio" aria-checked={rating === i} aria-label={`${i} star${i > 1 ? "s" : ""}`} onClick={() => setRating(i)}

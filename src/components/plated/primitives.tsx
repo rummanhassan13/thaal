@@ -77,7 +77,7 @@ export function Pill({ className, ...p }: React.HTMLAttributes<HTMLSpanElement>)
 }
 
 const tagStyles = {
-  veg: "text-teal border-teal/40",
+  veg: "text-teal-ink border-teal/40",
   spicy: "text-highlight border-marigold/40",
   neutral: "text-muted-foreground border-hairline",
   soldout: "bg-ink text-paper border-ink",
