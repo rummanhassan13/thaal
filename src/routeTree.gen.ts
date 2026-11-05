@@ -19,6 +19,7 @@ import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authentic
 import { Route as MSlugRouteImport } from './routes/m/$slug'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedDashboardAnalyticsRouteImport } from './routes/_authenticated/dashboard/analytics'
+import { Route as AuthenticatedDashboardBillingRouteImport } from './routes/_authenticated/dashboard/billing'
 import { Route as AuthenticatedDashboardBranchesRouteImport } from './routes/_authenticated/dashboard/branches'
 import { Route as AuthenticatedDashboardDesignRouteImport } from './routes/_authenticated/dashboard/design'
 import { Route as AuthenticatedDashboardMenuRouteImport } from './routes/_authenticated/dashboard/menu'
@@ -79,6 +80,12 @@ const AuthenticatedDashboardAnalyticsRoute =
     path: '/analytics',
     getParentRoute: () => AuthenticatedDashboardRouteRoute,
   } as any)
+const AuthenticatedDashboardBillingRoute =
+  AuthenticatedDashboardBillingRouteImport.update({
+    id: '/billing',
+    path: '/billing',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
 const AuthenticatedDashboardBranchesRoute =
   AuthenticatedDashboardBranchesRouteImport.update({
     id: '/branches',
@@ -131,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/m/$slug': typeof MSlugRoute
   '/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
+  '/dashboard/billing': typeof AuthenticatedDashboardBillingRoute
   '/dashboard/branches': typeof AuthenticatedDashboardBranchesRoute
   '/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
@@ -148,6 +156,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/m/$slug': typeof MSlugRoute
   '/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
+  '/dashboard/billing': typeof AuthenticatedDashboardBillingRoute
   '/dashboard/branches': typeof AuthenticatedDashboardBranchesRoute
   '/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
@@ -168,6 +177,7 @@ export interface FileRoutesById {
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/m/$slug': typeof MSlugRoute
   '/_authenticated/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
+  '/_authenticated/dashboard/billing': typeof AuthenticatedDashboardBillingRoute
   '/_authenticated/dashboard/branches': typeof AuthenticatedDashboardBranchesRoute
   '/_authenticated/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/_authenticated/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/m/$slug'
     | '/dashboard/analytics'
+    | '/dashboard/billing'
     | '/dashboard/branches'
     | '/dashboard/design'
     | '/dashboard/menu'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/m/$slug'
     | '/dashboard/analytics'
+    | '/dashboard/billing'
     | '/dashboard/branches'
     | '/dashboard/design'
     | '/dashboard/menu'
@@ -224,6 +236,7 @@ export interface FileRouteTypes {
     | '/_authenticated/onboarding'
     | '/m/$slug'
     | '/_authenticated/dashboard/analytics'
+    | '/_authenticated/dashboard/billing'
     | '/_authenticated/dashboard/branches'
     | '/_authenticated/dashboard/design'
     | '/_authenticated/dashboard/menu'
@@ -315,6 +328,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardAnalyticsRouteImport
       parentRoute: typeof AuthenticatedDashboardRouteRoute
     }
+    '/_authenticated/dashboard/billing': {
+      id: '/_authenticated/dashboard/billing'
+      path: '/billing'
+      fullPath: '/dashboard/billing'
+      preLoaderRoute: typeof AuthenticatedDashboardBillingRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
     '/_authenticated/dashboard/branches': {
       id: '/_authenticated/dashboard/branches'
       path: '/branches'
@@ -369,6 +389,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedDashboardRouteRouteChildren {
   AuthenticatedDashboardAnalyticsRoute: typeof AuthenticatedDashboardAnalyticsRoute
+  AuthenticatedDashboardBillingRoute: typeof AuthenticatedDashboardBillingRoute
   AuthenticatedDashboardBranchesRoute: typeof AuthenticatedDashboardBranchesRoute
   AuthenticatedDashboardDesignRoute: typeof AuthenticatedDashboardDesignRoute
   AuthenticatedDashboardMenuRoute: typeof AuthenticatedDashboardMenuRoute
@@ -382,6 +403,7 @@ interface AuthenticatedDashboardRouteRouteChildren {
 const AuthenticatedDashboardRouteRouteChildren: AuthenticatedDashboardRouteRouteChildren =
   {
     AuthenticatedDashboardAnalyticsRoute: AuthenticatedDashboardAnalyticsRoute,
+    AuthenticatedDashboardBillingRoute: AuthenticatedDashboardBillingRoute,
     AuthenticatedDashboardBranchesRoute: AuthenticatedDashboardBranchesRoute,
     AuthenticatedDashboardDesignRoute: AuthenticatedDashboardDesignRoute,
     AuthenticatedDashboardMenuRoute: AuthenticatedDashboardMenuRoute,
