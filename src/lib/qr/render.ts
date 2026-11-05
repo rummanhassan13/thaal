@@ -83,8 +83,23 @@ export async function tentsPdf(opts: {
     return px;
   };
 
+  /** Thin truck-art motif along the panel's outer edge: diamonds between petals, one colour, low contrast. */
+  const motif = (ctx: CanvasRenderingContext2D, y: number) => {
+    ctx.save();
+    ctx.strokeStyle = "rgba(30,42,90,0.28)"; ctx.fillStyle = "rgba(30,42,90,0.28)"; ctx.lineWidth = 2.5;
+    const step = 84, h = 22;
+    for (let x = 60; x + step <= W - 60; x += step) {
+      const c = x + step / 2;
+      ctx.beginPath(); ctx.moveTo(c, y - h); ctx.lineTo(c + h, y); ctx.lineTo(c, y + h); ctx.lineTo(c - h, y); ctx.closePath(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(c, y, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x + 10, y - 14, x + 20, y); ctx.quadraticCurveTo(x + 10, y + 14, x, y); ctx.stroke();
+    }
+    ctx.restore();
+  };
+
   const panel = (ctx: CanvasRenderingContext2D, qr: HTMLImageElement, label: string) => {
     const pad = 130, q = 560;
+    motif(ctx, P - 28);
     ctx.drawImage(qr, pad, (P - q) / 2, q, q);
     const x = pad + q + 110, maxW = W - x - pad;
     ctx.fillStyle = INK;
@@ -92,7 +107,7 @@ export async function tentsPdf(opts: {
     fit(ctx, opts.restaurant, (px) => `${px}px ${display}`, 96, maxW);
     ctx.fillText(opts.restaurant, x, 250);
     ctx.font = `44px ${sans}`;
-    ctx.fillStyle = "#5c574f";
+    ctx.fillStyle = "#5E6585";
     ctx.fillText("Scan to see the menu & order", x, 330);
     ctx.fillStyle = accent;
     ctx.font = `500 40px ${sans}`;
@@ -101,7 +116,7 @@ export async function tentsPdf(opts: {
     fit(ctx, label, (px) => `${px}px ${display}`, 260, maxW);
     ctx.fillText(label, x, 720);
     ctx.font = `30px ${sans}`;
-    ctx.fillStyle = "#8a847a";
+    ctx.fillStyle = "#5E6585";
     ctx.fillText("Powered by Plated", x, P - 70);
   };
 
@@ -118,13 +133,13 @@ export async function tentsPdf(opts: {
     // top panel, upside down so it reads correctly once folded
     ctx.save(); ctx.translate(W, P); ctx.rotate(Math.PI); panel(ctx, qr, t.label); ctx.restore();
     // fold + cut guides
-    ctx.strokeStyle = "#cfc6b6"; ctx.lineWidth = 3; ctx.setLineDash([18, 14]);
+    ctx.strokeStyle = "#C9CCD8"; ctx.lineWidth = 3; ctx.setLineDash([18, 14]);
     ctx.beginPath(); ctx.moveTo(0, P); ctx.lineTo(W, P); ctx.stroke(); ctx.setLineDash([]);
-    ctx.font = `26px ${sans}`; ctx.fillStyle = "#b3aa9b"; ctx.fillText("fold", W - 110, P - 14);
+    ctx.font = `26px ${sans}`; ctx.fillStyle = "#8D93AD"; ctx.fillText("fold", W - 110, P - 14);
     if (i % 2 === 0 && i > 0) pdf.addPage();
     const y = (i % 2) * 148.5;
     pdf.addImage(canvas.toDataURL("image/jpeg", 0.9), "JPEG", 0, y, 210, 148.5, undefined, "FAST");
-    if (i % 2 === 1) { pdf.setDrawColor(200, 190, 175); pdf.setLineDashPattern([2, 2], 0); pdf.line(0, 148.5, 210, 148.5); }
+    if (i % 2 === 1) { pdf.setDrawColor(201, 204, 216); pdf.setLineDashPattern([2, 2], 0); pdf.line(0, 148.5, 210, 148.5); }
   }
   return pdf.output("blob");
 }

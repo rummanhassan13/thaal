@@ -65,7 +65,7 @@ export function InstallBanner({ className }: { className?: string }) {
             ["03", <>Tap <strong className="font-medium">Add</strong>. Plated now lives next to your other apps.</>],
           ].map(([n, t]) => (
             <li key={n as string} className="flex gap-4 border-t border-hairline py-4 text-[15px] last:border-b">
-              <span className="font-display text-xl text-terracotta">{n}</span><span>{t}</span>
+              <span className="font-display text-xl text-highlight">{n}</span><span>{t}</span>
             </li>
           ))}
         </ol>

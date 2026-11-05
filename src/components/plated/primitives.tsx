@@ -8,11 +8,11 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        ink: "bg-ink text-paper hover:bg-ink/85 rounded-lg",
-        accent: "bg-terracotta text-accent-foreground hover:bg-terracotta/90 rounded-lg",
-        ghost: "text-foreground hover:bg-sand rounded-lg",
+        ink: "bg-ink text-paper hover:bg-ink-hover rounded-lg",
+        accent: "bg-marigold text-accent-foreground hover:bg-marigold/90 rounded-lg",
+        ghost: "text-foreground hover:bg-mist rounded-lg",
         outline: "border border-ink/20 text-foreground hover:border-ink rounded-lg",
-        link: "text-foreground underline decoration-1 underline-offset-[6px] decoration-ink/30 hover:decoration-terracotta px-0",
+        link: "text-foreground underline decoration-1 underline-offset-[6px] decoration-ink/30 hover:decoration-marigold px-0",
       },
       size: { sm: "h-9 px-4", md: "h-11 px-5", lg: "h-13 px-7 text-[15px]" },
     },
@@ -54,13 +54,13 @@ export function PillGroup<T extends string>({
             className={cn(
               "relative shrink-0 rounded-full transition-colors",
               size === "sm" ? "px-3 py-1 text-[11px]" : "px-4 py-1.5 text-sm",
-              active ? "text-paper" : "text-muted-foreground hover:text-foreground",
+              active ? "font-medium text-accent-foreground" : "text-muted-foreground hover:text-foreground",
             )}
           >
             {active && (
               <motion.span
                 layoutId={id}
-                className="absolute inset-0 rounded-full bg-ink"
+                className="absolute inset-0 rounded-full bg-marigold"
                 transition={{ type: "spring", stiffness: 500, damping: 38 }}
               />
             )}
@@ -77,10 +77,10 @@ export function Pill({ className, ...p }: React.HTMLAttributes<HTMLSpanElement>)
 }
 
 const tagStyles = {
-  veg: "text-olive border-olive/40",
-  spicy: "text-terracotta border-terracotta/40",
+  veg: "text-teal-ink border-teal/40",
+  spicy: "text-alert border-pink/50",
   neutral: "text-muted-foreground border-hairline",
-  soldout: "bg-ink text-paper border-ink",
+  soldout: "bg-alert text-paper border-alert",
 };
 export function Tag({ kind = "neutral", className, children }: { kind?: keyof typeof tagStyles; className?: string; children: React.ReactNode }) {
   return (
@@ -134,7 +134,7 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
       aria-checked={checked}
       aria-label={label}
       onClick={() => onChange(!checked)}
-      className={cn("relative h-6 w-10 rounded-full transition-colors", checked ? "bg-terracotta" : "bg-sand-deep")}
+      className={cn("relative h-6 w-10 rounded-full transition-colors", checked ? "bg-marigold" : "bg-mist-deep")}
     >
       <motion.span
         className="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-paper"
@@ -178,7 +178,7 @@ export function BottomSheet({ open, onClose, children, contained, label, classNa
             onDragEnd={(_, i) => (i.offset.y > 80 || i.velocity.y > 500) && onClose()}
           >
             <div onPointerDown={(e) => controls.start(e)} className="flex shrink-0 cursor-grab touch-none justify-center pt-3 pb-3">
-              <div className="h-1 w-9 rounded-full bg-sand-deep" />
+              <div className="h-1 w-9 rounded-full bg-mist-deep" />
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-7">{children}</div>
           </motion.div>

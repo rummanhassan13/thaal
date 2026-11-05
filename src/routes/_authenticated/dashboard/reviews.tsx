@@ -23,8 +23,8 @@ type Review = {
 
 function Stars({ value, className }: { value: number; className?: string }) {
   return (
-    <span className={cn("tracking-[0.15em] text-terracotta", className)} aria-label={`${value} out of 5`}>
-      {"★".repeat(Math.round(value))}<span className="text-sand-deep">{"★".repeat(5 - Math.round(value))}</span>
+    <span className={cn("tracking-[0.15em] text-highlight", className)} aria-label={`${value} out of 5`}>
+      {"★".repeat(Math.round(value))}<span className="text-mist-deep">{"★".repeat(5 - Math.round(value))}</span>
     </span>
   );
 }
@@ -100,7 +100,7 @@ function ReviewsPage() {
                 {perDish.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
               </select>
               <label className="flex items-center gap-1.5 whitespace-nowrap text-muted-foreground">
-                <input type="checkbox" checked={unread} onChange={(e) => setUnread(e.target.checked)} className="accent-terracotta" />
+                <input type="checkbox" checked={unread} onChange={(e) => setUnread(e.target.checked)} className="accent-marigold" />
                 Unread ({unreadCount})
               </label>
             </div>
@@ -117,7 +117,7 @@ function ReviewsPage() {
           <ul>
             {list.map((r) => (
               <li key={r.id} className="flex gap-4 border-b border-hairline py-5">
-                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md bg-sand">
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md bg-mist">
                   {r.dishes?.photo_url && <img src={sized(r.dishes.photo_url, 160, 160)} alt="" loading="lazy" className="h-full w-full object-cover" />}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -131,7 +131,7 @@ function ReviewsPage() {
                     {r.orders?.table_label && <span>· Table {r.orders.table_label}</span>}
                     {!r.read_at ? (
                       <>
-                        <span className="h-1.5 w-1.5 rounded-full bg-terracotta" aria-label="Unread" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-marigold" aria-label="Unread" />
                         <button type="button" onClick={() => markRead.mutate([r.id])} className="ml-auto underline underline-offset-4 hover:text-foreground">Mark read</button>
                       </>
                     ) : null}
@@ -148,7 +148,7 @@ function ReviewsPage() {
             {perDish.map((d) => (
               <li key={d.id}>
                 <button type="button" onClick={() => setDish(dish === d.id ? "all" : d.id)}
-                  className={cn("flex w-full items-center gap-3 border-b border-hairline py-3 text-left", dish === d.id && "text-terracotta")}>
+                  className={cn("flex w-full items-center gap-3 border-b border-hairline py-3 text-left", dish === d.id && "text-highlight")}>
                   <span className="min-w-0 flex-1 truncate text-sm">{d.name}</span>
                   <span className="text-xs text-muted-foreground">{d.n}</span>
                   <span className="w-8 text-right font-display text-lg tabular-nums">{(d.sum / d.n).toFixed(1)}</span>

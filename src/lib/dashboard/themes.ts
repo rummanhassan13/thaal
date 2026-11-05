@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { RawTheme } from "@/lib/menu/build";
 
 export type ThemeRow = RawTheme & { id: string };
-export const DEFAULT_THEME = { accent: "#C8553D", font_pairing: "fraunces_inter_tight", mode: "light", logo_url: null, cover_url: null } as const;
+export const DEFAULT_THEME = { accent: "#1E2A5A", font_pairing: "bricolage_figtree", mode: "light", logo_url: null, cover_url: null } as const;
 
 export const themesKey = (restaurantId: string) => ["themes", restaurantId] as const;
 export const themesQuery = (restaurantId: string) => queryOptions({
@@ -16,7 +16,7 @@ export const themesQuery = (restaurantId: string) => queryOptions({
 });
 
 export const ACCENT_SWATCHES = [
-  { name: "Terracotta", hex: "#C8553D" }, { name: "Clay", hex: "#9C4A2F" }, { name: "Mustard", hex: "#B8862B" },
-  { name: "Olive", hex: "#6B6B47" }, { name: "Forest", hex: "#2F5D46" }, { name: "Plum", hex: "#6E3A5A" },
-  { name: "Cocoa", hex: "#6B4A3A" }, { name: "Ink", hex: "#1C1A17" },
+  { name: "Indigo", hex: "#1E2A5A" }, { name: "Marigold", hex: "#F2A900" }, { name: "Truck pink", hex: "#E4447A" },
+  { name: "Teal", hex: "#1C8C8C" }, { name: "Bottle green", hex: "#1F5B3F" }, { name: "Chilli red", hex: "#C62D2D" },
+  { name: "Plum", hex: "#6B2D5C" }, { name: "Charcoal", hex: "#2B2B2E" },
 ];

@@ -50,7 +50,7 @@ function Branches() {
       </div>
 
       {upsell && !editing && (
-        <div className="mt-8 grid gap-4 rounded-lg border border-terracotta/40 p-5 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div className="mt-8 grid gap-4 rounded-lg border border-marigold/40 p-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
             <p className="font-display text-xl">Opening somewhere new? Lovely.</p>
             <p className="mt-1 text-sm text-muted-foreground">More than one branch comes with the Business plan, each with its own menus, hours and tables.</p>
@@ -142,7 +142,7 @@ function BranchForm({ draft, restaurantId, onCancel, onSaved, onDelete }: {
       <div className="flex flex-wrap items-center gap-4">
         <Button type="submit" variant="accent" disabled={busy}>{busy ? "Saving…" : "Save branch"}</Button>
         <Button type="button" variant="ghost" onClick={onCancel}>Cancel</Button>
-        {onDelete && <button type="button" onClick={onDelete} className="ml-auto text-sm text-terracotta hover:underline">Delete branch</button>}
+        {onDelete && <button type="button" onClick={onDelete} className="ml-auto text-sm text-alert hover:underline">Delete branch</button>}
       </div>
     </form>
   );

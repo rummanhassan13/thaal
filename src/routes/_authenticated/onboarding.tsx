@@ -80,8 +80,8 @@ function Onboarding() {
             <Input label="Menu link" value={slug} onChange={(e) => { setSlugTouched(true); setSlug(slugify(e.target.value)); }} />
             <p className="mt-1.5 text-xs text-muted-foreground">
               plated.app/m/<span className="text-foreground">{slug || "your-place"}</span>
-              {available === true && <span className="ml-2 text-olive">available</span>}
-              {available === false && <span className="ml-2 text-terracotta">taken</span>}
+              {available === true && <span className="ml-2 text-teal-ink">available</span>}
+              {available === false && <span className="ml-2 text-alert">taken</span>}
             </p>
           </div>
           <label className="block">
@@ -93,7 +93,7 @@ function Onboarding() {
           <Input label="First branch" placeholder="e.g. Bermondsey, or Main" value={branch} onChange={(e) => setBranch(e.target.value)} />
         </div>
         <Divider className="my-10" />
-        {error && <p className="mb-4 text-sm text-terracotta">{error}</p>}
+        {error && <p className="mb-4 text-sm text-alert">{error}</p>}
         <Button variant="accent" size="lg" type="submit" disabled={busy}>{busy ? "Setting the table…" : "Open the doors"}</Button>
       </motion.form>
     </div>

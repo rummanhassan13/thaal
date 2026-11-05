@@ -72,7 +72,7 @@ function BillingPage() {
         Online billing is coming soon. Tell us which plan you'd like and we'll switch you on.
       </p>
       {pending && (
-        <p className="mt-6 border-l-2 border-terracotta pl-3 text-sm">
+        <p className="mt-6 border-l-2 border-marigold pl-3 text-sm">
           Your request for <strong className="font-medium">{planInfo(pending.plan).name}</strong> is with us
           ({new Date(pending.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}). We'll reach you on {pending.contact}.
         </p>
@@ -97,7 +97,7 @@ function BillingPage() {
               <tr className="border-b border-hairline text-left">
                 <th className="py-3 font-normal text-muted-foreground" />
                 {PLANS.map((p) => (
-                  <th key={p.id} className={cn("py-3 font-display text-xl font-normal", p.highlight && "text-terracotta")}>
+                  <th key={p.id} className={cn("py-3 font-display text-xl font-normal", p.highlight && "text-highlight")}>
                     {p.name} <span className="font-sans text-xs text-muted-foreground">{formatPlanPrice(p)}</span>
                   </th>
                 ))}
@@ -126,7 +126,7 @@ function BillingPage() {
             {reqs.data!.map((r) => (
               <li key={r.id} className="flex items-baseline justify-between gap-4 border-b border-hairline py-3 text-sm">
                 <span>{planInfo(r.plan).name} · {new Date(r.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
-                <span className={cn(r.status === "pending" ? "text-terracotta" : "text-muted-foreground")}>
+                <span className={cn(r.status === "pending" ? "text-highlight" : "text-muted-foreground")}>
                   {r.status === "pending" ? "Waiting on us" : r.status === "done" ? "Switched on" : "Closed"}
                 </span>
               </li>
@@ -150,7 +150,7 @@ function BillingPage() {
               <textarea value={message} onChange={(e) => setMessage(e.target.value)} maxLength={1000} rows={3}
                 className="mt-1.5 w-full rounded-md border border-input bg-card px-3 py-2 text-sm focus:border-ink focus:outline-none" />
             </label>
-            {err && <p className="text-sm text-terracotta">{err}</p>}
+            {err && <p className="text-sm text-alert">{err}</p>}
             <Button type="submit" variant="accent" className="w-full" disabled={send.isPending}>
               {send.isPending ? "Sending…" : "Send request"}
             </Button>

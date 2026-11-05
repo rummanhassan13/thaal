@@ -35,7 +35,7 @@ function Landing() {
         <motion.div className="md:col-span-7" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 120, damping: 20 }}>
           <p className="eyebrow mb-8">Digital menus for independents</p>
           <h1 className="text-[3.4rem] leading-[0.95] sm:text-7xl lg:text-[7.2rem]">
-            Your menu, but the <em className="text-terracotta">good</em> kind.
+            Your menu, but the <em>good</em> kind.
           </h1>
           <p className="mt-8 max-w-sm text-base text-muted-foreground">
             Photo menus your guests actually want to scroll. Scan, pick, order, pay. You get the table back.

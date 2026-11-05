@@ -58,17 +58,17 @@ export function ImagePicker({ value, onChange, restaurantId, kind, aspect, label
       <div className="flex items-center gap-4">
         <button
           type="button" onClick={() => input.current?.click()}
-          className={cn("relative grid shrink-0 place-items-center overflow-hidden rounded-lg border border-dashed border-sand-deep bg-sand/50 text-xs text-muted-foreground", previewClassName ?? "h-24 w-32")}
+          className={cn("relative grid shrink-0 place-items-center overflow-hidden rounded-lg border border-dashed border-mist-deep bg-mist/50 text-xs text-muted-foreground", previewClassName ?? "h-24 w-32")}
         >
           {value ? <img src={value} alt="" className="h-full w-full object-cover" /> : <span>Add photo</span>}
           {busy && <span className="absolute inset-0 grid place-items-center bg-background/70 text-xs text-foreground">Uploading…</span>}
         </button>
         <div className="flex flex-col items-start gap-1 text-sm">
-          <button type="button" onClick={() => input.current?.click()} className="underline decoration-ink/30 underline-offset-4 hover:decoration-terracotta">{value ? "Replace" : "Upload"}</button>
+          <button type="button" onClick={() => input.current?.click()} className="underline decoration-ink/30 underline-offset-4 hover:decoration-marigold">{value ? "Replace" : "Upload"}</button>
           {value && <button type="button" onClick={() => onChange(null)} className="text-muted-foreground hover:text-foreground">Remove</button>}
         </div>
       </div>
-      {error && <p className="mt-2 text-xs text-terracotta">{error}</p>}
+      {error && <p className="mt-2 text-xs text-alert">{error}</p>}
       <input ref={input} type="file" accept="image/*" hidden onChange={(e) => { pick(e.target.files?.[0]); e.target.value = ""; }} />
 
       <AnimatePresence>
@@ -76,7 +76,7 @@ export function ImagePicker({ value, onChange, restaurantId, kind, aspect, label
           <motion.div className="fixed inset-0 z-[70] flex flex-col bg-ink" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="relative flex-1"><Cropper image={cropSrc} crop={crop} zoom={zoom} aspect={aspect} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} /></div>
             <div className="flex items-center gap-4 bg-background px-5 py-4">
-              <input aria-label="Zoom" type="range" min={1} max={3} step={0.01} value={zoom} onChange={(e) => setZoom(Number(e.target.value))} className="flex-1 accent-terracotta" />
+              <input aria-label="Zoom" type="range" min={1} max={3} step={0.01} value={zoom} onChange={(e) => setZoom(Number(e.target.value))} className="flex-1 accent-marigold" />
               <Button type="button" variant="ghost" onClick={() => { URL.revokeObjectURL(cropSrc); setCropSrc(null); }}>Cancel</Button>
               <Button type="button" variant="accent" onClick={confirmCrop}>Use photo</Button>
             </div>

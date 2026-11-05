@@ -19,7 +19,8 @@ export function SiteNav() {
 export function SiteFooter() {
   return (
     <footer className="mx-auto max-w-7xl px-5 md:px-10">
-      <div className="flex flex-col gap-6 border-t border-hairline py-10 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+      <div aria-hidden className="truck-border" />
+      <div className="flex flex-col gap-6 py-10 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
         <div className="flex items-baseline gap-4"><Wordmark className="text-xl text-foreground" /><span>Menus worth scanning.</span></div>
         <div className="flex gap-6">
           <a href="#how" className="hover:text-foreground">How it works</a>

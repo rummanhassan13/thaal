@@ -17,7 +17,7 @@ export function ChipInput({ label, value, onChange, placeholder, quickPicks }: {
       <span className="mb-1.5 block text-xs text-muted-foreground">{label}</span>
       <div className="flex min-h-11 flex-wrap items-center gap-1.5 rounded-lg border border-input bg-card px-2 py-1.5 focus-within:border-ink">
         {value.map((v) => (
-          <span key={v} className="inline-flex items-center gap-1 rounded-full bg-sand px-2.5 py-0.5 text-xs">
+          <span key={v} className="inline-flex items-center gap-1 rounded-full bg-mist px-2.5 py-0.5 text-xs">
             {v}
             <button type="button" aria-label={`Remove ${v}`} onClick={() => onChange(value.filter((x) => x !== v))} className="text-muted-foreground hover:text-foreground">×</button>
           </span>

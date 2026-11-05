@@ -84,9 +84,9 @@ function Overview() {
       {s && (
         <Link to="/dashboard/orders" aria-label="Today's orders by status" className="group mt-5 flex flex-wrap items-center gap-2 text-xs">
           {([
-            ["new", "New", "bg-terracotta text-paper"],
+            ["new", "New", "bg-marigold text-ink"],
             ["preparing", "Preparing", "bg-ink text-paper"],
-            ["served", "Served", "bg-olive text-paper"],
+            ["served", "Served", "bg-teal-ink text-paper"],
             ["cancelled", "Cancelled", "border border-hairline text-muted-foreground"],
           ] as const).map(([k, label, cls]) => (
             <span key={k} className={cn("rounded-full px-3 py-1", s.byStatus[k] === 0 && k !== "served" ? "border border-hairline bg-transparent text-muted-foreground" : cls)}>
@@ -107,7 +107,7 @@ function Overview() {
             {checklist.map((c) => (
               <li key={c.label} className="border-t border-hairline last:border-b">
                 <Link to={c.to} className="group flex items-center gap-4 py-4">
-                  <span className={cn("grid h-5 w-5 shrink-0 place-items-center rounded-full border text-[11px]", c.done ? "border-olive bg-olive text-paper" : "border-sand-deep")}>
+                  <span className={cn("grid h-5 w-5 shrink-0 place-items-center rounded-full border text-[11px]", c.done ? "border-teal bg-teal-ink text-paper" : "border-mist-deep")}>
                     {c.done ? "✓" : ""}
                   </span>
                   <span className={cn("flex-1", c.done && "text-muted-foreground line-through decoration-1")}>{c.label}</span>
@@ -137,7 +137,7 @@ function Stat({ label, value, note, accent, className }: { label: string; value:
   return (
     <div className={cn("py-6 pr-4", className)}>
       <p className="text-xs text-muted-foreground">{label}</p>
-      <p className={cn("mt-2 font-display text-4xl md:text-5xl", accent && "text-terracotta")}>{value}</p>
+      <p className={cn("mt-2 font-display text-4xl md:text-5xl", accent && "text-highlight")}>{value}</p>
       {note && <p className="mt-1 text-xs text-muted-foreground">{note}</p>}
     </div>
   );

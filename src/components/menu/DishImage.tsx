@@ -2,13 +2,13 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { sized, srcSet } from "@/lib/unsplash";
 
-/** Photo on a sand placeholder that fades in once loaded. */
+/** Photo on a mist placeholder that fades in once loaded. */
 export function DishImage({ url, alt, w, ratio, sizes, eager, className, dim }: {
   url: string | null; alt: string; w: number; ratio: number; sizes: string; eager?: boolean; className?: string; dim?: boolean;
 }) {
   const [loaded, setLoaded] = useState(false);
   return (
-    <div className={cn("relative overflow-hidden bg-sand", className)} style={{ aspectRatio: `${1 / ratio}` }}>
+    <div className={cn("relative overflow-hidden bg-mist", className)} style={{ aspectRatio: `${1 / ratio}` }}>
       {url && (
         <img
           src={sized(url, w, Math.round(w * ratio))}

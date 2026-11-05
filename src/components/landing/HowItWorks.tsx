@@ -22,7 +22,7 @@ export function HowItWorks() {
         <ol className="md:col-span-6 md:col-start-7">
           {STEPS.map((s) => (
             <li key={s.n} className="group grid grid-cols-[3.5rem_1fr] gap-4 border-t border-hairline py-9 last:border-b md:grid-cols-[5rem_1fr]">
-              <span className="font-display text-2xl text-terracotta md:text-3xl">{s.n}</span>
+              <span className="font-display text-2xl text-highlight md:text-3xl">{s.n}</span>
               <div>
                 <h3 className="text-2xl md:text-3xl">{s.t}</h3>
                 <p className="mt-3 max-w-md text-muted-foreground">{s.d}</p>

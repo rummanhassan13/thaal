@@ -7,7 +7,7 @@ import { DAY_NAMES, dayRanges, scheduleWarnings, type Slot } from "@/lib/dashboa
 import { cn } from "@/lib/utils";
 
 const ORDER = [1, 2, 3, 4, 5, 6, 0];
-const SWATCH = ["bg-terracotta", "bg-olive", "bg-ink/70", "bg-sand-deep", "bg-olive-soft", "bg-terracotta/50"];
+const SWATCH = ["bg-marigold", "bg-teal", "bg-ink/70", "bg-mist-deep", "bg-teal-soft", "bg-marigold/50"];
 const timeCls = "h-9 rounded-md border border-input bg-card px-2 text-sm tabular-nums focus:border-ink focus:outline-none";
 type DraftSlot = Slot & { key: string };
 
@@ -53,7 +53,7 @@ export function ScheduleEditor({ menus, menu, onSaved }: { menus: Menu[]; menu: 
         {ORDER.map((d) => (
           <div key={d} className="flex items-center gap-2 py-[3px]">
             <span className="w-8 text-xs text-muted-foreground">{DAY_NAMES[d]}</span>
-            <div className="relative h-4 flex-1 rounded-sm bg-sand/60">
+            <div className="relative h-4 flex-1 rounded-sm bg-mist/60">
               {[25, 50, 75].map((p) => <span key={p} className="absolute inset-y-0 w-px bg-hairline" style={{ left: `${p}%` }} />)}
               {days[d]!.map((r, i) => {
                 const ov = (o: { start: number; end: number }) => o.start < r.end && r.start < o.end;
@@ -70,7 +70,7 @@ export function ScheduleEditor({ menus, menu, onSaved }: { menus: Menu[]; menu: 
         ))}
       </div>
       {warnings.length > 0 && (
-        <ul className="mt-4 space-y-1 border-l-2 border-terracotta pl-3 text-sm text-terracotta">
+        <ul className="mt-4 space-y-1 border-l-2 border-marigold pl-3 text-sm text-highlight">
           {warnings.slice(0, 6).map((w) => <li key={w}>{w}</li>)}
           {warnings.length > 6 && <li>…and {warnings.length - 6} more.</li>}
         </ul>
@@ -100,7 +100,7 @@ export function ScheduleEditor({ menus, menu, onSaved }: { menus: Menu[]; menu: 
                 <span className="text-muted-foreground">–</span>
                 <input type="time" aria-label="Ends" value={s.end_time} onChange={(e) => patch(s.key, { end_time: e.target.value })} className={timeCls} />
               </div>
-              <button type="button" onClick={() => setSlots((xs) => xs.filter((x) => x.key !== s.key))} className="ml-auto text-sm text-muted-foreground hover:text-terracotta">Remove</button>
+              <button type="button" onClick={() => setSlots((xs) => xs.filter((x) => x.key !== s.key))} className="ml-auto text-sm text-muted-foreground hover:text-alert">Remove</button>
             </div>
           ))}
         </div>

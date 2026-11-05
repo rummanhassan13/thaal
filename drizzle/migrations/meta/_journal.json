@@ -43,6 +43,13 @@
       "when": 1793906527957,
       "tag": "0005_upgrade_requests",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793907200445,
+      "tag": "0006_migration",
+      "breakpoints": true
     }
   ]
 }

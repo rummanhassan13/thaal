@@ -127,7 +127,7 @@ function MenuEditor() {
         <button onClick={addMenu} className="text-sm text-muted-foreground underline decoration-ink/20 underline-offset-4 hover:text-foreground">+ New menu</button>
       </div>
       {upsell && (
-        <div className="mt-4 grid gap-3 rounded-lg border border-terracotta/40 p-4 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div className="mt-4 grid gap-3 rounded-lg border border-marigold/40 p-4 sm:grid-cols-[1fr_auto] sm:items-center">
           <p className="text-sm"><span className="font-display text-lg">Breakfast and dinner menus?</span><br /><span className="text-muted-foreground">The Free plan has one menu. Pro adds as many as you like, switching by time of day.</span></p>
           <div className="flex items-center gap-4"><Link to="/dashboard/billing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link><button onClick={() => setUpsell(false)} className="text-sm text-muted-foreground">Not now</button></div>
         </div>
@@ -141,7 +141,7 @@ function MenuEditor() {
             <button onClick={() => setShowSchedule((s) => !s)} className={cn("underline decoration-ink/20 underline-offset-4", showSchedule ? "text-foreground" : "text-muted-foreground")}>
               {menu.menu_schedules.length ? `Schedule (${menu.menu_schedules.length})` : "Set times"}
             </button>
-            <button onClick={() => deleteMenu(menu)} className="ml-auto text-muted-foreground hover:text-terracotta">Delete menu</button>
+            <button onClick={() => deleteMenu(menu)} className="ml-auto text-muted-foreground hover:text-alert">Delete menu</button>
           </div>
           {showSchedule && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="overflow-hidden border-b border-hairline">
@@ -160,8 +160,8 @@ function MenuEditor() {
                       <div className="flex items-center gap-2 border-b border-ink/80 pb-2">
                         {handle}
                         <InlineText label="Category name" value={c.name} onSave={(n) => renameCat(c, n)} className="flex-1 font-display text-2xl md:text-3xl" />
-                        <button onClick={() => setForm({ dish: null, categoryId: c.id, nextSort: c.dishes.length })} className="shrink-0 text-sm underline decoration-ink/30 underline-offset-4 hover:decoration-terracotta">Add dish</button>
-                        <button onClick={() => deleteCat(c)} aria-label={`Delete ${c.name}`} className="shrink-0 px-1 text-muted-foreground hover:text-terracotta">×</button>
+                        <button onClick={() => setForm({ dish: null, categoryId: c.id, nextSort: c.dishes.length })} className="shrink-0 text-sm underline decoration-ink/30 underline-offset-4 hover:decoration-marigold">Add dish</button>
+                        <button onClick={() => deleteCat(c)} aria-label={`Delete ${c.name}`} className="shrink-0 px-1 text-muted-foreground hover:text-alert">×</button>
                       </div>
                       {c.dishes.length === 0 && <p className="py-4 text-sm text-muted-foreground">No dishes yet.</p>}
                       <SortableList items={c.dishes} onReorder={(next) => reorderDishes(c, next)}>
@@ -209,7 +209,7 @@ function DishRow({ dish: d, handle, currency, onOpen, onPrice, onSoldOut, onSpec
   return (
     <div className="grid grid-cols-[auto_auto_1fr_auto] items-center gap-x-3 gap-y-2 border-b border-hairline py-3 md:grid-cols-[auto_auto_1fr_auto_auto_auto_auto]">
       {handle}
-      <button onClick={onOpen} className="h-12 w-16 shrink-0 overflow-hidden rounded-md bg-sand" aria-label={`Edit ${d.name}`}>
+      <button onClick={onOpen} className="h-12 w-16 shrink-0 overflow-hidden rounded-md bg-mist" aria-label={`Edit ${d.name}`}>
         {d.photo_url && <img src={sized(d.photo_url, 160, 120)} alt="" loading="lazy" className={cn("h-full w-full object-cover", d.is_sold_out && "grayscale")} />}
       </button>
       <button onClick={onOpen} className="min-w-0 text-left">
@@ -227,7 +227,7 @@ function DishRow({ dish: d, handle, currency, onOpen, onPrice, onSoldOut, onSpec
       <div className="col-span-4 flex items-center justify-end gap-5 pl-9 md:col-span-1 md:contents">
         <span className="flex items-center gap-2 text-xs text-muted-foreground">Sold out <Toggle checked={d.is_sold_out} onChange={onSoldOut} label={`${d.name} sold out`} /></span>
         <span className="flex items-center gap-2 text-xs text-muted-foreground">Special <Toggle checked={d.is_special} onChange={onSpecial} label={`${d.name} today's special`} /></span>
-        <button onClick={onDelete} aria-label={`Delete ${d.name}`} className="px-1 text-muted-foreground hover:text-terracotta">×</button>
+        <button onClick={onDelete} aria-label={`Delete ${d.name}`} className="px-1 text-muted-foreground hover:text-alert">×</button>
       </div>
     </div>
   );

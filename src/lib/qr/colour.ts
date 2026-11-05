@@ -8,16 +8,16 @@ export function contrast(a: string, b: string) {
   const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p);
   return (x! + 0.05) / (y! + 0.05);
 }
-export const PAPER = "#FAF7F2";
-export const INK = "#1C1A17";
+export const PAPER = "#F6F5F1";
+export const INK = "#1E2A5A";
 
 /** QR modules need strong contrast on white to scan reliably; fall back to ink when the accent is too pale. */
 export const qrModuleColour = (accent: string) => (isHex(accent) && contrast(accent, "#FFFFFF") >= 3 ? accent : INK);
 
 /** Friendly warning for accents that are hard to read on the light menu background. */
 export function accentWarning(accent: string): string | null {
-  if (!isHex(accent)) return "That isn't a full hex colour, like #C8553D.";
+  if (!isHex(accent)) return "That isn't a full hex colour, like #1E2A5A.";
   const c = contrast(accent, PAPER);
-  if (c < 3) return "This colour is quite pale on the cream background, so labels and buttons may be hard to read.";
+  if (c < 3) return "This colour is light, so we'll put dark text on it. It works best for highlights; QR codes will print in indigo.";
   return null;
 }

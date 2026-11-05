@@ -10,7 +10,7 @@ type Reviews = { avg: number | null; count: number; recent: { rating: number; co
 export function SpiceMarks({ level }: { level: number }) {
   return (
     <span className="inline-flex items-center gap-1" aria-label={`Spice level ${level} of 3`}>
-      {[1, 2, 3].map((i) => <span key={i} className={cn("h-2.5 w-1 rounded-full", i <= level ? "bg-terracotta" : "bg-sand-deep")} />)}
+      {[1, 2, 3].map((i) => <span key={i} className={cn("h-2.5 w-1 rounded-full", i <= level ? "bg-marigold" : "bg-mist-deep")} />)}
     </span>
   );
 }
@@ -18,7 +18,7 @@ export function SpiceMarks({ level }: { level: number }) {
 export function Stars({ value, size = "sm" }: { value: number; size?: "sm" | "lg" }) {
   return (
     <span className={cn("tracking-[0.15em]", size === "lg" ? "text-xl" : "text-xs")} aria-label={`${value} out of 5`}>
-      {[1, 2, 3, 4, 5].map((i) => <span key={i} className={i <= Math.round(value) ? "text-terracotta" : "text-sand-deep"}>★</span>)}
+      {[1, 2, 3, 4, 5].map((i) => <span key={i} className={i <= Math.round(value) ? "text-highlight" : "text-mist-deep"}>★</span>)}
     </span>
   );
 }
@@ -58,7 +58,7 @@ export function DishSheet({ dish, currency, canOrder, blockedReason, onClose, on
             <span className="pt-1.5 text-base tabular-nums">{formatPrice(dish.price, currency)}</span>
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            {dish.is_special && <Tag kind="spicy" className="border-terracotta bg-terracotta text-accent-foreground">Today's special</Tag>}
+            {dish.is_special && <Tag kind="spicy" className="border-marigold bg-marigold text-accent-foreground">Today's special</Tag>}
             {dish.is_veg && <Tag kind="veg">veg</Tag>}
             {dish.is_spicy && <span className="flex items-center gap-1.5"><Tag kind="spicy">spicy</Tag><SpiceMarks level={Math.max(1, dish.spice_level)} /></span>}
             {reviews?.avg != null && reviews.count > 0 && (
@@ -85,7 +85,7 @@ export function DishSheet({ dish, currency, canOrder, blockedReason, onClose, on
                     <label key={a.id} className="flex cursor-pointer items-center justify-between rounded-lg py-2 text-sm">
                       <span className="flex items-center gap-3">
                         <input type="checkbox" checked={on} onChange={() => setAddons((x) => (on ? x.filter((i) => i !== a.id) : [...x, a.id]))}
-                          className="h-4 w-4 rounded accent-[var(--terracotta)]" />
+                          className="h-4 w-4 rounded accent-[var(--marigold)]" />
                         {a.name}
                       </span>
                       <span className="tabular-nums text-muted-foreground">+{formatPrice(a.price, currency)}</span>

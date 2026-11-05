@@ -21,12 +21,12 @@ describe("QR links", () => {
 });
 
 describe("colours", () => {
-  it("keeps terracotta for QR modules but swaps a pale accent for ink", () => {
-    expect(qrModuleColour("#C8553D")).toBe("#C8553D");
-    expect(qrModuleColour("#F3E9C6")).toBe("#1C1A17");
+  it("keeps a strong accent for QR modules but swaps a pale accent for ink", () => {
+    expect(qrModuleColour("#1C8C8C")).toBe("#1C8C8C");
+    expect(qrModuleColour("#F3E9C6")).toBe("#1E2A5A");
   });
   it("warns about pale accents only", () => {
-    expect(accentWarning("#C8553D")).toBeNull();
+    expect(accentWarning("#1E2A5A")).toBeNull();
     expect(accentWarning("#F3E9C6")).not.toBeNull();
   });
 });
