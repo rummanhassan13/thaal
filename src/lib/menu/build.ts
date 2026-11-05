@@ -1,5 +1,6 @@
 import { localClock, pickActiveMenu } from "./schedule";
 import type { PublicMenuData } from "./types";
+import { planFeatures } from "@/lib/plan";
 
 type RawAddon = { id: string; name: string; price: number | string; sort: number };
 type RawDish = {
@@ -28,7 +29,10 @@ export function buildPublicMenu(
   menus: RawMenu[],
   now = new Date(),
 ): PublicMenuData {
-  const list = bySort(menus.filter((m) => m.active));
+  // Downgrades pause extras without deleting them: only the first N menus show, custom looks fall back to the default.
+  const features = planFeatures(r.plan);
+  const list = bySort(menus.filter((m) => m.active)).slice(0, features.maxMenusPerBranch);
+  if (theme && !features.themes) theme = { ...theme, accent: "#C8553D", font_pairing: "fraunces_inter_tight", mode: "light" };
   const schedules = list.flatMap((m) => (m.menu_schedules ?? []).map((s) => ({ ...s, menu_id: m.id })));
   return {
     restaurant: r,

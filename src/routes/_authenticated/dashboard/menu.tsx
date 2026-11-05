@@ -129,7 +129,7 @@ function MenuEditor() {
       {upsell && (
         <div className="mt-4 grid gap-3 rounded-lg border border-terracotta/40 p-4 sm:grid-cols-[1fr_auto] sm:items-center">
           <p className="text-sm"><span className="font-display text-lg">Breakfast and dinner menus?</span><br /><span className="text-muted-foreground">The Free plan has one menu. Pro adds as many as you like, switching by time of day.</span></p>
-          <div className="flex items-center gap-4"><Link to="/" hash="pricing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link><button onClick={() => setUpsell(false)} className="text-sm text-muted-foreground">Not now</button></div>
+          <div className="flex items-center gap-4"><Link to="/dashboard/billing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link><button onClick={() => setUpsell(false)} className="text-sm text-muted-foreground">Not now</button></div>
         </div>
       )}
 
