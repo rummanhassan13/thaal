@@ -24,6 +24,7 @@ import { Route as AuthenticatedDashboardMenuRouteImport } from './routes/_authen
 import { Route as AuthenticatedDashboardOrdersRouteImport } from './routes/_authenticated/dashboard/orders'
 import { Route as AuthenticatedDashboardProfileRouteImport } from './routes/_authenticated/dashboard/profile'
 import { Route as AuthenticatedDashboardQrRouteImport } from './routes/_authenticated/dashboard/qr'
+import { Route as AuthenticatedDashboardReviewsRouteImport } from './routes/_authenticated/dashboard/reviews'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -107,6 +108,12 @@ const AuthenticatedDashboardQrRoute =
     path: '/qr',
     getParentRoute: () => AuthenticatedDashboardRouteRoute,
   } as any)
+const AuthenticatedDashboardReviewsRoute =
+  AuthenticatedDashboardReviewsRouteImport.update({
+    id: '/reviews',
+    path: '/reviews',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
   '/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/dashboard/qr': typeof AuthenticatedDashboardQrRoute
+  '/dashboard/reviews': typeof AuthenticatedDashboardReviewsRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -137,6 +145,7 @@ export interface FileRoutesByTo {
   '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
   '/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/dashboard/qr': typeof AuthenticatedDashboardQrRoute
+  '/dashboard/reviews': typeof AuthenticatedDashboardReviewsRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -155,6 +164,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
   '/_authenticated/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/_authenticated/dashboard/qr': typeof AuthenticatedDashboardQrRoute
+  '/_authenticated/dashboard/reviews': typeof AuthenticatedDashboardReviewsRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/dashboard/orders'
     | '/dashboard/profile'
     | '/dashboard/qr'
+    | '/dashboard/reviews'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -188,6 +199,7 @@ export interface FileRouteTypes {
     | '/dashboard/orders'
     | '/dashboard/profile'
     | '/dashboard/qr'
+    | '/dashboard/reviews'
     | '/dashboard'
   id:
     | '__root__'
@@ -205,6 +217,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard/orders'
     | '/_authenticated/dashboard/profile'
     | '/_authenticated/dashboard/qr'
+    | '/_authenticated/dashboard/reviews'
     | '/_authenticated/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -324,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardQrRouteImport
       parentRoute: typeof AuthenticatedDashboardRouteRoute
     }
+    '/_authenticated/dashboard/reviews': {
+      id: '/_authenticated/dashboard/reviews'
+      path: '/reviews'
+      fullPath: '/dashboard/reviews'
+      preLoaderRoute: typeof AuthenticatedDashboardReviewsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
   }
 }
 
@@ -334,6 +354,7 @@ interface AuthenticatedDashboardRouteRouteChildren {
   AuthenticatedDashboardOrdersRoute: typeof AuthenticatedDashboardOrdersRoute
   AuthenticatedDashboardProfileRoute: typeof AuthenticatedDashboardProfileRoute
   AuthenticatedDashboardQrRoute: typeof AuthenticatedDashboardQrRoute
+  AuthenticatedDashboardReviewsRoute: typeof AuthenticatedDashboardReviewsRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
@@ -345,6 +366,7 @@ const AuthenticatedDashboardRouteRouteChildren: AuthenticatedDashboardRouteRoute
     AuthenticatedDashboardOrdersRoute: AuthenticatedDashboardOrdersRoute,
     AuthenticatedDashboardProfileRoute: AuthenticatedDashboardProfileRoute,
     AuthenticatedDashboardQrRoute: AuthenticatedDashboardQrRoute,
+    AuthenticatedDashboardReviewsRoute: AuthenticatedDashboardReviewsRoute,
     AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   }
 

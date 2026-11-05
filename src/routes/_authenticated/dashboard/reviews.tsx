@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { PillGroup } from "@/components/plated/primitives";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
-import { imgSrc } from "@/lib/unsplash";
+import { sized } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/reviews")({
@@ -21,7 +21,7 @@ type Review = {
   dishes: { name: string; photo_url: string | null } | null; orders: { table_label: string | null } | null;
 };
 
-export function Stars({ value, className }: { value: number; className?: string }) {
+function Stars({ value, className }: { value: number; className?: string }) {
   return (
     <span className={cn("tracking-[0.15em] text-terracotta", className)} aria-label={`${value} out of 5`}>
       {"★".repeat(Math.round(value))}<span className="text-sand-deep">{"★".repeat(5 - Math.round(value))}</span>
@@ -118,7 +118,7 @@ function ReviewsPage() {
             {list.map((r) => (
               <li key={r.id} className="flex gap-4 border-b border-hairline py-5">
                 <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md bg-sand">
-                  {r.dishes?.photo_url && <img src={imgSrc(r.dishes.photo_url, 160)} alt="" loading="lazy" className="h-full w-full object-cover" />}
+                  {r.dishes?.photo_url && <img src={sized(r.dishes.photo_url, 160, 160)} alt="" loading="lazy" className="h-full w-full object-cover" />}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-3">
