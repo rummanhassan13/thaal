@@ -48,7 +48,7 @@ export function PillGroup<T extends string>({
       {items.map((it) => {
         const active = it.value === value;
         return (
-          <button
+          <button type="button"
             key={it.value}
             onClick={() => onChange(it.value)}
             className={cn(
