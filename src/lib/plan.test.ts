@@ -31,3 +31,12 @@ describe("design + QR gating", () => {
     }
   });
 });
+
+import { PLANS, planInfo } from "./plan";
+describe("plan prices", () => {
+  it("Free £0, Pro £19/month, Business £49/month", () => {
+    expect(PLANS.map((p) => [p.id, p.price])).toEqual([["free", 0], ["pro", 19], ["business", 49]]);
+    expect(planInfo("pro").period).toBe("per month");
+  });
+  it("unknown plan falls back to Free", () => expect(planInfo("gold").id).toBe("free"));
+});
