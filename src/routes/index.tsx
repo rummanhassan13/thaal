@@ -79,7 +79,7 @@ function Landing() {
         <Reveal className="relative isolate grid items-end gap-10 overflow-hidden rounded-xl bg-ink p-8 text-paper md:grid-cols-12 md:p-16">
           <ChamakPatti onDark className="absolute inset-x-0 top-0" />
           <ChamakPatti onDark className="absolute inset-x-0 bottom-0 rotate-180" />
-          <Drift className="absolute -right-16 -top-16 -z-10 w-56 opacity-30 md:-right-10 md:w-80 md:opacity-40" range={20} rotate={10}><Rosette className="w-full" /></Drift>
+          <Drift className="absolute -bottom-24 -right-20 -z-10 w-52 opacity-20 md:-bottom-32 md:-left-24 md:right-auto md:w-80 md:opacity-25" range={20} rotate={10}><Rosette className="w-full" /></Drift>
           <Drift className="absolute bottom-8 right-1/3 -z-10 hidden w-20 opacity-30 md:block" range={16} rotate={6}><Paisley className="w-full" /></Drift>
           <h2 className="text-5xl leading-[0.98] md:col-span-8 md:text-7xl">Your menu online <br />by tonight.</h2>
           <div className="md:col-span-4">
