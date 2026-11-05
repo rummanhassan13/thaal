@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isPreviewHost } from "./pwa";
+import { isPreviewHost } from "./pwa-guard";
 describe("service worker preview guard", () => {
   it("refuses Lovable preview hosts", () => {
     expect(isPreviewHost("id-preview--b9d21854.lovable.app")).toBe(true);
