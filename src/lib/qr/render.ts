@@ -124,7 +124,7 @@ export async function tentsPdf(opts: {
     if (i % 2 === 0 && i > 0) pdf.addPage();
     const y = (i % 2) * 148.5;
     pdf.addImage(canvas.toDataURL("image/jpeg", 0.9), "JPEG", 0, y, 210, 148.5, undefined, "FAST");
-    if (i % 2 === 0) { pdf.setDrawColor(200, 190, 175); pdf.setLineDashPattern([2, 2], 0); pdf.line(0, 148.5, 210, 148.5); }
+    if (i % 2 === 1) { pdf.setDrawColor(200, 190, 175); pdf.setLineDashPattern([2, 2], 0); pdf.line(0, 148.5, 210, 148.5); }
   }
   return pdf.output("blob");
 }
