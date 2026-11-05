@@ -47,3 +47,5 @@ use the editor.
 - Plan prices/selling points live in `PLANS` in `src/lib/plan.ts` (landing + billing read it); `buildPublicMenu` applies plan limits so downgrades pause extra menus/themes without deleting rows. Upgrades are `upgrade_requests` rows; plan changes are manual. Why: one config, no payment provider yet.
 - PWA: `vite-plugin-pwa` generateSW with a static `public/manifest.webmanifest`; `src/lib/pwa.ts` is the only SW registrar and refuses dev/iframe/preview hosts (`pwa-guard.ts`). `InstallBanner` mounts only on landing + dashboard, never `/m/*`. Why: installable without breaking the editor preview or interrupting diners.
 - Logo artwork is outlined SVG paths in `src/components/thaal/Logo.tsx` (`ThaalLogo`, `ThaalMark`, `Wordmark`); static copies live in `public/brand/`, icons/OG in `public/`. Why: the logo never depends on web-font loading.
+
+- Landing-only truck-art motifs and scroll reveals live in `src/components/landing/TruckArt.tsx` (inline SVG, aria-hidden, `Reveal`/`Drift` respect reduced motion). Why: decoration stays off the dashboard and diner menu.
