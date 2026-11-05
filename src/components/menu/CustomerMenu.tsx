@@ -47,17 +47,18 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
   const activeUntil = activeMenu?.schedules.find((s) => s.weekdays.includes(clock.weekday) && clock.time >= s.start_time && clock.time < s.end_time)?.end_time;
 
   // --- live sold-out ---
-  const [soldOut, setSoldOut] = useState<Record<string, boolean>>({});
+  const [live, setLive] = useState<Record<string, { is_sold_out: boolean; is_special: boolean }>>({});
   useEffect(() => {
     const ids = new Set(data.menus.flatMap((m) => m.categories.flatMap((c) => c.dishes.map((d) => d.id))));
     const ch = supabase.channel(`dishes-${r.id}-${Math.random().toString(36).slice(2)}`)
       .on("postgres_changes", { event: "UPDATE", schema: "public", table: "dishes" }, (p) => {
-        const row = p.new as { id: string; is_sold_out: boolean };
-        if (ids.has(row.id)) setSoldOut((s) => ({ ...s, [row.id]: row.is_sold_out }));
+        const row = p.new as { id: string; is_sold_out: boolean; is_special: boolean };
+        if (ids.has(row.id)) setLive((s) => ({ ...s, [row.id]: { is_sold_out: row.is_sold_out, is_special: row.is_special } }));
       }).subscribe();
     return () => { supabase.removeChannel(ch); };
   }, [data.menus, r.id]);
-  const isOut = useCallback((d: PublicDish) => soldOut[d.id] ?? d.is_sold_out, [soldOut]);
+  const isOut = useCallback((d: PublicDish) => live[d.id]?.is_sold_out ?? d.is_sold_out, [live]);
+  const isSpecial = useCallback((d: PublicDish) => live[d.id]?.is_special ?? d.is_special, [live]);
 
   // --- filters ---
   const [veg, setVeg] = useState(false);
@@ -273,7 +274,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
                       <DishImage url={d.photo_url} alt="" w={540} ratio={0.66} sizes="(max-width: 448px) 90vw, 408px" eager={d.id === firstDishId} dim={out} className="rounded-lg" />
                       <div className="absolute top-3 left-3 flex gap-1.5">
                         {out && <Tag kind="soldout">Sold out</Tag>}
-                        {d.is_special && !out && <Tag kind="soldout" className="border-terracotta bg-terracotta text-accent-foreground">Today's special</Tag>}
+                        {isSpecial(d) && !out && <Tag kind="soldout" className="border-terracotta bg-terracotta text-accent-foreground">Today's special</Tag>}
                       </div>
                     </div>
                     <div className="mt-3 flex items-baseline justify-between gap-4">
@@ -322,7 +323,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
         </AnimatePresence>
       </div>
 
-      <DishSheet dish={openDish} currency={cur} canOrder={canOrder && !!openDish && !isOut(openDish)}
+      <DishSheet dish={openDish ? { ...openDish, is_special: isSpecial(openDish) } : openDish} currency={cur} canOrder={canOrder && !!openDish && !isOut(openDish)}
         blockedReason={openDish && isOut(openDish) ? "Sold out for today. Sorry!" : blockedReason}
         onClose={() => setOpenDish(null)} onAdd={add} />
       {tableLabel && (
