@@ -17,6 +17,7 @@ import { Route as AuthenticatedDashboardRouteRouteImport } from './routes/_authe
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as MSlugRouteImport } from './routes/m/$slug'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
+import { Route as AuthenticatedDashboardBranchesRouteImport } from './routes/_authenticated/dashboard/branches'
 import { Route as AuthenticatedDashboardDesignRouteImport } from './routes/_authenticated/dashboard/design'
 import { Route as AuthenticatedDashboardMenuRouteImport } from './routes/_authenticated/dashboard/menu'
 import { Route as AuthenticatedDashboardOrdersRouteImport } from './routes/_authenticated/dashboard/orders'
@@ -63,6 +64,12 @@ const AuthenticatedDashboardIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedDashboardRouteRoute,
   } as any)
+const AuthenticatedDashboardBranchesRoute =
+  AuthenticatedDashboardBranchesRouteImport.update({
+    id: '/branches',
+    path: '/branches',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
 const AuthenticatedDashboardDesignRoute =
   AuthenticatedDashboardDesignRouteImport.update({
     id: '/design',
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRouteRouteWithChildren
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/m/$slug': typeof MSlugRoute
+  '/dashboard/branches': typeof AuthenticatedDashboardBranchesRoute
   '/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
   '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
@@ -107,6 +115,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/m/$slug': typeof MSlugRoute
+  '/dashboard/branches': typeof AuthenticatedDashboardBranchesRoute
   '/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
   '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
@@ -122,6 +131,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/m/$slug': typeof MSlugRoute
+  '/_authenticated/dashboard/branches': typeof AuthenticatedDashboardBranchesRoute
   '/_authenticated/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/_authenticated/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
   '/_authenticated/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/onboarding'
     | '/m/$slug'
+    | '/dashboard/branches'
     | '/dashboard/design'
     | '/dashboard/menu'
     | '/dashboard/orders'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/onboarding'
     | '/m/$slug'
+    | '/dashboard/branches'
     | '/dashboard/design'
     | '/dashboard/menu'
     | '/dashboard/orders'
@@ -163,6 +175,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/onboarding'
     | '/m/$slug'
+    | '/_authenticated/dashboard/branches'
     | '/_authenticated/dashboard/design'
     | '/_authenticated/dashboard/menu'
     | '/_authenticated/dashboard/orders'
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
       parentRoute: typeof AuthenticatedDashboardRouteRoute
     }
+    '/_authenticated/dashboard/branches': {
+      id: '/_authenticated/dashboard/branches'
+      path: '/branches'
+      fullPath: '/dashboard/branches'
+      preLoaderRoute: typeof AuthenticatedDashboardBranchesRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
     '/_authenticated/dashboard/design': {
       id: '/_authenticated/dashboard/design'
       path: '/design'
@@ -268,6 +288,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedDashboardRouteRouteChildren {
+  AuthenticatedDashboardBranchesRoute: typeof AuthenticatedDashboardBranchesRoute
   AuthenticatedDashboardDesignRoute: typeof AuthenticatedDashboardDesignRoute
   AuthenticatedDashboardMenuRoute: typeof AuthenticatedDashboardMenuRoute
   AuthenticatedDashboardOrdersRoute: typeof AuthenticatedDashboardOrdersRoute
@@ -277,6 +298,7 @@ interface AuthenticatedDashboardRouteRouteChildren {
 
 const AuthenticatedDashboardRouteRouteChildren: AuthenticatedDashboardRouteRouteChildren =
   {
+    AuthenticatedDashboardBranchesRoute: AuthenticatedDashboardBranchesRoute,
     AuthenticatedDashboardDesignRoute: AuthenticatedDashboardDesignRoute,
     AuthenticatedDashboardMenuRoute: AuthenticatedDashboardMenuRoute,
     AuthenticatedDashboardOrdersRoute: AuthenticatedDashboardOrdersRoute,
