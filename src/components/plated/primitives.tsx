@@ -8,7 +8,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        ink: "bg-ink text-paper hover:bg-ink/85 rounded-lg",
+        ink: "bg-ink text-paper hover:bg-ink-hover rounded-lg",
         accent: "bg-marigold text-accent-foreground hover:bg-marigold/90 rounded-lg",
         ghost: "text-foreground hover:bg-mist rounded-lg",
         outline: "border border-ink/20 text-foreground hover:border-ink rounded-lg",
@@ -78,9 +78,9 @@ export function Pill({ className, ...p }: React.HTMLAttributes<HTMLSpanElement>)
 
 const tagStyles = {
   veg: "text-teal-ink border-teal/40",
-  spicy: "text-highlight border-marigold/40",
+  spicy: "text-alert border-pink/50",
   neutral: "text-muted-foreground border-hairline",
-  soldout: "bg-ink text-paper border-ink",
+  soldout: "bg-alert text-paper border-alert",
 };
 export function Tag({ kind = "neutral", className, children }: { kind?: keyof typeof tagStyles; className?: string; children: React.ReactNode }) {
   return (

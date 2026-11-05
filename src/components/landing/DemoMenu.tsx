@@ -116,7 +116,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
                       )}
                       <div className="absolute top-2 left-2 flex gap-1">
                         {out && <Tag kind="soldout">Sold out</Tag>}
-                        {d.is_special && !out && <Tag kind="soldout" className="border-marigold bg-marigold">Today's special</Tag>}
+                        {d.is_special && !out && <Tag kind="soldout" className="border-marigold bg-marigold text-ink">Today's special</Tag>}
                       </div>
                     </div>
                     <div className="mt-2 flex items-baseline justify-between gap-3">
