@@ -116,7 +116,7 @@ function Design() {
                 })}
               </div>
               <div className="mt-4 flex items-center gap-3">
-                <input type="color" aria-label="Custom colour" value={isHex(draft.accent) ? draft.accent : "#C8553D"} onChange={(e) => set("accent", e.target.value.toUpperCase())}
+                <input type="color" aria-label="Custom colour" value={isHex(draft.accent) ? draft.accent : "#F2A900"} onChange={(e) => set("accent", e.target.value.toUpperCase())}
                   className="h-10 w-12 cursor-pointer rounded-md border border-input bg-card p-1" />
                 <input aria-label="Hex colour" value={draft.accent} maxLength={7} onChange={(e) => set("accent", e.target.value.startsWith("#") ? e.target.value : `#${e.target.value}`)}
                   className="h-10 w-28 rounded-md border border-input bg-card px-3 font-mono text-sm uppercase focus:border-ink focus:outline-none" />
