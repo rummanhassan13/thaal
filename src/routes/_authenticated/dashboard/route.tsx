@@ -71,7 +71,7 @@ function DashboardLayout() {
     <BranchProvider restaurantId={restaurant.id}>
       <div className="min-h-screen md:grid md:grid-cols-[232px_1fr]">
         <aside className="sticky top-0 hidden h-screen flex-col border-r border-hairline px-5 py-6 md:flex">
-          <Wordmark />
+          <Wordmark withMark />
           <p className="mt-10 truncate font-display text-lg">{restaurant.name}</p>
           <nav className="mt-6 flex flex-col gap-0.5 text-sm">
             {NAV.map((n) => (

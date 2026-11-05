@@ -26,9 +26,10 @@ export function ThaalMark({ className, ring = true }: { className?: string; ring
   );
 }
 
-export function Wordmark({ className = "" }: { className?: string }) {
+export function Wordmark({ className = "", withMark = false }: { className?: string; withMark?: boolean }) {
   return (
-    <Link to="/" aria-label="Thaal home" className={cn("inline-flex items-center text-2xl text-foreground", className)}>
+    <Link to="/" aria-label="Thaal home" className={cn("inline-flex items-center gap-2.5 text-2xl text-foreground", className)}>
+      {withMark && <ThaalMark className="h-[1.3em] w-[1.3em]" />}
       <ThaalLogo />
     </Link>
   );

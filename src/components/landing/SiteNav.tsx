@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/thaal/primitives";
 export function SiteNav() {
   return (
     <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
-      <Wordmark />
+      <Wordmark withMark />
       <nav className="flex items-center gap-6 text-sm">
         <a href="#how" className="hidden text-muted-foreground hover:text-foreground md:inline">How it works</a>
         <a href="#pricing" className="hidden text-muted-foreground hover:text-foreground md:inline">Pricing</a>
