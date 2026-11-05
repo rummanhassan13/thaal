@@ -43,7 +43,7 @@ export function DemoMenu() {
     const onScroll = () => {
       if (lock.current) return;
       const top = el.scrollTop + 90;
-      let cur: Cat = MENU[0].id;
+      let cur: Cat = "breakfast";
       for (const c of MENU) { const s = sections.current[c.id]; if (s && s.offsetTop <= top) cur = c.id; }
       setActive(cur);
     };
