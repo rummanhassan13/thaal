@@ -18,3 +18,16 @@ describe("plan gating", () => {
     expect(planFeatures("gold").maxMenusPerBranch).toBe(1);
   });
 });
+
+describe("design + QR gating", () => {
+  it("free gets the default theme and no per-table QR codes", () => {
+    expect(planFeatures("free").themes).toBe(false);
+    expect(planFeatures("free").tableQr).toBe(false);
+  });
+  it("pro and business unlock themes and branded table QR codes", () => {
+    for (const p of ["pro", "business"]) {
+      expect(planFeatures(p).themes).toBe(true);
+      expect(planFeatures(p).tableQr).toBe(true);
+    }
+  });
+});

@@ -48,7 +48,7 @@ function Overview() {
     { done: dishes.length > 0, label: "Add your first dishes", to: "/dashboard/menu" as const },
     { done: dishes.length > 0 && dishes.some((d) => d.photo_url), label: "Upload a few photos", to: "/dashboard/menu" as const },
     { done: hoursSet, label: "Set your opening hours", to: "/dashboard/branches" as const },
-    { done: (stats.data?.tables ?? 0) > 0, label: "Print your QR codes", to: "/dashboard/design" as const },
+    { done: (stats.data?.tables ?? 0) > 0, label: "Print your QR codes", to: "/dashboard/qr" as const },
     { done: restaurant.published, label: "Publish your menu", to: "/dashboard/profile" as const },
   ];
   const doneCount = checklist.filter((c) => c.done).length;
