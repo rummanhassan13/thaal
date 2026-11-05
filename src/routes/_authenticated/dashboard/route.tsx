@@ -2,7 +2,7 @@ import { createFileRoute, Link, Outlet, redirect, useLocation, useNavigate, useR
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BottomSheet } from "@/components/thaal/primitives";
-import { Wordmark } from "@/components/thaal/Wordmark";
+import { Wordmark } from "@/components/thaal/Logo";
 import { InstallBanner } from "@/components/thaal/InstallBanner";
 import { BranchProvider, useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";

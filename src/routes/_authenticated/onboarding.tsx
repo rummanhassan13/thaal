@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Wordmark } from "@/components/thaal/Wordmark";
+import { Wordmark } from "@/components/thaal/Logo";
 import { Button, Divider, Input } from "@/components/thaal/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchMyRestaurant, slugify } from "@/lib/restaurant";

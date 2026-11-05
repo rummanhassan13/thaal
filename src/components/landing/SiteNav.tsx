@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Wordmark } from "@/components/thaal/Wordmark";
+import { Wordmark } from "@/components/thaal/Logo";
 import { buttonVariants } from "@/components/thaal/primitives";
 
 export function SiteNav() {
