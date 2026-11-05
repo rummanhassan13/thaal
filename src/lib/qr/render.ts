@@ -99,7 +99,7 @@ export async function tentsPdf(opts: {
 
   const panel = (ctx: CanvasRenderingContext2D, qr: HTMLImageElement, label: string) => {
     const pad = 130, q = 560;
-    motif(ctx, P - 34);
+    motif(ctx, P - 28);
     ctx.drawImage(qr, pad, (P - q) / 2, q, q);
     const x = pad + q + 110, maxW = W - x - pad;
     ctx.fillStyle = INK;
