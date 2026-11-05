@@ -38,3 +38,5 @@ use the editor.
 - Plan/Stripe fields on restaurants are only writable by service role (trigger guard). Why: users can't self-upgrade.
 - Diners get live order status from a public broadcast topic `order-<tracking_token>` (DB trigger doorbell) plus 20s polling of `get_order_status`; service requests and table lookups go through RPCs (`request_service`, `get_table_label`). Why: anon can't read orders/tables under RLS.
 - Customer menu UI lives in `src/components/menu/`; the landing-page phone keeps its own lightweight `MenuView`. Why: the real menu uses window scroll and ordering, the demo scrolls inside a frame.
+- Plan gating reads only `planFeatures()` / `canAddBranch` / `canAddMenu` in `src/lib/plan.ts`. Why: Stripe flips `restaurants.plan` and every gate follows.
+- Dashboard UI lives in `src/components/dashboard/`; the selected branch comes from `BranchProvider` (localStorage per restaurant) and owner data is read with the browser client + react-query under RLS (`menuTreeQuery`). Why: one branch context for every dashboard page, no server fns needed for member-scoped CRUD.

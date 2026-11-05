@@ -48,7 +48,7 @@ export function PillGroup<T extends string>({
       {items.map((it) => {
         const active = it.value === value;
         return (
-          <button
+          <button type="button"
             key={it.value}
             onClick={() => onChange(it.value)}
             className={cn(
@@ -129,6 +129,7 @@ Input.displayName = "Input";
 export function Toggle({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label?: string }) {
   return (
     <button
+      type="button"
       role="switch"
       aria-checked={checked}
       aria-label={label}
