@@ -8,6 +8,7 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { OwnerSide } from "@/components/landing/OwnerSide";
 import { Pricing } from "@/components/landing/Pricing";
 import { img } from "@/lib/unsplash";
+import { InstallBanner } from "@/components/plated/InstallBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,6 +29,7 @@ function Landing() {
   const demo = Route.useLoaderData();
   return (
     <div className="overflow-x-clip">
+      <InstallBanner />
       <SiteNav />
       <section className="mx-auto grid max-w-7xl items-center gap-14 px-5 pt-10 pb-20 md:grid-cols-12 md:px-10 md:pt-16 md:pb-32">
         <motion.div className="md:col-span-7" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 120, damping: 20 }}>

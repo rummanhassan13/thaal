@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BottomSheet } from "@/components/plated/primitives";
 import { Wordmark } from "@/components/plated/Wordmark";
+import { InstallBanner } from "@/components/plated/InstallBanner";
 import { BranchProvider, useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchMyRestaurant } from "@/lib/restaurant";
@@ -112,6 +113,7 @@ function DashboardLayout() {
             More
           </button>
         </nav>
+        <InstallBanner className="bottom-[calc(4.25rem+env(safe-area-inset-bottom))]" />
         <BottomSheet open={more} onClose={() => setMore(false)} label="More">
           <nav className="flex flex-col">
             {NAV.filter((n) => !n.mobile).map((n) => (
