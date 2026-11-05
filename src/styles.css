@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: var(--theme-font-display, "Fraunces"), Georgia, serif;
-  --font-sans: var(--theme-font-sans, "Inter Tight"), system-ui, sans-serif;
+  --font-display: var(--theme-font-display, "Bricolage Grotesque"), system-ui, sans-serif;
+  --font-sans: var(--theme-font-sans, "Figtree"), system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -31,59 +31,74 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ink: var(--ink);
+  --color-ink-hover: var(--ink-hover);
   --color-paper: var(--paper);
-  --color-terracotta: var(--terracotta);
-  --color-sand: var(--sand);
-  --color-sand-deep: var(--sand-deep);
-  --color-olive: var(--olive);
-  --color-olive-soft: var(--olive-soft);
+  --color-marigold: var(--marigold);
+  --color-highlight: var(--highlight);
+  --color-pink: var(--pink);
+  --color-alert: var(--alert);
+  --color-teal: var(--teal);
+  --color-teal-ink: var(--teal-ink);
+  --color-teal-soft: var(--teal-soft);
+  --color-mist: var(--mist);
+  --color-mist-deep: var(--mist-deep);
   --color-hairline: var(--hairline);
 }
 
+/* Truck Art: chalk + deep indigo, marigold accent, truck-art pink used sparingly, teal for veg/success. */
 :root {
   --radius: 0.625rem;
-  --paper: oklch(0.977 0.008 80);
-  --ink: oklch(0.215 0.006 70);
-  --terracotta: oklch(0.6 0.15 35);
-  --sand: oklch(0.905 0.022 80);
-  --sand-deep: oklch(0.84 0.035 80);
-  --olive: oklch(0.5 0.05 110);
-  --olive-soft: oklch(0.6 0.06 110);
-  --hairline: oklch(0.215 0.006 70 / 10%);
+  --paper: #F6F5F1;          /* chalk */
+  --ink: #1E2A5A;            /* deep indigo */
+  --ink-hover: #16204A;
+  --marigold: #F2A900;       /* fills only; text on it is indigo */
+  --highlight: #8A5D00;      /* marigold family, readable as text on chalk (5.3:1) */
+  --pink: #E4447A;           /* decorative strokes */
+  --alert: #C2255C;          /* pink readable as text / with chalk text (5.2:1) */
+  --teal: #1C8C8C;
+  --teal-ink: #157575;       /* teal readable as small text (5:1) */
+  --teal-soft: #5FB0AE;
+  --mist: #ECEAE3;
+  --mist-deep: #D8D5CA;
+  --hairline: rgb(30 42 90 / 12%);
 
   --background: var(--paper);
   --foreground: var(--ink);
-  --card: oklch(0.99 0.005 80);
+  --card: #FFFFFF;
   --card-foreground: var(--ink);
   --popover: var(--card);
   --popover-foreground: var(--ink);
   --primary: var(--ink);
   --primary-foreground: var(--paper);
-  --secondary: var(--sand);
+  --secondary: var(--mist);
   --secondary-foreground: var(--ink);
-  --muted: var(--sand);
-  --muted-foreground: oklch(0.48 0.015 70);
-  --accent: var(--terracotta);
-  --accent-foreground: oklch(0.985 0.006 80);
-  --destructive: oklch(0.55 0.18 30);
+  --muted: var(--mist);
+  --muted-foreground: #5E6585; /* indigo ~65% on chalk */
+  --accent: var(--marigold);
+  --accent-foreground: #1E2A5A;
+  --destructive: var(--alert);
   --destructive-foreground: var(--paper);
   --border: var(--hairline);
-  --input: var(--sand-deep);
-  --ring: var(--terracotta);
+  --input: var(--mist-deep);
+  --ring: var(--ink);
 }
 
 .dark {
-  --paper: oklch(0.2 0.008 65);
-  --ink: oklch(0.94 0.01 80);
-  --terracotta: oklch(0.66 0.14 38);
-  --sand: oklch(0.27 0.012 65);
-  --sand-deep: oklch(0.34 0.016 70);
-  --olive: oklch(0.7 0.06 110);
-  --olive-soft: oklch(0.62 0.06 110);
-  --hairline: oklch(0.94 0.01 80 / 12%);
-  --card: oklch(0.23 0.009 65);
-  --muted-foreground: oklch(0.7 0.015 75);
-  --accent-foreground: oklch(0.18 0.008 65);
+  --paper: #10162F;
+  --ink: #F6F5F1;
+  --ink-hover: #FFFFFF;
+  --highlight: #F2A900;
+  --pink: #F07CA2;
+  --alert: #F07CA2;
+  --teal: #4FC2C2;
+  --teal-ink: #4FC2C2;
+  --teal-soft: #3A9E9E;
+  --mist: #222B57;
+  --mist-deep: #313B6B;
+  --hairline: rgb(246 245 241 / 12%);
+  --card: #18204A;
+  --muted-foreground: #A9AEC6;
+  --accent-foreground: #1E2A5A;
   /* re-resolve aliases so .dark works on any subtree, not just :root */
   --background: var(--paper);
   --foreground: var(--ink);
@@ -92,13 +107,15 @@
   --popover-foreground: var(--ink);
   --primary: var(--ink);
   --primary-foreground: var(--paper);
-  --secondary: var(--sand);
+  --secondary: var(--mist);
   --secondary-foreground: var(--ink);
-  --muted: var(--sand);
-  --accent: var(--terracotta);
+  --muted: var(--mist);
+  --accent: var(--marigold);
+  --destructive: var(--alert);
+  --destructive-foreground: var(--paper);
   --border: var(--hairline);
-  --input: var(--sand-deep);
-  --ring: var(--terracotta);
+  --input: var(--mist-deep);
+  --ring: var(--marigold);
 }
 
 @layer base {
@@ -107,16 +124,25 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--theme-font-sans, "Inter Tight"), system-ui, sans-serif;
+    font-family: var(--theme-font-sans, "Figtree"), system-ui, sans-serif;
     font-size: 15px;
   }
   h1, h2, h3, .font-display {
-    font-family: var(--theme-font-display, "Fraunces"), Georgia, serif;
+    font-family: var(--theme-font-display, "Bricolage Grotesque"), system-ui, sans-serif;
     font-optical-sizing: auto;
-    letter-spacing: -0.02em;
-    font-weight: 400;
+    letter-spacing: -0.035em;
+    font-weight: 600;
   }
-  ::selection { background: var(--terracotta); color: var(--paper); }
+  /* Display emphasis: upright, with a marigold underline instead of faux italics. */
+  h1 em, h2 em {
+    font-style: normal;
+    text-decoration: underline;
+    text-decoration-color: var(--marigold);
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.1em;
+    text-decoration-skip-ink: none;
+  }
+  ::selection { background: var(--marigold); color: #1E2A5A; }
 }
 
 @utility no-scrollbar {
@@ -129,4 +155,13 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-muted-foreground);
+}
+
+/* Truck-art border motif: thin 1-colour repeating petal/diamond strip. Use in 1-2 places only. */
+@utility truck-border {
+  height: 14px;
+  background-color: var(--ink);
+  opacity: 0.18;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M14 1 L20 7 L14 13 L8 7 Z M0 7 Q3.5 2 7 7 Q3.5 12 0 7 Z M21 7 Q24.5 2 28 7 Q24.5 12 21 7 Z' fill='none' stroke='black' stroke-width='1'/%3E%3Ccircle cx='14' cy='7' r='1.3' fill='black'/%3E%3C/svg%3E") repeat-x center / 28px 14px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M14 1 L20 7 L14 13 L8 7 Z M0 7 Q3.5 2 7 7 Q3.5 12 0 7 Z M21 7 Q24.5 2 28 7 Q24.5 12 21 7 Z' fill='none' stroke='black' stroke-width='1'/%3E%3Ccircle cx='14' cy='7' r='1.3' fill='black'/%3E%3C/svg%3E") repeat-x center / 28px 14px;
 }
