@@ -56,11 +56,13 @@ export function ScheduleEditor({ menus, menu, onSaved }: { menus: Menu[]; menu: 
             <div className="relative h-4 flex-1 rounded-sm bg-sand/60">
               {[25, 50, 75].map((p) => <span key={p} className="absolute inset-y-0 w-px bg-hairline" style={{ left: `${p}%` }} />)}
               {days[d]!.map((r, i) => {
-                const lane = days[d]!.slice(0, i).filter((o) => o.start < r.end && r.start < o.end).length;
+                const ov = (o: { start: number; end: number }) => o.start < r.end && r.start < o.end;
+                const overlaps = days[d]!.some((o, j) => j !== i && ov(o));
+                const lane = days[d]!.slice(0, i).some(ov) ? 1 : 0;
                 return (
-                  <span key={i} title={`${r.name}`}
+                  <span key={i} title={r.name}
                     className={cn("absolute rounded-sm", colour(r.menuId), r.menuId === menu.id ? "opacity-100" : "opacity-60")}
-                    style={{ left: `${(r.start / 1440) * 100}%`, width: `${((r.end - r.start) / 1440) * 100}%`, top: lane ? "50%" : 0, bottom: lane ? 0 : lane === 0 && days[d]!.some((o, j) => j > i && o.start < r.end && r.start < o.end) ? "50%" : 0 }} />
+                    style={{ left: `${(r.start / 1440) * 100}%`, width: `${((r.end - r.start) / 1440) * 100}%`, top: overlaps && lane ? "50%" : 0, bottom: overlaps && !lane ? "50%" : 0 }} />
                 );
               })}
             </div>
