@@ -5,7 +5,7 @@ import { Button, Input } from "./primitives";
 import { img } from "@/lib/unsplash";
 import { supabase } from "@/integrations/supabase/client";
 
-export function AuthCard({ mode, redirectTo }: { mode: "login" | "signup"; redirectTo?: string }) {
+export function AuthCard({ mode, redirectTo }: { mode: "login" | "signup"; redirectTo?: string | undefined }) {
   const signup = mode === "signup";
   const router = useRouter();
   const [email, setEmail] = useState("");
