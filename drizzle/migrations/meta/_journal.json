@@ -8,6 +8,13 @@
       "when": 1793902662693,
       "tag": "0000_plated_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793902734036,
+      "tag": "0001_seed_lemon_and_rye",
+      "breakpoints": true
     }
   ]
 }
