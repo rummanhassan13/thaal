@@ -696,6 +696,47 @@ export type Database = {
           },
         ]
       }
+      upgrade_requests: {
+        Row: {
+          contact: string
+          created_at: string
+          id: string
+          message: string | null
+          plan: Database["public"]["Enums"]["plan_tier"]
+          restaurant_id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          plan: Database["public"]["Enums"]["plan_tier"]
+          restaurant_id: string
+          status?: string
+          user_id?: string
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          plan?: Database["public"]["Enums"]["plan_tier"]
+          restaurant_id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "upgrade_requests_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
