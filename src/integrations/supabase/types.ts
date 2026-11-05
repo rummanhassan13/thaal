@@ -837,10 +837,10 @@ export type Database = {
     }
     Enums: {
       font_pairing:
-        | "fraunces_inter_tight"
-        | "instrument_serif_inter"
-        | "dm_serif_dm_sans"
-        | "playfair_work_sans"
+        | "bricolage_figtree"
+        | "young_serif_onest"
+        | "gloock_manrope"
+        | "gabarito_instrument_sans"
       member_role: "owner" | "staff"
       menu_event_type: "scan" | "dish_view" | "add_to_cart"
       order_status: "new" | "preparing" | "served" | "cancelled"
@@ -978,10 +978,10 @@ export const Constants = {
   public: {
     Enums: {
       font_pairing: [
-        "fraunces_inter_tight",
-        "instrument_serif_inter",
-        "dm_serif_dm_sans",
-        "playfair_work_sans",
+        "bricolage_figtree",
+        "young_serif_onest",
+        "gloock_manrope",
+        "gabarito_instrument_sans",
       ],
       member_role: ["owner", "staff"],
       menu_event_type: ["scan", "dish_view", "add_to_cart"],
