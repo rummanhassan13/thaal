@@ -22,7 +22,7 @@ export function PlanColumns({ renderCta, current, animate }: { renderCta: (p: (t
   return (
     <div className="mt-16 grid border-t border-hairline md:grid-cols-3">
       {PLANS.map((p, i) => (
-        <Reveal key={p.id} delay={animate ? i * 0.1 : 0} initial={animate ? undefined : false} className={cn("flex flex-col border-b border-hairline py-10 md:border-b-0 md:px-8", i > 0 && "md:border-l", i === 0 && "md:pl-0")}>
+        <Reveal key={p.id} delay={animate ? i * 0.1 : 0} {...(animate ? {} : { initial: false as const })} className={cn("flex flex-col border-b border-hairline py-10 md:border-b-0 md:px-8", i > 0 && "md:border-l", i === 0 && "md:pl-0")}>
           <div className="flex items-center gap-3">
             <h3 className={cn("text-2xl", p.highlight && "text-highlight")}>{p.name}</h3>
             {current === p.id

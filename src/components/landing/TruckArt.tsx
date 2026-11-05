@@ -31,7 +31,7 @@ export function Drift({ className, range = 24, rotate = 6, children }: { classNa
   const y = useTransform(scrollYProgress, [0, 1], [range, -range]);
   const r = useTransform(scrollYProgress, [0, 1], [-rotate, rotate]);
   return (
-    <motion.div ref={ref} aria-hidden className={cn(deco, "will-change-transform", className)} style={reduce ? undefined : { y, rotate: r }}>
+    <motion.div ref={ref} aria-hidden className={cn(deco, "will-change-transform", className)} style={reduce ? {} : { y, rotate: r }}>
       {children}
     </motion.div>
   );
