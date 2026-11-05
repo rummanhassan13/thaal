@@ -65,13 +65,13 @@ function Overview() {
 
       <div className="mt-12 grid grid-cols-2 border-y border-hairline md:grid-cols-3">
         <Stat label="Orders today" value={s ? String(s.orders) : "–"} />
-        <Stat label="Revenue today" value={s ? formatPrice(s.revenue, restaurant.currency) : "–"} className="border-l border-hairline" />
+        <Stat label="Revenue today" value={s ? formatPrice(s.revenue, restaurant.currency) : "–"} className="border-l border-hairline pl-4 md:pl-6" />
         <Stat
           label="Open requests"
           value={s ? String(requests) : "–"}
           note={s && requests > 0 ? `${s.waiter} waiter · ${s.bill} bill` : "All quiet"}
           accent={requests > 0}
-          className="col-span-2 border-t border-hairline md:col-span-1 md:border-t-0 md:border-l"
+          className="col-span-2 border-t border-hairline md:col-span-1 md:border-t-0 md:border-l md:pl-6"
         />
       </div>
 
@@ -113,7 +113,7 @@ function Overview() {
 
 function Stat({ label, value, note, accent, className }: { label: string; value: string; note?: string; accent?: boolean; className?: string }) {
   return (
-    <div className={cn("px-0 py-6 md:px-6 md:first:pl-0", className, "pl-4 first:pl-0")}>
+    <div className={cn("py-6 pr-4", className)}>
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className={cn("mt-2 font-display text-4xl md:text-5xl", accent && "text-terracotta")}>{value}</p>
       {note && <p className="mt-1 text-xs text-muted-foreground">{note}</p>}
