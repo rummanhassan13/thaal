@@ -27,7 +27,7 @@ export function OwnerSide() {
   return (
     <section className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
       <div className="grid gap-10 md:grid-cols-12">
-        <SectionHeading className="md:col-span-5" eyebrow="For the people behind the pass" title={<>The back of house, <em>sorted.</em></>}>
+        <SectionHeading className="md:col-span-5" eyebrow="For owners and kitchen staff" title={<>See every order as it <em>happens.</em></>}>
           Orders land on a calm kitchen screen. Change your menu's look in a minute, not a reprint.
         </SectionHeading>
       </div>

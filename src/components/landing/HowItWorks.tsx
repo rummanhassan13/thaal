@@ -1,10 +1,10 @@
 import { img } from "@/lib/unsplash";
 
 const STEPS = [
-  { n: "01", t: "Build your menu", d: "Add dishes, prices and photos. Drag to reorder. Mark things veg, spicy or sold out in a tap." },
-  { n: "02", t: "Make it yours", d: "Pick your colours, type and cover photo. It should feel like your place, not ours." },
-  { n: "03", t: "Print your QR codes", d: "Branded codes for every table, ready to print. Change the menu any time; the codes stay the same." },
-  { n: "04", t: "Take orders", d: "Guests order and pay from their phone. Tickets land in the kitchen, nobody waves for the bill." },
+  { n: "01", t: "Add your dishes", d: "Type in names and prices, add a photo from your phone. Mark veg, spicy or sold out with one tap." },
+  { n: "02", t: "Make it look like yours", d: "Your logo, colours and cover photo, so the menu feels like your place." },
+  { n: "03", t: "Print QR codes for each table", d: "Download and print. Change prices any time; the codes never need reprinting." },
+  { n: "04", t: "Get orders in the kitchen", d: "Guests order from the table. Tickets appear on your kitchen screen the moment they tap Order." },
 ];
 
 export function HowItWorks() {
@@ -13,7 +13,7 @@ export function HowItWorks() {
       <div className="grid gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="eyebrow mb-5">How it works</p>
-          <h2 className="text-4xl leading-[1.02] md:text-6xl">From blank page to busy Saturday.</h2>
+          <h2 className="text-4xl leading-[1.02] md:text-6xl">Live in four steps.</h2>
           <div className="mt-12 hidden gap-4 md:grid md:grid-cols-5">
             <img src={img("1556910103-1c02745aae4d", 700, 900)} alt="Chef plating in a kitchen" loading="lazy" className="col-span-3 aspect-[3/4] w-full rounded-xl object-cover" />
             <img src={img("1509440159596-0249088772ff", 400, 600)} alt="Fresh loaves" loading="lazy" className="col-span-2 mt-24 aspect-[2/3] w-full rounded-xl object-cover" />

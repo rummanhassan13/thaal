@@ -8,7 +8,7 @@ const CTA: Record<string, string> = { free: "Start free", pro: "Start with Pro",
 export function Pricing() {
   return (
     <section id="pricing" className="mx-auto max-w-7xl scroll-mt-10 px-5 py-24 md:px-10 md:py-36">
-      <SectionHeading eyebrow="Pricing" title="Fair prices. No small print.">Start free. Upgrade when the tables fill up.</SectionHeading>
+      <SectionHeading eyebrow="Pricing" title="Start free. Pay when you grow.">The Free plan gives you a full photo menu and a QR code. Upgrade for table ordering, your own look and more branches.</SectionHeading>
       <PlanColumns renderCta={(p) => (
         <Link to="/signup" className={cn(buttonVariants({ variant: p.highlight ? "accent" : "outline" }), "mt-10 w-full")}>{CTA[p.id]}</Link>
       )} />
