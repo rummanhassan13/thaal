@@ -20,6 +20,7 @@ import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authe
 import { Route as AuthenticatedDashboardDesignRouteImport } from './routes/_authenticated/dashboard/design'
 import { Route as AuthenticatedDashboardMenuRouteImport } from './routes/_authenticated/dashboard/menu'
 import { Route as AuthenticatedDashboardOrdersRouteImport } from './routes/_authenticated/dashboard/orders'
+import { Route as AuthenticatedDashboardProfileRouteImport } from './routes/_authenticated/dashboard/profile'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -80,6 +81,12 @@ const AuthenticatedDashboardOrdersRoute =
     path: '/orders',
     getParentRoute: () => AuthenticatedDashboardRouteRoute,
   } as any)
+const AuthenticatedDashboardProfileRoute =
+  AuthenticatedDashboardProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
   '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
+  '/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -102,6 +110,7 @@ export interface FileRoutesByTo {
   '/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
   '/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
+  '/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -116,6 +125,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard/design': typeof AuthenticatedDashboardDesignRoute
   '/_authenticated/dashboard/menu': typeof AuthenticatedDashboardMenuRoute
   '/_authenticated/dashboard/orders': typeof AuthenticatedDashboardOrdersRoute
+  '/_authenticated/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/dashboard/design'
     | '/dashboard/menu'
     | '/dashboard/orders'
+    | '/dashboard/profile'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/dashboard/design'
     | '/dashboard/menu'
     | '/dashboard/orders'
+    | '/dashboard/profile'
     | '/dashboard'
   id:
     | '__root__'
@@ -154,6 +166,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard/design'
     | '/_authenticated/dashboard/menu'
     | '/_authenticated/dashboard/orders'
+    | '/_authenticated/dashboard/profile'
     | '/_authenticated/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardOrdersRouteImport
       parentRoute: typeof AuthenticatedDashboardRouteRoute
     }
+    '/_authenticated/dashboard/profile': {
+      id: '/_authenticated/dashboard/profile'
+      path: '/profile'
+      fullPath: '/dashboard/profile'
+      preLoaderRoute: typeof AuthenticatedDashboardProfileRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
   }
 }
 
@@ -251,6 +271,7 @@ interface AuthenticatedDashboardRouteRouteChildren {
   AuthenticatedDashboardDesignRoute: typeof AuthenticatedDashboardDesignRoute
   AuthenticatedDashboardMenuRoute: typeof AuthenticatedDashboardMenuRoute
   AuthenticatedDashboardOrdersRoute: typeof AuthenticatedDashboardOrdersRoute
+  AuthenticatedDashboardProfileRoute: typeof AuthenticatedDashboardProfileRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
@@ -259,6 +280,7 @@ const AuthenticatedDashboardRouteRouteChildren: AuthenticatedDashboardRouteRoute
     AuthenticatedDashboardDesignRoute: AuthenticatedDashboardDesignRoute,
     AuthenticatedDashboardMenuRoute: AuthenticatedDashboardMenuRoute,
     AuthenticatedDashboardOrdersRoute: AuthenticatedDashboardOrdersRoute,
+    AuthenticatedDashboardProfileRoute: AuthenticatedDashboardProfileRoute,
     AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   }
 
