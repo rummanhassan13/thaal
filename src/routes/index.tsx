@@ -50,7 +50,7 @@ function Landing() {
           <p className="mt-8 max-w-md text-base text-muted-foreground md:text-lg">
             Guests scan, see every dish with photos and order from their phone. Orders land in your kitchen instantly, with no waiting for a waiter and no reprinting menus.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-6">
+          <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
             <Link to="/signup" className={buttonVariants({ variant: "accent", size: "lg" })}>Create your menu free</Link>
             <Link to="/m/$slug" params={{ slug: "lemon-and-rye" }} search={{ table: "4" }} className={buttonVariants({ variant: "link" })}>See a live menu</Link>
           </div>
