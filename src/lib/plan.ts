@@ -29,11 +29,11 @@ export type PlanInfo = {
   id: Plan; name: string; price: number; currency: "GBP"; period: string; blurb: string; features: string[]; highlight?: boolean;
 };
 export const PLANS: PlanInfo[] = [
-  { id: "free", name: "Free", price: 0, currency: "GBP", period: "forever", blurb: "For trying it out over a weekend.",
+  { id: "free", name: "Free", price: 0, currency: "GBP", period: "forever", blurb: "A full photo menu with one QR code.",
     features: ["1 menu", "Unlimited dishes & photos", "Basic plain QR code", "Browse-only menu"] },
-  { id: "pro", name: "Pro", price: 19, currency: "GBP", period: "per month", blurb: "For cafés ready to take orders.", highlight: true,
+  { id: "pro", name: "Pro", price: 19, currency: "GBP", period: "per month", blurb: "For restaurants that want orders from the table.", highlight: true,
     features: ["Everything in Free", "Unlimited menus", "Table ordering", "Online payment (coming soon)", "Custom themes", "Branded table QR codes", "Analytics"] },
-  { id: "business", name: "Business", price: 49, currency: "GBP", period: "per month", blurb: "For a few places under one roof.",
+  { id: "business", name: "Business", price: 49, currency: "GBP", period: "per month", blurb: "For restaurants with more than one branch.",
     features: ["Everything in Pro", "Multiple branches"] },
 ];
 export const planInfo = (plan: string | null | undefined) => PLANS.find((p) => p.id === plan) ?? PLANS[0]!;
