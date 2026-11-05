@@ -144,7 +144,7 @@ export function DishForm({ open, dish, categoryId, nextSort, restaurantId, curre
                               onChange={(e) => set("addons", d.addons.map((x) => (x.id === a.id ? { ...x, name: e.target.value } : x)))}
                               className="h-9 flex-1 rounded-md border border-input bg-card px-2.5 text-sm focus:border-ink focus:outline-none" />
                             <div className="flex h-9 w-24 items-center rounded-md border border-input bg-card px-2 focus-within:border-ink">
-                              <span className="text-xs text-muted-foreground">+{symbol}</span>
+                              <span className="whitespace-nowrap text-xs text-muted-foreground">+{symbol}</span>
                               <input aria-label="Add-on price" inputMode="decimal" value={a.price} placeholder="0"
                                 onChange={(e) => set("addons", d.addons.map((x) => (x.id === a.id ? { ...x, price: e.target.value.replace(/[^0-9.]/g, "") } : x)))}
                                 className="ml-1 w-full bg-transparent text-sm tabular-nums focus:outline-none" />

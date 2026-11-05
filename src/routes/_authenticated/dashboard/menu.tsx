@@ -202,9 +202,10 @@ function DishRow({ dish: d, handle, currency, onOpen, onPrice, onSoldOut, onSpec
   dish: Dish; handle: React.ReactNode; currency: string; onOpen: () => void; onPrice: (p: number) => void;
   onSoldOut: (v: boolean) => void; onSpecial: (v: boolean) => void; onDelete: () => void;
 }) {
-  const [price, setPrice] = useState(String(d.price));
-  useEffect(() => setPrice(String(d.price)), [d.price]);
-  const commitPrice = () => { const n = Number(price); if (!Number.isFinite(n) || n < 0 || price === "") return setPrice(String(d.price)); if (n !== d.price) onPrice(n); };
+  const show = (n: number) => (n % 1 === 0 ? String(n) : n.toFixed(2));
+  const [price, setPrice] = useState(show(d.price));
+  useEffect(() => setPrice(show(d.price)), [d.price]);
+  const commitPrice = () => { const n = Number(price); if (!Number.isFinite(n) || n < 0 || price === "") return setPrice(show(d.price)); if (n !== d.price) onPrice(n); };
   return (
     <div className="grid grid-cols-[auto_auto_1fr_auto] items-center gap-x-3 gap-y-2 border-b border-hairline py-3 md:grid-cols-[auto_auto_1fr_auto_auto_auto_auto]">
       {handle}
