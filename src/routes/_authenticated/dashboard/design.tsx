@@ -7,6 +7,7 @@ import { Button, Divider, PillGroup, buttonVariants } from "@/components/plated/
 import { ImagePicker } from "@/components/dashboard/ImagePicker";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
 import { errMsg, menuTreeQuery } from "@/lib/dashboard/menu-data";
 import { ACCENT_SWATCHES, DEFAULT_THEME, themesKey, themesQuery } from "@/lib/dashboard/themes";
 import { buildPublicMenu, pickTheme } from "@/lib/menu/build";
@@ -63,7 +64,7 @@ function Design() {
     if (!effective || !themes) return;
     if (!isHex(effective.accent)) { toast.error("Pick a full hex colour, like #C8553D."); return; }
     setBusy(true);
-    const row = { ...effective };
+    const row = { ...effective, font_pairing: effective.font_pairing as Database["public"]["Enums"]["font_pairing"], mode: effective.mode as Database["public"]["Enums"]["theme_mode"] };
     const target = branches.length > 1 && scope === "branch" ? branchId : null;
     try {
       const existing = themes.find((t) => (t.branch_id ?? null) === target);
