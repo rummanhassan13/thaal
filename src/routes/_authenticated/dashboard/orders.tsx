@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { PillGroup, Toggle } from "@/components/plated/primitives";
+import { PillGroup, Toggle } from "@/components/thaal/primitives";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { ServiceFeed, Ticket, useLiveOps, useNow } from "@/components/dashboard/LiveOps";
 import { BOARD, nextStatus, unlockChime, type Order } from "@/lib/dashboard/orders";
@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/orders")({
   head: () => ({ meta: [
-    { title: "Live orders — Plated" }, { name: "description", content: "Your kitchen board: new, preparing and served orders in real time." },
-    { property: "og:title", content: "Live orders — Plated" }, { property: "og:description", content: "Your kitchen board in real time." },
+    { title: "Live orders — Thaal" }, { name: "description", content: "Your kitchen board: new, preparing and served orders in real time." },
+    { property: "og:title", content: "Live orders — Thaal" }, { property: "og:description", content: "Your kitchen board in real time." },
   ] }),
   component: OrdersPage,
 });
@@ -27,8 +27,8 @@ function OrdersPage() {
   const now = useNow();
   const { orders, loading, requests, fresh, updateOrder, resolveRequest } = useLiveOps(branchId, { chime });
 
-  useEffect(() => { setChime(localStorage.getItem("plated.chime") === "1"); }, []);
-  const toggleChime = (v: boolean) => { if (v) unlockChime(); setChime(v); localStorage.setItem("plated.chime", v ? "1" : "0"); };
+  useEffect(() => { setChime(localStorage.getItem("thaal.chime") === "1"); }, []);
+  const toggleChime = (v: boolean) => { if (v) unlockChime(); setChime(v); localStorage.setItem("thaal.chime", v ? "1" : "0"); };
 
   useEffect(() => {
     if (!kitchen) return;

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/m/$slug")({
     return data;
   },
   head: ({ loaderData }) => {
-    const title = loaderData ? `${loaderData.restaurant.name} — Menu` : "Menu — Plated";
+    const title = loaderData ? `${loaderData.restaurant.name} — Menu` : "Menu — Thaal";
     const desc = loaderData?.restaurant.description ?? "Browse the menu and order from your table.";
     const cover = loaderData?.theme?.cover_url ?? loaderData?.restaurant.cover_url;
     const image = cover?.startsWith("https://") ? (cover.includes("unsplash") ? cover.split("?")[0] + "?w=1200&h=630&fit=crop&q=75&auto=format" : cover) : undefined;
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/m/$slug")({
     <div className="mx-auto max-w-md px-6 py-24">
       <h1 className="text-5xl">Hmm, no menu here.</h1>
       <p className="mt-3 text-muted-foreground">Check the link or scan the code on your table again.</p>
-      <Link to="/" className="mt-8 inline-block underline underline-offset-4">Go to Plated</Link>
+      <Link to="/" className="mt-8 inline-block underline underline-offset-4">Go to Thaal</Link>
     </div>
   ),
   errorComponent: MenuError,

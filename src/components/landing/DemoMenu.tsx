@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-import { BottomSheet, Button, PillGroup, Tag } from "@/components/plated/primitives";
+import { BottomSheet, Button, PillGroup, Tag } from "@/components/thaal/primitives";
 import { sized, srcSet } from "@/lib/unsplash";
 import { formatPrice, todaysHours, type PublicDish, type PublicMenuData } from "@/lib/menu/types";
 import { supabase } from "@/integrations/supabase/client";
@@ -136,7 +136,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
             </div>
           </section>
         ))}
-        <p className="px-4 pt-8 text-center text-[10px] text-muted-foreground">Menu by Plated</p>
+        <p className="px-4 pt-8 text-center text-[10px] text-muted-foreground">Powered by Thaal</p>
       </div>
 
       {cart > 0 && (

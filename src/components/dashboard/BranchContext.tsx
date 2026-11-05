@@ -28,7 +28,7 @@ export function useBranchesQuery(restaurantId: string) {
 
 export function BranchProvider({ restaurantId, children }: { restaurantId: string; children: React.ReactNode }) {
   const { data, isLoading } = useBranchesQuery(restaurantId);
-  const storeKey = `plated.branch.${restaurantId}`;
+  const storeKey = `thaal.branch.${restaurantId}`;
   const [id, setId] = useState<string | null>(null);
   useEffect(() => { setId(localStorage.getItem(storeKey)); }, [storeKey]);
   const value = useMemo<Ctx>(() => {

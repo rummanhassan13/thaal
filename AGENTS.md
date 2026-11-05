@@ -30,7 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Plated UI primitives live in `src/components/plated/`; marketing sections in `src/components/landing/`. Why: keeps brand primitives separate from stock shadcn.
+- Brand UI primitives (logo, buttons, pills) live in `src/components/thaal/`; marketing sections in `src/components/landing/`. Why: keeps brand primitives separate from stock shadcn.
 - All colours come from tokens in `src/styles.css` (paper/ink/marigold/highlight/pink/alert/teal/teal-ink/mist + shadcn aliases; `-ink`/`highlight`/`alert` are the text-safe variants of fill colours). Why: dark mode and theming.
 - Diner/public menu reads go through `getPublicMenu` (server fn, publishable key, anon RLS); diners never read orders directly — they use RPCs `place_order` / `get_order_status` / `submit_review`. Why: server-side prices and per-order tracking tokens.
 - Owner app lives under `src/routes/_authenticated/`; the dashboard layout's `beforeLoad` loads the user's restaurant and redirects to `/onboarding` if none. Why: one gate, client-side session.
@@ -46,3 +46,4 @@ use the editor.
 - Live ops (orders board, service feed) subscribe to `postgres_changes` per branch in `useLiveOps` and refetch via react-query; analytics come from one member-checked RPC `get_branch_analytics` bucketed in branch local time. Why: RLS-scoped realtime, and one SQL source for every chart.
 - Plan prices/selling points live in `PLANS` in `src/lib/plan.ts` (landing + billing read it); `buildPublicMenu` applies plan limits so downgrades pause extra menus/themes without deleting rows. Upgrades are `upgrade_requests` rows; plan changes are manual. Why: one config, no payment provider yet.
 - PWA: `vite-plugin-pwa` generateSW with a static `public/manifest.webmanifest`; `src/lib/pwa.ts` is the only SW registrar and refuses dev/iframe/preview hosts (`pwa-guard.ts`). `InstallBanner` mounts only on landing + dashboard, never `/m/*`. Why: installable without breaking the editor preview or interrupting diners.
+- Logo artwork is outlined SVG paths in `src/components/thaal/Logo.tsx` (`ThaalLogo`, `ThaalMark`, `Wordmark`); static copies live in `public/brand/`, icons/OG in `public/`. Why: the logo never depends on web-font loading.

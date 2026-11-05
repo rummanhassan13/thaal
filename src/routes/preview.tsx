@@ -9,7 +9,7 @@ import type { PublicMenuData } from "@/lib/menu/types";
 export const Route = createFileRoute("/preview")({
   ssr: false,
   head: () => ({
-    meta: [{ title: "Menu preview — Plated" }, { name: "description", content: "Live preview of your menu." }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Menu preview — Thaal" }, { name: "description", content: "Live preview of your menu." }, { name: "robots", content: "noindex" }],
     links: Object.values(FONT_PAIRINGS).flatMap((f) => (f.href ? [{ rel: "stylesheet", href: f.href }] : [])),
   }),
   component: Preview,
@@ -20,11 +20,11 @@ function Preview() {
   useEffect(() => {
     disableEvents();
     const onMsg = (e: MessageEvent) => {
-      if (e.origin !== window.location.origin || e.data?.type !== "plated-preview") return;
+      if (e.origin !== window.location.origin || e.data?.type !== "thaal-preview") return;
       setData(e.data.payload as PublicMenuData);
     };
     window.addEventListener("message", onMsg);
-    window.parent?.postMessage({ type: "plated-preview-ready" }, window.location.origin);
+    window.parent?.postMessage({ type: "thaal-preview-ready" }, window.location.origin);
     return () => window.removeEventListener("message", onMsg);
   }, []);
   if (!data) return <div className="grid min-h-dvh place-items-center text-sm text-muted-foreground">Warming up the preview…</div>;

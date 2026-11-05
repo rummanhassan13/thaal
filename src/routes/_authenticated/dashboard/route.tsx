@@ -1,9 +1,9 @@
 import { createFileRoute, Link, Outlet, redirect, useLocation, useNavigate, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BottomSheet } from "@/components/plated/primitives";
-import { Wordmark } from "@/components/plated/Wordmark";
-import { InstallBanner } from "@/components/plated/InstallBanner";
+import { BottomSheet } from "@/components/thaal/primitives";
+import { Wordmark } from "@/components/thaal/Logo";
+import { InstallBanner } from "@/components/thaal/InstallBanner";
 import { BranchProvider, useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchMyRestaurant } from "@/lib/restaurant";
@@ -29,8 +29,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
     return { restaurant };
   },
   head: () => ({ meta: [
-    { title: "Dashboard — Plated" }, { name: "description", content: "Manage your menu, orders and design." },
-    { property: "og:title", content: "Dashboard — Plated" }, { property: "og:description", content: "Manage your menu, orders and design." },
+    { title: "Dashboard — Thaal" }, { name: "description", content: "Manage your menu, orders and design." },
+    { property: "og:title", content: "Dashboard — Thaal" }, { property: "og:description", content: "Manage your menu, orders and design." },
   ] }),
   component: DashboardLayout,
 });
@@ -71,7 +71,7 @@ function DashboardLayout() {
     <BranchProvider restaurantId={restaurant.id}>
       <div className="min-h-screen md:grid md:grid-cols-[232px_1fr]">
         <aside className="sticky top-0 hidden h-screen flex-col border-r border-hairline px-5 py-6 md:flex">
-          <Wordmark />
+          <Wordmark withMark />
           <p className="mt-10 truncate font-display text-lg">{restaurant.name}</p>
           <nav className="mt-6 flex flex-col gap-0.5 text-sm">
             {NAV.map((n) => (

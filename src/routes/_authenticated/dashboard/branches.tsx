@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Button, Divider, Input, buttonVariants } from "@/components/plated/primitives";
+import { Button, Divider, Input, buttonVariants } from "@/components/thaal/primitives";
 import { HoursEditor } from "@/components/dashboard/HoursEditor";
 import { branchesKey, useBranch, type Branch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,7 +12,7 @@ import { errMsg } from "@/lib/dashboard/menu-data";
 import type { Hours } from "@/lib/menu/hours";
 
 export const Route = createFileRoute("/_authenticated/dashboard/branches")({
-  head: () => ({ meta: [{ title: "Branches — Plated" }, { name: "description", content: "Addresses, phone numbers and opening hours." }] }),
+  head: () => ({ meta: [{ title: "Branches — Thaal" }, { name: "description", content: "Addresses, phone numbers and opening hours." }] }),
   component: Branches,
 });
 

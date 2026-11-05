@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { Button, Divider, PillGroup, buttonVariants } from "@/components/plated/primitives";
+import { Button, Divider, PillGroup, buttonVariants } from "@/components/thaal/primitives";
 import { ImagePicker } from "@/components/dashboard/ImagePicker";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/design")({
   head: () => ({
-    meta: [{ title: "Design — Plated" }, { name: "description", content: "Colours, type, logo and cover for your menu." }],
+    meta: [{ title: "Design — Thaal" }, { name: "description", content: "Colours, type, logo and cover for your menu." }],
     links: Object.values(FONT_PAIRINGS).flatMap((f) => (f.href ? [{ rel: "stylesheet", href: f.href }] : [])),
   }),
   component: Design,
@@ -96,7 +96,7 @@ function Design() {
           {!canTheme && (
             <div className="grid gap-3 rounded-lg border border-marigold/40 p-5 sm:grid-cols-[1fr_auto] sm:items-center">
               <p className="text-sm"><span className="font-display text-lg">Want your own colours and type?</span><br />
-                <span className="text-muted-foreground">The Free plan uses Plated's house look. Pro unlocks colours, fonts and dark mode. Logo and cover work on every plan.</span></p>
+                <span className="text-muted-foreground">The Free plan uses Thaal's house look. Pro unlocks colours, fonts and dark mode. Logo and cover work on every plan.</span></p>
               <Link to="/dashboard/billing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link>
             </div>
           )}
@@ -192,12 +192,12 @@ function PreviewFrame({ payload, className }: { payload: unknown; className?: st
   const ref = useRef<HTMLIFrameElement>(null);
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    const onMsg = (e: MessageEvent) => { if (e.origin === window.location.origin && e.data?.type === "plated-preview-ready" && e.source === ref.current?.contentWindow) setReady(true); };
+    const onMsg = (e: MessageEvent) => { if (e.origin === window.location.origin && e.data?.type === "thaal-preview-ready" && e.source === ref.current?.contentWindow) setReady(true); };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, []);
   useEffect(() => {
-    if (ready && payload) ref.current?.contentWindow?.postMessage({ type: "plated-preview", payload }, window.location.origin);
+    if (ready && payload) ref.current?.contentWindow?.postMessage({ type: "thaal-preview", payload }, window.location.origin);
   }, [ready, payload]);
   return <iframe ref={ref} src="/preview" title="Menu preview" className={cn("w-full border-0 bg-background", className)} />;
 }

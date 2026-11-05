@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Button } from "@/components/plated/primitives";
+import { Button } from "@/components/thaal/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { errMsg, type Menu } from "@/lib/dashboard/menu-data";
 import { DAY_NAMES, dayRanges, scheduleWarnings, type Slot } from "@/lib/dashboard/schedule-check";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { Button, Divider, Input, Toggle } from "@/components/plated/primitives";
+import { Button, Divider, Input, Toggle } from "@/components/thaal/primitives";
 import { ChipInput } from "./ChipInput";
 import { ImagePicker } from "./ImagePicker";
 import { SortableItem, SortableList } from "./Sortable";

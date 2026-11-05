@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Button, Divider, buttonVariants } from "@/components/plated/primitives";
+import { Button, Divider, buttonVariants } from "@/components/thaal/primitives";
 import { QrPreview } from "@/components/dashboard/QrPreview";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -16,7 +16,7 @@ import { downloadBlob, fileSafe, qrBlob, tentsPdf, zipQrs, type QrStyle } from "
 
 export const Route = createFileRoute("/_authenticated/dashboard/qr")({
   head: () => ({
-    meta: [{ title: "Tables & QR codes — Plated" }, { name: "description", content: "Tables, QR codes and printable table tents." }],
+    meta: [{ title: "Tables & QR codes — Thaal" }, { name: "description", content: "Tables, QR codes and printable table tents." }],
     links: Object.values(FONT_PAIRINGS).flatMap((f) => (f.href ? [{ rel: "stylesheet", href: f.href }] : [])),
   }),
   component: QrPage,

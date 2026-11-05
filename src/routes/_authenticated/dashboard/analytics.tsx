@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { buttonVariants, PillGroup } from "@/components/plated/primitives";
+import { buttonVariants, PillGroup } from "@/components/thaal/primitives";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
 import { planFeatures } from "@/lib/plan";
@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/analytics")({
   head: () => ({ meta: [
-    { title: "Analytics — Plated" }, { name: "description", content: "Scans, orders, revenue and your busiest hours." },
-    { property: "og:title", content: "Analytics — Plated" }, { property: "og:description", content: "Scans, orders, revenue and your busiest hours." },
+    { title: "Analytics — Thaal" }, { name: "description", content: "Scans, orders, revenue and your busiest hours." },
+    { property: "og:title", content: "Analytics — Thaal" }, { property: "og:description", content: "Scans, orders, revenue and your busiest hours." },
   ] }),
   component: AnalyticsPage,
 });

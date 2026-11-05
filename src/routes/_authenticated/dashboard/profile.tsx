@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { Button, Divider, Input, Toggle } from "@/components/plated/primitives";
+import { Button, Divider, Input, Toggle } from "@/components/thaal/primitives";
 import { ImagePicker } from "@/components/dashboard/ImagePicker";
 import { supabase } from "@/integrations/supabase/client";
 import { CURRENCIES, slugify } from "@/lib/restaurant";
 import { errMsg } from "@/lib/dashboard/menu-data";
 
 export const Route = createFileRoute("/_authenticated/dashboard/profile")({
-  head: () => ({ meta: [{ title: "Restaurant profile — Plated" }, { name: "description", content: "Name, link, logo, cover and publishing." }] }),
+  head: () => ({ meta: [{ title: "Restaurant profile — Thaal" }, { name: "description", content: "Name, link, logo, cover and publishing." }] }),
   component: Profile,
 });
 
@@ -72,7 +72,7 @@ function Profile() {
         <div>
           <Input label="Menu link" value={form.slug} onChange={(e) => set("slug", slugify(e.target.value))} />
           <p className="mt-1.5 text-xs text-muted-foreground">
-            plated.app/m/<span className="text-foreground">{form.slug}</span>
+            thaal.app/m/<span className="text-foreground">{form.slug}</span>
             {available === true && <span className="ml-2 text-teal-ink">available</span>}
             {available === false && <span className="ml-2 text-alert">taken</span>}
             {form.slug !== r.slug && <span className="ml-2">· old QR codes will stop working</span>}

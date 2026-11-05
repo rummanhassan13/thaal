@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useRouter } from "@tanstack/react-router";
-import { Wordmark } from "./Wordmark";
+import { Wordmark } from "./Logo";
 import { Button, Input } from "./primitives";
 import { img } from "@/lib/unsplash";
 import { supabase } from "@/integrations/supabase/client";

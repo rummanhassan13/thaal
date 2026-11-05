@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BottomSheet, Button, Divider } from "@/components/plated/primitives";
+import { BottomSheet, Button, Divider } from "@/components/thaal/primitives";
 import { cartTotal, lineTotal, type CartLine } from "@/lib/menu/cart";
 import { formatPrice } from "@/lib/menu/types";
 import { cn } from "@/lib/utils";

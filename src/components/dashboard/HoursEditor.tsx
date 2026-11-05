@@ -1,5 +1,5 @@
 import type { Hours } from "@/lib/menu/hours";
-import { Toggle } from "@/components/plated/primitives";
+import { Toggle } from "@/components/thaal/primitives";
 
 const DAYS = [["mon", "Monday"], ["tue", "Tuesday"], ["wed", "Wednesday"], ["thu", "Thursday"], ["fri", "Friday"], ["sat", "Saturday"], ["sun", "Sunday"]] as const;
 const timeCls = "h-9 rounded-md border border-input bg-card px-2 text-sm tabular-nums focus:border-ink focus:outline-none";

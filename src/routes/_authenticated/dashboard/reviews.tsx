@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { PillGroup } from "@/components/plated/primitives";
+import { PillGroup } from "@/components/thaal/primitives";
 import { useBranch } from "@/components/dashboard/BranchContext";
 import { supabase } from "@/integrations/supabase/client";
 import { sized } from "@/lib/unsplash";
@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/reviews")({
   head: () => ({ meta: [
-    { title: "Reviews — Plated" }, { name: "description", content: "What diners said about each dish." },
-    { property: "og:title", content: "Reviews — Plated" }, { property: "og:description", content: "What diners said about each dish." },
+    { title: "Reviews — Thaal" }, { name: "description", content: "What diners said about each dish." },
+    { property: "og:title", content: "Reviews — Thaal" }, { property: "og:description", content: "What diners said about each dish." },
   ] }),
   component: ReviewsPage,
 });
