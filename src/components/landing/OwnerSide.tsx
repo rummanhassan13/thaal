@@ -13,9 +13,9 @@ const ORDERS: { id: number; table: number; items: string; mins: number; status: 
 ];
 
 const ACCENTS = [
-  { k: "marigold", cls: "bg-marigold", text: "text-highlight" },
-  { k: "teal", cls: "bg-teal", text: "text-teal-ink" },
-  { k: "ink", cls: "bg-ink", text: "text-foreground" },
+  { k: "marigold", cls: "bg-marigold", text: "text-highlight", on: "text-ink" },
+  { k: "teal", cls: "bg-teal", text: "text-teal-ink", on: "text-paper" },
+  { k: "ink", cls: "bg-ink", text: "text-foreground", on: "text-paper" },
 ] as const;
 
 export function OwnerSide() {
@@ -58,7 +58,7 @@ export function OwnerSide() {
               ))}
             </AnimatePresence>
           </ul>
-        </div>
+        </Reveal>
 
         {/* Theme customiser */}
         <Reveal delay={0.1} className="grid gap-5 rounded-xl border border-hairline bg-secondary/60 p-5 md:col-span-5 md:p-7">
@@ -86,9 +86,9 @@ export function OwnerSide() {
                 </motion.div>
               )}
             </AnimatePresence>
-            <div className={cn("mt-3 inline-block rounded-md px-3 py-1.5 text-xs text-paper", accent.cls)}>Add to order</div>
+            <div className={cn("mt-3 inline-block rounded-md px-3 py-1.5 text-xs", accent.cls, accent.on)}>Add to order</div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
