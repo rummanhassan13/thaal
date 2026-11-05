@@ -245,14 +245,14 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
         </div>
 
         {/* Sticky category pills */}
-        <nav className="sticky top-0 z-20 mt-3 border-b border-hairline bg-background/95 backdrop-blur-sm" style={{ height: STICKY_H }}>
+        {cats.length > 0 && <nav className="sticky top-0 z-20 mt-3 border-b border-hairline bg-background/95 backdrop-blur-sm" style={{ height: STICKY_H }}>
           <div ref={pillRow} className="no-scrollbar flex h-full items-center overflow-x-auto px-3">
             {cats.length > 0 && (
               <PillGroup id="menu-pill" className="[&>button]:shrink-0" value={activeCat} onChange={jump}
                 items={cats.map((c) => ({ value: c.id, label: c.name }))} />
             )}
           </div>
-        </nav>
+        </nav>}
         <PillDataAttrs row={pillRow} ids={cats.map((c) => c.id)} />
 
         {/* Dishes */}
