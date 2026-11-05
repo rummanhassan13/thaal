@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
-import { localClock, pickActiveMenu } from "./schedule";
+import { buildPublicMenu, pickTheme } from "./build";
 import type { PublicMenuData } from "./types";
 
 function publicClient() {
@@ -21,17 +21,25 @@ function publicClient() {
   });
 }
 
-/** Public, read-only: menu data for a published restaurant (RLS limits anon to published rows). */
+/** Public, read-only: menu data for a published restaurant (RLS limits anon to published rows).
+ * With a table token, the table's own branch is shown; otherwise the first branch. */
 export const getPublicMenu = createServerFn({ method: "GET" })
-  .inputValidator((input: { slug: string }) => z.object({ slug: z.string().min(1).max(80) }).parse(input))
+  .inputValidator((input: { slug: string; table?: string | undefined }) =>
+    z.object({ slug: z.string().min(1).max(80), table: z.string().max(64).optional() }).parse(input))
   .handler(async ({ data }): Promise<PublicMenuData | null> => {
     const sb = publicClient();
     const { data: r } = await sb.from("restaurants")
       .select("id, name, slug, description, logo_url, cover_url, currency, plan")
       .eq("slug", data.slug).maybeSingle();
     if (!r) return null;
-    const { data: branch } = await sb.from("branches")
-      .select("id, name, address, timezone, opening_hours").eq("restaurant_id", r.id).order("sort").limit(1).maybeSingle();
+    let branchId: string | null = null;
+    if (data.table) {
+      const { data: t } = await sb.rpc("resolve_table", { _token: data.table });
+      const hit = (t ?? []).find((x) => x.restaurant_slug === r.slug);
+      if (hit) branchId = hit.branch_id;
+    }
+    const q = sb.from("branches").select("id, name, address, timezone, opening_hours").eq("restaurant_id", r.id);
+    const { data: branch } = branchId ? await q.eq("id", branchId).maybeSingle() : await q.order("sort").limit(1).maybeSingle();
     if (!branch) return null;
 
     const [{ data: themes }, { data: menus }] = await Promise.all([
@@ -39,30 +47,5 @@ export const getPublicMenu = createServerFn({ method: "GET" })
       sb.from("menus").select("id, name, sort, active, menu_schedules(menu_id, weekdays, start_time, end_time), categories(id, name, sort, dishes(id, name, short_description, description, price, photo_url, is_veg, is_spicy, spice_level, ingredients, allergens, is_sold_out, is_special, sort, dish_addons(id, name, price, sort)))")
         .eq("branch_id", branch.id).eq("active", true).order("sort"),
     ]);
-
-    const list = menus ?? [];
-    const schedules = list.flatMap((m) => m.menu_schedules ?? []);
-    const activeMenuId = pickActiveMenu(list, schedules, localClock(new Date(), branch.timezone));
-    const theme = themes?.find((t) => t.branch_id === branch.id) ?? themes?.find((t) => !t.branch_id) ?? null;
-
-    return {
-      restaurant: r,
-      branch: { ...branch, opening_hours: (branch.opening_hours ?? {}) as PublicMenuData["branch"]["opening_hours"] },
-      theme: theme ? { accent: theme.accent, font_pairing: theme.font_pairing, mode: theme.mode, logo_url: theme.logo_url, cover_url: theme.cover_url } : null,
-      generatedAt: new Date().toISOString(),
-      activeMenuId,
-      menus: list.map((m) => ({
-        id: m.id, name: m.name,
-        schedules: (m.menu_schedules ?? []).map((x) => ({ weekdays: x.weekdays, start_time: x.start_time.slice(0, 5), end_time: x.end_time.slice(0, 5) })),
-        categories: [...(m.categories ?? [])].sort((a, b) => a.sort - b.sort).map((c) => ({
-          id: c.id, name: c.name,
-          dishes: [...(c.dishes ?? [])].sort((a, b) => a.sort - b.sort).map((d) => ({
-            id: d.id, name: d.name, short_description: d.short_description, description: d.description,
-            price: Number(d.price), photo_url: d.photo_url, is_veg: d.is_veg, is_spicy: d.is_spicy, spice_level: d.spice_level,
-            ingredients: d.ingredients, allergens: d.allergens, is_sold_out: d.is_sold_out, is_special: d.is_special,
-            addons: [...(d.dish_addons ?? [])].sort((a, b) => a.sort - b.sort).map((a) => ({ id: a.id, name: a.name, price: Number(a.price) })),
-          })),
-        })),
-      })),
-    };
+    return buildPublicMenu(r, branch, pickTheme(themes ?? [], branch.id), menus ?? []);
   });

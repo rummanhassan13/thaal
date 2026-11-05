@@ -6,8 +6,9 @@ import { FONT_PAIRINGS } from "@/lib/menu/theme";
 
 export const Route = createFileRoute("/m/$slug")({
   validateSearch: z.object({ table: z.coerce.string().optional() }),
-  loader: async ({ params }) => {
-    const data = await getPublicMenu({ data: { slug: params.slug } });
+  loaderDeps: ({ search }) => ({ table: search.table }),
+  loader: async ({ params, deps }) => {
+    const data = await getPublicMenu({ data: { slug: params.slug, table: deps.table?.slice(0, 64) } });
     if (!data) throw notFound();
     return data;
   },
