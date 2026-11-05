@@ -136,7 +136,7 @@ export function MenuView({ data, inPhone, live }: { data: PublicMenuData; inPhon
             </div>
           </section>
         ))}
-        <p className="px-4 pt-8 text-center text-[10px] text-muted-foreground">Menu by Plated</p>
+        <p className="px-4 pt-8 text-center text-[10px] text-muted-foreground">Powered by Thaal</p>
       </div>
 
       {cart > 0 && (

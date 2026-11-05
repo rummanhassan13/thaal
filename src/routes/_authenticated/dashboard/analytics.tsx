@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/analytics")({
   head: () => ({ meta: [
-    { title: "Analytics — Plated" }, { name: "description", content: "Scans, orders, revenue and your busiest hours." },
-    { property: "og:title", content: "Analytics — Plated" }, { property: "og:description", content: "Scans, orders, revenue and your busiest hours." },
+    { title: "Analytics — Thaal" }, { name: "description", content: "Scans, orders, revenue and your busiest hours." },
+    { property: "og:title", content: "Analytics — Thaal" }, { property: "og:description", content: "Scans, orders, revenue and your busiest hours." },
   ] }),
   component: AnalyticsPage,
 });

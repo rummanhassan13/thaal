@@ -294,7 +294,7 @@ export function CustomerMenu({ data, table }: { data: PublicMenuData; table: str
             </div>
           </section>
         ))}
-        <p className="px-5 pt-14 text-center text-[11px] text-muted-foreground">Menu by Plated</p>
+        <p className="px-5 pt-14 text-center text-[11px] text-muted-foreground">Powered by Thaal</p>
       </div>
 
       {/* Floating actions */}

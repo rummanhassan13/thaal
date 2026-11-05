@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/billing")({
   head: () => ({ meta: [
-    { title: "Plan & billing — Plated" }, { name: "description", content: "Your Plated plan, and how to upgrade." },
-    { property: "og:title", content: "Plan & billing — Plated" }, { property: "og:description", content: "Your Plated plan, and how to upgrade." },
+    { title: "Plan & billing — Thaal" }, { name: "description", content: "Your Thaal plan, and how to upgrade." },
+    { property: "og:title", content: "Plan & billing — Thaal" }, { property: "og:description", content: "Your Thaal plan, and how to upgrade." },
   ] }),
   component: BillingPage,
 });

@@ -29,8 +29,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
     return { restaurant };
   },
   head: () => ({ meta: [
-    { title: "Dashboard — Plated" }, { name: "description", content: "Manage your menu, orders and design." },
-    { property: "og:title", content: "Dashboard — Plated" }, { property: "og:description", content: "Manage your menu, orders and design." },
+    { title: "Dashboard — Thaal" }, { name: "description", content: "Manage your menu, orders and design." },
+    { property: "og:title", content: "Dashboard — Thaal" }, { property: "og:description", content: "Manage your menu, orders and design." },
   ] }),
   component: DashboardLayout,
 });

@@ -9,7 +9,7 @@ import type { PublicMenuData } from "@/lib/menu/types";
 export const Route = createFileRoute("/preview")({
   ssr: false,
   head: () => ({
-    meta: [{ title: "Menu preview — Plated" }, { name: "description", content: "Live preview of your menu." }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Menu preview — Thaal" }, { name: "description", content: "Live preview of your menu." }, { name: "robots", content: "noindex" }],
     links: Object.values(FONT_PAIRINGS).flatMap((f) => (f.href ? [{ rel: "stylesheet", href: f.href }] : [])),
   }),
   component: Preview,

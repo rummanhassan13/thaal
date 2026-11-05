@@ -8,7 +8,7 @@ import { CURRENCIES, slugify } from "@/lib/restaurant";
 import { errMsg } from "@/lib/dashboard/menu-data";
 
 export const Route = createFileRoute("/_authenticated/dashboard/profile")({
-  head: () => ({ meta: [{ title: "Restaurant profile — Plated" }, { name: "description", content: "Name, link, logo, cover and publishing." }] }),
+  head: () => ({ meta: [{ title: "Restaurant profile — Thaal" }, { name: "description", content: "Name, link, logo, cover and publishing." }] }),
   component: Profile,
 });
 

@@ -117,7 +117,7 @@ export async function tentsPdf(opts: {
     ctx.fillText(label, x, 720);
     ctx.font = `30px ${sans}`;
     ctx.fillStyle = "#5E6585";
-    ctx.fillText("Powered by Plated", x, P - 70);
+    ctx.fillText("Powered by Thaal", x, P - 70);
   };
 
   const canvas = document.createElement("canvas");

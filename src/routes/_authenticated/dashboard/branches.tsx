@@ -12,7 +12,7 @@ import { errMsg } from "@/lib/dashboard/menu-data";
 import type { Hours } from "@/lib/menu/hours";
 
 export const Route = createFileRoute("/_authenticated/dashboard/branches")({
-  head: () => ({ meta: [{ title: "Branches — Plated" }, { name: "description", content: "Addresses, phone numbers and opening hours." }] }),
+  head: () => ({ meta: [{ title: "Branches — Thaal" }, { name: "description", content: "Addresses, phone numbers and opening hours." }] }),
   component: Branches,
 });
 

@@ -13,8 +13,8 @@ export const Route = createFileRoute("/_authenticated/onboarding")({
     if (await fetchMyRestaurant(context.user.id)) throw redirect({ to: "/dashboard" });
   },
   head: () => ({ meta: [
-    { title: "Set up your restaurant — Plated" }, { name: "description", content: "A few details and your menu is ready to build." },
-    { property: "og:title", content: "Set up your restaurant — Plated" }, { property: "og:description", content: "A few details and your menu is ready to build." },
+    { title: "Set up your restaurant — Thaal" }, { name: "description", content: "A few details and your menu is ready to build." },
+    { property: "og:title", content: "Set up your restaurant — Thaal" }, { property: "og:description", content: "A few details and your menu is ready to build." },
   ] }),
   component: Onboarding,
 });

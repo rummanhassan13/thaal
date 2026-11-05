@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/orders")({
   head: () => ({ meta: [
-    { title: "Live orders — Plated" }, { name: "description", content: "Your kitchen board: new, preparing and served orders in real time." },
-    { property: "og:title", content: "Live orders — Plated" }, { property: "og:description", content: "Your kitchen board in real time." },
+    { title: "Live orders — Thaal" }, { name: "description", content: "Your kitchen board: new, preparing and served orders in real time." },
+    { property: "og:title", content: "Live orders — Thaal" }, { property: "og:description", content: "Your kitchen board in real time." },
   ] }),
   component: OrdersPage,
 });

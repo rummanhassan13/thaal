@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/reviews")({
   head: () => ({ meta: [
-    { title: "Reviews — Plated" }, { name: "description", content: "What diners said about each dish." },
-    { property: "og:title", content: "Reviews — Plated" }, { property: "og:description", content: "What diners said about each dish." },
+    { title: "Reviews — Thaal" }, { name: "description", content: "What diners said about each dish." },
+    { property: "og:title", content: "Reviews — Thaal" }, { property: "og:description", content: "What diners said about each dish." },
   ] }),
   component: ReviewsPage,
 });

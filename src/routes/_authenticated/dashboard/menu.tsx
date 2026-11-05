@@ -16,7 +16,7 @@ import { sized } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/menu")({
-  head: () => ({ meta: [{ title: "Menu editor — Plated" }, { name: "description", content: "Menus, categories, dishes and schedules." }] }),
+  head: () => ({ meta: [{ title: "Menu editor — Thaal" }, { name: "description", content: "Menus, categories, dishes and schedules." }] }),
   component: MenuEditor,
 });
 

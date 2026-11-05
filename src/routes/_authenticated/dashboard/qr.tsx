@@ -16,7 +16,7 @@ import { downloadBlob, fileSafe, qrBlob, tentsPdf, zipQrs, type QrStyle } from "
 
 export const Route = createFileRoute("/_authenticated/dashboard/qr")({
   head: () => ({
-    meta: [{ title: "Tables & QR codes — Plated" }, { name: "description", content: "Tables, QR codes and printable table tents." }],
+    meta: [{ title: "Tables & QR codes — Thaal" }, { name: "description", content: "Tables, QR codes and printable table tents." }],
     links: Object.values(FONT_PAIRINGS).flatMap((f) => (f.href ? [{ rel: "stylesheet", href: f.href }] : [])),
   }),
   component: QrPage,

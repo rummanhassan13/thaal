@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard/design")({
   head: () => ({
-    meta: [{ title: "Design — Plated" }, { name: "description", content: "Colours, type, logo and cover for your menu." }],
+    meta: [{ title: "Design — Thaal" }, { name: "description", content: "Colours, type, logo and cover for your menu." }],
     links: Object.values(FONT_PAIRINGS).flatMap((f) => (f.href ? [{ rel: "stylesheet", href: f.href }] : [])),
   }),
   component: Design,
@@ -96,7 +96,7 @@ function Design() {
           {!canTheme && (
             <div className="grid gap-3 rounded-lg border border-marigold/40 p-5 sm:grid-cols-[1fr_auto] sm:items-center">
               <p className="text-sm"><span className="font-display text-lg">Want your own colours and type?</span><br />
-                <span className="text-muted-foreground">The Free plan uses Plated's house look. Pro unlocks colours, fonts and dark mode. Logo and cover work on every plan.</span></p>
+                <span className="text-muted-foreground">The Free plan uses Thaal's house look. Pro unlocks colours, fonts and dark mode. Logo and cover work on every plan.</span></p>
               <Link to="/dashboard/billing" className={buttonVariants({ variant: "accent", size: "sm" })}>See Pro</Link>
             </div>
           )}

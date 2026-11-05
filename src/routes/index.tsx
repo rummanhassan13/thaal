@@ -13,9 +13,9 @@ import { InstallBanner } from "@/components/plated/InstallBanner";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Plated — Beautiful QR menus for independent restaurants" },
+      { title: "Thaal — Beautiful QR menus for independent restaurants" },
       { name: "description", content: "Build a photo menu, make it look like your place, print branded QR codes and take orders from the table." },
-      { property: "og:title", content: "Plated — Your menu, but the good kind" },
+      { property: "og:title", content: "Thaal — Your menu, but the good kind" },
       { property: "og:description", content: "Photo menus, branded QR codes and table ordering for cafés and restaurants." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
