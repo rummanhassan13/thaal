@@ -1,48 +1,56 @@
 # Thaal
 
-Project name: Plated. Plated is a restaurant digital menu SaaS: restaurants sign up, build a menu with dish photos, customise its look and get branded QR codes; diners scan, browse, order and pay from their phone. We will build it step by step. THIS FIRST STEP: the design system, app shell/routing, and the marketing landing page. Do not build the backend yet (we'll enable Lovable Cloud next).
+QR menus and table ordering for restaurants. A restaurant builds its menu with dish photos, customises the look, and prints QR codes. Guests scan, browse the menu and order from their phone, and orders appear in the restaurant's dashboard.
 
-DESIGN DIRECTION (critical: it must NOT look AI-generated)
-- Feel: sleek and warm, friendly, clean, very minimal, like a well-designed independent cafe brand.
-- Avoid: purple/blue gradients, glassmorphism, generic hero with three feature cards, icons everywhere, emoji, shadows on everything, centred-everything layouts, "Unlock the power of" style copy.
-- Palette as CSS variables/Tailwind tokens: base warm off-white #FAF7F2, ink near-black #1C1A17, one confident accent terracotta #C8553D, plus muted sand (~#E8DFD0 / #D9CBB4) and olive (~#6B6B47 / #8A8A5C) neutrals. Also a dark mode variant (warm charcoal, not blue-black).
-- Type: Fraunces (editorial serif) for headings, Inter Tight for UI, via Google Fonts. Generous size contrast (very large display headings, small calm UI text).
-- Layout: asymmetric editorial grids, lots of whitespace, thin 1px dividers in sand/ink-10%, food photography as the hero, restrained rounded corners 8-12px. Shadows almost never.
-- Motion (use framer-motion): subtle and physical — spring-sliding sheets, gliding pills (layoutId), micro-bounce on add-to-cart. Nothing flashy.
-- Copy: short, human, a bit playful ("Hungry? Start here.").
+**Live app:** https://thaal.lovable.app
 
-Set up shared primitives in this style: Button (solid ink, accent, ghost/underline link), Pill, Tag (veg = olive, spicy = terracotta, small text tags not icons), Divider, Section heading, Bottom Sheet (spring), Input, Toggle.
+## Features
 
-ROUTES to scaffold (placeholder pages fine except landing): / (landing), /login, /signup, /m/:slug (customer menu, optional ?table=N), /dashboard/* (owner app).
+**For restaurants (dashboard)**
+- Sign-up and onboarding for a restaurant profile
+- Menu builder with categories, drag-to-reorder and image upload with cropping
+- Design and theme customisation for the public menu
+- Branded QR codes, per-table codes and export
+- Orders view with live status
+- Reviews, analytics and multi-branch support
+- Plan tiers with feature gating
 
-LANDING PAGE at /:
-- Top nav: wordmark "Plated" in Fraunces, links (How it works, Pricing, Log in), "Start free" button.
-- Asymmetric hero: big left-aligned serif headline (e.g. "Your menu, but the good kind."), a short line of supporting copy, CTA, and on the right a realistic phone mockup showing a working demo menu for a fictional cafe "Lemon & Rye": cover photo, logo, opening hours, sticky category pills, big photo dish cards with name, short description, price, veg/spicy tags, one card sold out. Make the phone content actually scrollable and the pills interactive. Use high-quality Unsplash food photos (lazy-loaded, sized with w= params).
-- A "How it works" section as an editorial numbered list (01 Build your menu, 02 Make it yours, 03 Print your QR codes, 04 Take orders) with an asymmetric layout and photography, not three cards.
-- A section showing the owner side (live orders/kitchen view snippet, theme customiser snippet) as styled UI fragments.
-- Pricing: Free (1 menu, basic QR), Pro (ordering, themes, analytics), Business (multi-branch) — laid out as a clean table/columns with 1px dividers, Pro highlighted with accent only.
-- A short closing CTA and a minimal footer.
-- Fully responsive, mobile-first, fast.
+**For guests**
+- Public menu page per restaurant at `/m/:slug`, optionally for a specific table
+- Cart, ordering and live order status without creating an account
+- Opening hours and scheduled availability handling
+- Progressive web app support
 
-This project was built with [Lovable](https://lovable.dev).
+## Security design
 
-**Live app**: https://thaal.lovable.app
+Guests never read order tables directly; they use server-side functions that check per-order tracking tokens. Plan and billing fields on a restaurant can only be written by the service role, so users cannot upgrade themselves. Uploaded media paths are keyed by restaurant so storage policies can scope access.
 
-## Build with Lovable
+## Tech stack
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b9d21854-517a-4eeb-a420-5ee9c2ab8aa8).
+React, TypeScript, TanStack Start and Router, Tailwind CSS, Framer Motion, Supabase (auth, Postgres with row-level security, Realtime, Storage), Vite, Vitest.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Running locally
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+Other scripts: `npm run build`, `npm test`, `npm run lint`.
+
+The committed `.env` contains only the project's public Supabase URL and publishable key, so a local run connects to the hosted backend. To run in isolation, point those values at your own Supabase project. Never commit service-role keys.
+
+## Project notes
+
+- `src/routes/` holds the file-based routes; the owner app lives under `_authenticated/dashboard/`.
+- `src/lib/menu/` and `src/lib/qr/` contain the menu, cart, hours, scheduling and QR logic, with unit tests.
+- Design colours come from tokens in `src/styles.css`.
+- `AGENTS.md` records the project's design rules.
+
+## Status and license
+
+Live and actively changing. Unit tests exist for the cart, hours, scheduling, QR, orders and plan logic; they are run with `npm test`. No license has been specified yet.
+
+## Built with
+
+Built with AI assistance using [Lovable](https://lovable.dev) and edited by Rumman Hassan. Changes made in the Lovable editor are committed to this repository. Author: [Rumman Hassan](https://github.com/rummanhassan13) · [rummanhassan.cv](https://rummanhassan.cv)
